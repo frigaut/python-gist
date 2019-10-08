@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The Plotting List</TITLE>
+<META NAME="description" CONTENT="The Plotting List">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node74.html">
+<LINK REL="previous" HREF="node72.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node74.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1416"
+  HREF="node74.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1410"
+  HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1404"
+  HREF="node72.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1412"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1414"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1417"
+  HREF="node74.html">Functions For Setting Viewing</A>
+<B> Up:</B> <A NAME="tex2html1411"
+  HREF="node72.html">Setting Up For 3D</A>
+<B> Previous:</B> <A NAME="tex2html1405"
+  HREF="node72.html">Setting Up For 3D</A>
+ &nbsp; <B>  <A NAME="tex2html1413"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1415"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001011000000000000000">
+The Plotting List</A>
+</H2> 
+
+<P>
+The 3D PyGist graphics keeps an internal list called <code>_draw3_list</code> containing complete information 
+about the currently active frame (which may or may not be visible depending on whether draw3 
+has been invoked). Regular users should never need to access this list; however, there is an access 
+function available called <code>get_draw3_list_</code> which code developers and maintainers may use to 
+get at the list; <code>get_draw3_n_</code> returns the number of elements in the viewing and lighting portion of 
+the list, described below. Likewise, ordinary users do not really need to know the structure of this list 
+in detail; however, every user of the 3D graphics should be aware of the contents of the list, how it 
+affects the graph, and what functions to use to alter it. 
+
+<P>
+<code>_draw3_list</code> is a Python list, organized as follows: 
+<PRE>
+[rotation, origin, camera_dist, ambient, diffuse, specular, 
+spower, sdir, fnc 1 , args 1 , fnc 2 , args 2 ,...]
+</PRE>
+The elements of this list are divided into the viewing transformation, lighting specifications, and display 
+information, as follows: 
+
+<P>
+<DL>
+<DT><STRONG>Viewing:</STRONG></DT>
+<DD><P>
+<DL>
+<DT><STRONG>rotation:</STRONG></DT>
+<DD>a 3-by-3 rotation matrix giving the angles of view. 
+origin: a 3-vector giving the coordinates of the origin in the user's coordinate system. 
+</DD>
+<DT><STRONG>camera_dist:</STRONG></DT>
+<DD>A real number giving the camera distance; the value None (the default) 
+translates to infinity. 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Lighting:</STRONG></DT>
+<DD><DL>
+<DT><STRONG>ambient:</STRONG></DT>
+<DD>a light level (in arbitrary units) that is added to every part of the surface regardless 
+of its orientation. It might be said to be the amount of light which a surface exudes on its own. 
+A surface with ambient of 0 is totally black unless illuminated. 
+diffuse: a light level which is proportional to cos( theta), where theta is the angle between 
+the surface normal and the viewing direction, so that surfaces directly facing the viewer are 
+bright, while surfaces viewed edge on are unlit (and surfaces facing away, if drawn, are shaded 
+as if they faced the viewer). 
+specular: a light level proportional to a high power spower of 1 + cos (alpha), where 
+alpha is the angle between the specular reflection angle and the viewing direction. The light 
+source for the calculation of alpha lies in the direction sdir (a 3 element vector) in the 
+viewer's coordinate system at infinite distance. You can have ns light sources by making 
+specular, spower, and sdir (or any combination) be vectors of length ns (3-by-ns in 
+the case of sdir). 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Display:</STRONG></DT>
+<DD><DL>
+<DT><STRONG>fnc1, fnc2, etc.:</STRONG></DT>
+<DD>Plotting function( s) (whose argument lists are arg 1 , arg 2 , etc., respectively) 
+defining the component( s) of this graph. During its normal operating mode, the 3D 
+graphics accumulates information about calls to plotting functions until the user calls the 
+function draw3. These calls are then executed when draw3 is invoked. 
+</DD>
+</DL>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1416"
+  HREF="node74.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1410"
+  HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1404"
+  HREF="node72.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1412"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1414"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1417"
+  HREF="node74.html">Functions For Setting Viewing</A>
+<B> Up:</B> <A NAME="tex2html1411"
+  HREF="node72.html">Setting Up For 3D</A>
+<B> Previous:</B> <A NAME="tex2html1405"
+  HREF="node72.html">Setting Up For 3D</A>
+ &nbsp; <B>  <A NAME="tex2html1413"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1415"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plfp: Plot a List of Filled Polygons</TITLE>
+<META NAME="description" CONTENT="plfp: Plot a List of Filled Polygons">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node52.html">
+<LINK REL="previous" HREF="node50.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node52.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1060"
+  HREF="node52.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1054"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1048"
+  HREF="node50.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1056"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1058"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1061"
+  HREF="node52.html">pli: Plot a Cell</A>
+<B> Up:</B> <A NAME="tex2html1055"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1049"
+  HREF="node50.html">plfc: Plot filled contours</A>
+ &nbsp; <B>  <A NAME="tex2html1057"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1059"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00818000000000000000"></A>
+<A NAME="plfp"></A><A NAME="890"></A>
+<A NAME="891"></A>
+<BR>
+plfp: Plot a List of Filled Polygons
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+plfp(z, y, x, n[, &lt;keylist&gt;])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Plot a list of filled polygons y versus x, with colors z. The n array is a 1D list of lengths (number of 
+corners) of the polygons; the 1D colors array z has the same length as n. The x and y arrays have 
+length equal to the sum of all dimensions of n. 
+
+<P>
+If z is of type unsigned char (Python typecode <code>"b"</code>), it is used ``as is''; otherwise, it is linearly 
+scaled to fill the current palette, as with the bytscl function. 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+The following keyword arguments can be specified with this function. 
+legend, hide, top, cmin, cmax 
+See ``Plot Function Keywords'' on page&nbsp;<A HREF="node57.html#plot_function_keywords"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for detailed descriptions of these keywords. (See the 
+bytscl function description on page&nbsp;<A HREF="node117.html#bytscl"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for explanation of top, cmin, cmax.) 
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD>This example gives a sort of ``stained glass window'' effect;. 
+<PRE>
+z = array([190,100, 130,100,50,190,160,100,50,100,130], 'b') 
+y = array ([1.0, 2.0, 7.0, 8.0, 1.0, 1.0, 2.0, 0.0, 1.0, 1.0, 
+1.0, 1.0, 2.0, 1.0, 2.0, 2.0, 2.0, 1.0, 8.0, 7.0, 2.0, 2.0, 
+7.0, 7.0, 7.0, 8.0, 8.0, 7.0, 7.0, 8.0, 7.0, 8.0, 8.0, 8.0, 
+8.0, 9.0]) 
+x = array ([0.0, 1.0, 1.0, 0.0, 0.0, 1.5, 1.0, 1.5, 3.0, 0.0, 
+1.5, 3.0, 2.0, 1.5, 2.0, 1.0, 2.0, 3.0, 3.0, 2.0, 1.0, 2.0, 
+2.0, 1.0, 2.0, 3.0, 1.5, 1.0, 2.0, 1.5, 1.0, 1.5, 0.0, 0.0, 
+3.0, 1.5]) 
+n = array ([4, 3, 3, 3, 3, 4, 4, 3, 3, 3, 3]) 
+plfp (z, y, x, n)
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER">
+
+<P><A NAME="fig:plfp"></A></P>
+<DIV ALIGN="CENTER">
+10#10
+
+</DIV>
+</DIV>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1060"
+  HREF="node52.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1054"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1048"
+  HREF="node50.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1056"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1058"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1061"
+  HREF="node52.html">pli: Plot a Cell</A>
+<B> Up:</B> <A NAME="tex2html1055"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1049"
+  HREF="node50.html">plfc: Plot filled contours</A>
+ &nbsp; <B>  <A NAME="tex2html1057"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1059"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

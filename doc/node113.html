@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Calculate Chunks of Mesh: iterator3</TITLE>
+<META NAME="description" CONTENT="Calculate Chunks of Mesh: iterator3">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node114.html">
+<LINK REL="previous" HREF="node112.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node114.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1992"
+  HREF="node114.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1986"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1980"
+  HREF="node112.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1988"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1990"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1993"
+  HREF="node114.html">Get Vertex Values of</A>
+<B> Up:</B> <A NAME="tex2html1987"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1981"
+  HREF="node112.html">Return a Wire Frame</A>
+ &nbsp; <B>  <A NAME="tex2html1989"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1991"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001390000000000000000"></A> 
+<A NAME="2716"></A>
+<A NAME="2717"></A>
+<BR>
+Calculate Chunks of Mesh: iterator3
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+<PRE> 
+iterator3 (m3) 
+iterator3 (m3, chunk, clist) 
+iterator3_rect (m3) 
+iterator3_rect (m3, chunk, clist) 
+iterator3_irreg (m3) 
+iterator3_irreg (m3, chunk, clist)
+</PRE> 
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The iterator3 functions combine three distinct operations: 
+1. If only the M3 argument is given, return the initial chunk of the mesh. The chunk will be no more 
+than <code>chunk3_limit</code> cells of the mesh. 
+
+<P>
+2. If only M3 and CHUNK are given, return the next CHUNK, or None if there are no more chunks. 
+
+<P>
+3. If M3, CHUNK, and CLIST are all specified, return the absolute cell index list corresponding to the 
+index list CLIST of the cells in the CHUNK. Do not increment the chunk in this case. 
+
+<P>
+The form of the CHUNK argument and return value for cases (1) and (2) is not specified, but it must 
+be recognized by the xyz3 and getv3 functions (see ``Return Vertex Coordinates for a Chunk: xyz3'' 
+on page&nbsp;<A HREF="node118.html#xyz3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> and ``Get Vertex Values of Function: getv3'' on page&nbsp;<A HREF="node114.html#getv3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) which go along with this 
+iterator3. (For case (3), CLIST and the return value are both ordinary index lists.) In the irregular 
+case, it is guaranteed that the returned chunk consists of only one type of cell (tetrahedra, hexahedra, 
+pyramids, or prisms). 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1992"
+  HREF="node114.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1986"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1980"
+  HREF="node112.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1988"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1990"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1993"
+  HREF="node114.html">Get Vertex Values of</A>
+<B> Up:</B> <A NAME="tex2html1987"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1981"
+  HREF="node112.html">Return a Wire Frame</A>
+ &nbsp; <B>  <A NAME="tex2html1989"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1991"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

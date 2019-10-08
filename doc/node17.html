@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>General overview of module pl3d</TITLE>
+<META NAME="description" CONTENT="General overview of module pl3d">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node18.html">
+<LINK REL="previous" HREF="node16.html">
+<LINK REL="up" HREF="node16.html">
+<LINK REL="next" HREF="node18.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html547"
+  HREF="node18.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html541"
+  HREF="node16.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html535"
+  HREF="node16.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html543"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html545"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html548"
+  HREF="node18.html">Overview of module plwf</A>
+<B> Up:</B> <A NAME="tex2html542"
+  HREF="node16.html">PyGist 3D Graphics</A>
+<B> Previous:</B> <A NAME="tex2html536"
+  HREF="node16.html">PyGist 3D Graphics</A>
+ &nbsp; <B>  <A NAME="tex2html544"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html546"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00521000000000000000"></A>
+<A NAME="237"></A>
+<BR>
+General overview of module pl3d
+</H2>
+
+<P>
+The Python module pl3d.py contains the basic 3D plotting algorithms and is the workhorse of the 
+PyGist 3D graphics. The philosophy behind 3D plotting is to instruct the 3D plotting functions to 
+accumulate information about the plot until such time as the information is complete, and then ask 
+that the picture be drawn. The information about the plot is stored in a Python list containing the following 
+information: 
+
+<P>
+° The orientation of the axes, the location of the origin, and the distance of the viewpoint; 
+° A set of pairs of plot functions to call and their argument lists; and 
+° A collection of one or more quintuples specifying the lighting (it is possible to specify multiple 
+light sources). 
+The first and third items above default to reasonable values if the user does not call functions (e. g., 
+<code>rot3</code>, <code>mov3</code>, <code>aim3</code>, <code>set3_</code> <code>light</code>., etc.) to set them. The list described in the second bullet is built 
+by a set of one or more calls to the various plotting functions, which create the list of arguments for 
+each call and then add the function name and argument list pair to the plot list for future execution. 
+When the list is complete, a call to draw3 causes the list to be traversed, and at this point each plotting 
+function on the list executes with the argument list that was built when it was first called. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html547"
+  HREF="node18.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html541"
+  HREF="node16.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html535"
+  HREF="node16.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html543"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html545"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html548"
+  HREF="node18.html">Overview of module plwf</A>
+<B> Up:</B> <A NAME="tex2html542"
+  HREF="node16.html">PyGist 3D Graphics</A>
+<B> Previous:</B> <A NAME="tex2html536"
+  HREF="node16.html">PyGist 3D Graphics</A>
+ &nbsp; <B>  <A NAME="tex2html544"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html546"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

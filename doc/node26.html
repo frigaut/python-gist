@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Window Control</TITLE>
+<META NAME="description" CONTENT="Window Control">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node27.html">
+<LINK REL="previous" HREF="node25.html">
+<LINK REL="up" HREF="node25.html">
+<LINK REL="next" HREF="node27.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html679"
+  HREF="node27.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html673"
+  HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html667"
+  HREF="node25.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html675"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html677"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html680"
+  HREF="node27.html">Changing the Window Style</A>
+<B> Up:</B> <A NAME="tex2html674"
+  HREF="node25.html">Device Control</A>
+<B> Previous:</B> <A NAME="tex2html668"
+  HREF="node25.html">Device Control</A>
+ &nbsp; <B>  <A NAME="tex2html676"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html678"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00611000000000000000"></A> 
+<A NAME="382"></A>
+<BR>
+Window Control
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+
+<P>
+<PRE> 
+window ([n] [, &lt;keylist&gt;]) 
+winkill ([n]) 
+n = current_window () 
+fma()
+</PRE> 
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The window function selects device n as the current graphics device. n may range from 0 to 7, inclusive. 
+Each graphics device corresponds to an X window, a hardcopy file, or both, depending on the 
+values of the keyword arguments described below. If n is omitted, it defaults to the current active 
+device, if any. window returns the number of the currently active device. winkill deletes the current 
+graphics device, or device n if n is specified. <code>current_window</code> returns the number of the current 
+active device, or -1 if there is none. fma frame advances the current graphics device. The 
+current picture remains displayed in the associated X window (if any) until the next element is actually 
+plotted. An fma must be given after the last plot to a hardcopy file for that plot to appear when 
+the file is printed. 
+
+<P>
+The keywords accepted by the window function are 
+<PRE> 
+display, dpi, dump, hcp, legends, private, style, wait
+</PRE> 
+and are described in the next subsection. 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD>The following keyword arguments can be specified with this function. 
+display 
+A string of the form <code>host: server. screen</code> which tells where the X window will 
+appear (for example, <code>icf.llnl.gov: 0.0</code>). If not specified, uses your default display 
+(which it gets from your DISPLAY environment variable). Use <code>display = ""</code> (the null 
+string) to create a graphics device which has no associated X window. (You should do this if 
+you want to make plots in a non-interactive batch mode.) 
+
+<P>
+<DL>
+<DT><STRONG>dpi</STRONG></DT>
+<DD>The allowed values for dpi are 75 and 100. The X window will appear on your default display 
+at 75 dpi, unless you specify the display and/ or dpi keywords. A dpi = 100 X window 
+is larger than a dpi = 75 X window; both represent the same thing on paper. 
+
+<P>
+</DD>
+<DT><STRONG>dump</STRONG></DT>
+<DD>The dump keyword, if present, controls whether all colors are converted to a gray scale (dump 
+= 0, the default), or the current palette is dumped at the beginning of each page of hardcopy 
+output. Set dump to 1 if you are doing color plots. The dump keyword applies only to the specific 
+hardcopy file defined using the hcp keyword (see below)--use the dump keyword in the 
+<code>hcp_file</code> command to get the same effect in the default hardcopy file. 
+
+<P>
+</DD>
+<DT><STRONG>hcp</STRONG></DT>
+<DD>The value of this keyword is a quoted string giving a file name. By default, a graphics window 
+does NOT have a hardcopy file of its own--any requests for hardcopy are directed to the 
+default hardcopy file, so hardcopy output from any window goes to a single file. By specifying 
+the hcp keyword, however, a hardcopy file unique to this window will be created. If the 
+hcp filename ends in <code>. ps</code>, then the hardcopy file will be a PostScript file; otherwise, hardcopy 
+files are in binary CGM format. Use <code>hcp = ""</code> (the null string) to revert to the default 
+hardcopy file (closing the window specific file, if any). 
+
+<P>
+In the next section of this manual we shall consider the hardcopy and file functions. Note that 
+the PyGist default is to write to a hardcopy file only on demand. (See function hcp on page&nbsp;<A HREF="node28.html#hcp"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) 
+
+<P>
+</DD>
+<DT><STRONG>legends</STRONG></DT>
+<DD>The legends keyword, if present, controls whether the curve legends are (legends = 1, 
+the default) or are not (legends = 0) dumped to the hardcopy file. The legends keyword 
+applies to all pictures dumped to hardcopy from this graphics window. Legends are never plotted 
+to the X window. 
+
+<P>
+</DD>
+<DT><STRONG>private</STRONG></DT>
+<DD>By default, an X window will attempt to use shared colors, which permits several PyGist 
+graphics windows (including windows from multiple instances of Python) to use a common 
+palette. You can force an X window to post its own colormap (set its colormap attribute) with 
+the private = 1 keyword. You will most likely have to fiddle with your window manager to 
+understand how it handles colormap focus if you do this. Use private = 0 to return to 
+shared colors. 
+
+<P>
+</DD>
+<DT><STRONG>style</STRONG></DT>
+<DD>The style keyword, if present, specifies (as a quoted string) the name of a Gist stylesheet 
+file; the default is <code>work.gs</code>. The style sheet determines the number and location of 
+coordinate systems, tick and label styles, and the like. Here are brief descriptions of the available 
+stylesheets: 
+
+<P>
+<DL>
+<DT><STRONG>axes.gs</STRONG></DT>
+<DD>axes with labeled tick marks along bottom and left of graph. 
+boxed.gs: lines all the way around the plot with tick marks, labeled along bottom and 
+left. 
+
+<P>
+</DD>
+<DT><STRONG>boxed2.gs</STRONG></DT>
+<DD>same as boxed.gs but no tick marks on the top and right sides. 
+</DD>
+<DT><STRONG>l_nobox.gs</STRONG></DT>
+<DD>no box, axes, or ticks; graph extends all the way to edge of window. 
+</DD>
+<DT><STRONG>nobox.gs</STRONG></DT>
+<DD>indistinguishable from <code>l_nobox.gs</code>. 
+vg.gs: large tick marks all the way around the graph, but no lines, with large infrequent 
+labels on the bottom and left. 
+
+<P>
+</DD>
+<DT><STRONG>vgbox.gs</STRONG></DT>
+<DD>same as vg.gs except with lines all the way around as well 
+</DD>
+<DT><STRONG>work.gs</STRONG></DT>
+<DD>small tick marks with small, frequent labels on bottom and left, no lines. 
+</DD>
+<DT><STRONG>work2.gs</STRONG></DT>
+<DD>similar to work.gs, but no ticks along top and right. 
+wait 
+By default, Python will not wait for the X window to become visible. Code which creates a 
+new window, then plots a series of frames to that window should use wait = 1 to assure that 
+all frames are actually plotted. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Examples</STRONG></DT>
+<DD>The first example ensures that an old window 0 is not hanging around, and then creates a new 100 dpi 
+window. 
+
+<P>
+<PRE>
+winkill(0) 
+window (0, wait = 1, dpi = 100)
+</PRE>
+
+<P>
+The second example changes the style sheet of window 2. 
+<PRE>
+window (2, style = "vgbox.gs")
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html679"
+  HREF="node27.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html673"
+  HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html667"
+  HREF="node25.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html675"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html677"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html680"
+  HREF="node27.html">Changing the Window Style</A>
+<B> Up:</B> <A NAME="tex2html674"
+  HREF="node25.html">Device Control</A>
+<B> Previous:</B> <A NAME="tex2html668"
+  HREF="node25.html">Device Control</A>
+ &nbsp; <B>  <A NAME="tex2html676"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html678"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

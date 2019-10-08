@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>slice3: Plane and Isosurface Slices of a 3D mesh</TITLE>
+<META NAME="description" CONTENT="slice3: Plane and Isosurface Slices of a 3D mesh">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node90.html">
+<LINK REL="previous" HREF="node88.html">
+<LINK REL="up" HREF="node87.html">
+<LINK REL="next" HREF="node90.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1643"
+  HREF="node90.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1637"
+  HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1631"
+  HREF="node88.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1639"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1641"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1644"
+  HREF="node90.html">slice2 and slice2x: Slicing</A>
+<B> Up:</B> <A NAME="tex2html1638"
+  HREF="node87.html">The Slicing Functions</A>
+<B> Previous:</B> <A NAME="tex2html1632"
+  HREF="node88.html">slice3mesh: Pseudo-slice for a</A>
+ &nbsp; <B>  <A NAME="tex2html1640"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1642"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001042000000000000000"></A>
+<A NAME="1876"></A>
+<A NAME="1877"></A>
+<A NAME="1878"></A>
+<A NAME="slice3"></A>
+<BR>
+slice3: Plane and Isosurface Slices of a 3D mesh
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+[nverts, xyzverts, color] = \ 
+slice3 (m3, fslice, nv, xyzv [, fcolor [, flg 1 ]] 
+
+[, value = &lt;val&gt;] [, node = flg 2 ])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Slice the 3D mesh m3 as specified by fslice, returning the list [nverts, xyzverts, color]. 
+nverts is the number of vertices in each polygon of the slice, and xyzverts is the 3-by-sum 
+(nverts) list of polygon vertices. If the fcolor argument is present, the values of that coloring 
+function on the polygons are returned as the value of color. color will have the same size as 
+nverts, i. e., the number of polygons in the slice, except that the keyword argument node, if 
+present and nonzero, is a signal to return node-centered values rather than cell-centered values. In the 
+latter case color will be sum (nverts) long and entries in color will be associated with the 
+corresponding coordinates in xyzverts. nv and xyzv are not needed; None should be passed as 
+their values (this is a leftover from an older version of the code). 
+
+<P>
+fslice can be a function, a vector of 4 reals, or an integer number. If fslice is a function, it 
+should be of the form: 
+
+<P>
+<PRE>  
+def fslice (m3, chunk) 
+or, in the case of an isosurface slice, 
+def fslice (m3, chunk, iso_index, _value) 
+or for a plane slice, 
+def fslice (m3, chunk, normal, projection)
+</PRE>  
+
+<P>
+and should return a list of function values on the specified chunk of the mesh m3. Module slice3 
+offers plane and isosurface slicers (for descriptions, see page&nbsp;<A HREF="node89.html#slice3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). If you wish to write your own slice 
+routine, you should bear in mind that the format of chunk depends on the type 
+of m3 mesh, so you should use only the appropriate mesh functions xyz3 and 
+getv3 which take that type of m3 and chunk as arguments. The return value of 
+fslice should have the same dimensions as the return value of getv3; the 
+return value of xyz3 has an additional first dimension of length 3. 
+
+<P>
+If fslice is a list of 4 reals, it is taken as a slicing plane as returned by plane3. 
+
+<P>
+If fslice is a single integer, the slice will be an isosurface for the fslice th function associated 
+with the mesh m3. In this case, the keyword value must also be present, representing the value of 
+that function on the isosurface. 
+
+<P>
+If fcolor is omitted or has value None, then slice3 returns None as the value of color.. If 
+you want to color the polygons in a manner that depends only on their vertex coordinates (e. g., by a 
+3D shading calculation), use this mode. 
+
+<P>
+fcolor can be a function or a single integer. If fcolor is a function, it should be of the form: 
+def fcolor (m3, cells, l, u, fsl, fsu, ihist) 
+and should return a list of function values on the specified cells of the mesh m3. If the optional argument 
+flg 1 after fcolor is not missing or None and is non-zero, then the fcolor function is 
+called with only two arguments: 
+
+<P>
+<PRE>  
+def fcolor (m3, cells)
+</PRE>  
+The cells argument will be the list of cell indices in m3 at which values are to be returned. l, u, 
+fsl, fsu, and ihist are interpolation coefficients which can be used to interpolate from vertex 
+centered values to the required cell centered values, ignoring the cells argument. See getc3 
+source code. The return values should always have the same size and shape as cells. 
+
+<P>
+If fcolor is a single integer, then the slice will be an isosurface for the fcolor th variable associated 
+with the mesh m3. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1643"
+  HREF="node90.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1637"
+  HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1631"
+  HREF="node88.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1639"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1641"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1644"
+  HREF="node90.html">slice2 and slice2x: Slicing</A>
+<B> Up:</B> <A NAME="tex2html1638"
+  HREF="node87.html">The Slicing Functions</A>
+<B> Previous:</B> <A NAME="tex2html1632"
+  HREF="node88.html">slice3mesh: Pseudo-slice for a</A>
+ &nbsp; <B>  <A NAME="tex2html1640"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1642"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Examples</TITLE>
+<META NAME="description" CONTENT="Examples">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node18.html">
+<LINK REL="up" HREF="node18.html">
+<LINK REL="next" HREF="node20.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html574"
+  HREF="node20.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html568"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html564"
+  HREF="node18.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html570"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html572"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html575"
+  HREF="node20.html">Overview of module slice3</A>
+<B> Up:</B> <A NAME="tex2html569"
+  HREF="node18.html">Overview of module plwf</A>
+<B> Previous:</B> <A NAME="tex2html565"
+  HREF="node18.html">Overview of module plwf</A>
+ &nbsp; <B>  <A NAME="tex2html571"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html573"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00522100000000000000"></A> 
+<A NAME="241"></A>
+<BR>
+Examples
+</H3>
+
+<P>
+The following is a fairly simple example of a wire mesh plot. 
+
+<P>
+<PRE>
+from pl3d import * 
+set_draw3_(0) 
+x = span (-1, 1, 64, 64) 
+y = transpose (x) 
+z = (x + y) * exp (-6.*(x* x+ y* y)) 
+orient3 () 
+light3 () 
+from plwf import * 
+plwf (z, y, x) 
+[xmin, xmax, ymin, ymax] = draw3(1) 
+limits (xmin, xmax, ymin, ymax)
+</PRE>
+
+<P>
+Calling <code>set_draw3_</code> with argument zero tells the 3d plotting routines not to draw the graph until 
+asked (by a call to draw3). orient3 and light3 set the orientation and lighting parameters to 
+default values when called with no arguments. (light3 is irrelevant for this durface, since it is not 
+shaded.) The plwf call puts this surface on the drawing list (plwf = ``plot wire frame.'') The 
+draw3 call then causes the drawing list to be plotted. draw3 returns the maxima and minima of the 
+x and y variables, which must then be sent to the limits function to prevent the plot appearing distorted. 
+(Ah, the perils of using low level graphics.) 
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

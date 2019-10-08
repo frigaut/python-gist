@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Examples</TITLE>
+<META NAME="description" CONTENT="Examples">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node21.html">
+<LINK REL="up" HREF="node21.html">
+<LINK REL="next" HREF="node23.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html613"
+  HREF="node23.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html607"
+  HREF="node21.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html603"
+  HREF="node21.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html609"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html611"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html614"
+  HREF="node23.html">Function Summary</A>
+<B> Up:</B> <A NAME="tex2html608"
+  HREF="node21.html">movie.py: PyGist 3D Animation</A>
+<B> Previous:</B> <A NAME="tex2html604"
+  HREF="node21.html">movie.py: PyGist 3D Animation</A>
+ &nbsp; <B>  <A NAME="tex2html610"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html612"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00531000000000000000"></A> 
+<A NAME="250"></A>
+<BR>
+Examples
+</H2>
+
+<P>
+The following example is explained by comments in the code. It is taken from demo5.py. (To 
+repeat, <code>demo5_light</code> is a function which appears in demo5.py.) 
+
+<P>
+<PRE>
+# First we define the mesh and functions on it. 
+# (Note: nx == ny == nz == 20) 
+xyz = zeros ((3, nx, ny, nz), Float) 
+xyz [0] = multiply.outer (span (-1, 1, nx), 
+ones ((ny, nz), Float)) 
+xyz [1] = multiply.outer (ones (nx, Float), 
+multiply.outer (span (-1, 1, ny), ones (nz, Float))) 
+xyz [2] = multiply.outer (ones ((nx, ny), Float), 
+span (-1, 1, nz)) 
+r = sqrt (xyz [0] ** 2 + xyz [1] ** 2 + xyz [2] ** 2) 
+theta = arccos (xyz [2] / r) 
+phi = arctan2 (xyz [1] , xyz [0] + logical_not (r)) 
+y32 = sin (theta) ** 2 * cos (theta) * cos (2 * phi) 
+# mesh3 creates an object which slice3 can slice. The 
+# isosurfaces will be with respect to constant values 
+# of the function r * (1. + y32)]. 
+m3 = mesh3 (xyz, funcs = [r * (1. + y32)]) 
+[nv, xyzv, dum] = slice3 (m3, 1, None, None, value = .50) 
+# (inner isosurface) 
+[nw, xyzw, dum] = slice3 (m3, 1, None, None, value = 1.) 
+# (outer isosurface) 
+pxy = plane3 (array ([ 0, 0, 1], Float), zeros (3, Float)) 
+pyz = plane3 (array ([ 1, 0, 0], Float), zeros (3, Float)) 
+[np, xyzp, vp] = slice3 (m3, pyz, None, None, 1) 
+# (pseudo-colored plane slice) 
+[np, xyzp, vp] = slice2 (pxy, np, xyzp, vp) 
+# (cut slice in half, discard "back" part) 
+[nv, xyzv, d1, nvb, xyzvb, d2] = \ 
+slice2x (pxy, nv, xyzv, None) # halve inner isosurface 
+[nv, xyzv, d1] = \ 
+slice2 (-pyz, nv, xyzv, None) 
+# (... halve one of those halves) 
+[nw, xyzw, d1, nwb, xyzwb, d2] = \ 
+slice2x (pxy , nw, xyzw, None) 
+# (split outer isosurface in halves) 
+[nw, xyzw, d1] = \ 
+slice2 (-pyz, nw, xyzw, None) # discard half of one half 
+fma () # frame advance 
+# split_palette causes isosurfaces to be shaded in grey 
+# scale, plane sections to be colored by function values 
+split_palette (" earth.gp") 
+gnomon (1) # show small set of axes 
+clear3 () # clears drawing list 
+set_draw3_(0) # Make sure we don't draw till ready 
+# Create a tree of objects and put on drawing list 
+pl3tree (np, xyzp, vp, pyz) 
+pl3tree (nvb, xyzvb) 
+pl3tree (nwb, xyzwb) 
+pl3tree (nv, xyzv) 
+pl3tree (nw, xyzw) 
+orient3 () 
+# set lighting parameters for isosurfaces 
+light3 (diffuse = .2, specular = 1) 
+limits (square= 1) 
+demo5_light (1) # Causes drawing to appear
+</PRE>
+
+<P>
+demo5.py also contains code which rotates the above object in real-time animation. It is not possible 
+to illustrate that here. 
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

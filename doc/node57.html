@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Plot Function Keywords</TITLE>
+<META NAME="description" CONTENT="Plot Function Keywords">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node43.html">
+<LINK REL="up" HREF="node42.html">
+<LINK REL="next" HREF="node58.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1140"
+  HREF="node58.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1134"
+  HREF="node42.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1130"
+  HREF="node56.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1136"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1138"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1141"
+  HREF="node58.html">Inquiry and Miscellaneous Functions</A>
+<B> Up:</B> <A NAME="tex2html1135"
+  HREF="node42.html">Two-Dimensional Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1131"
+  HREF="node56.html">plh: Plot a Histogram</A>
+ &nbsp; <B>  <A NAME="tex2html1137"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1139"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00820000000000000000"></A>
+<A NAME="plot_function_keywords"></A><A NAME="973"></A>
+<BR>
+Plot Function Keywords
+</H1>
+
+<P>
+In addition to the keyword arguments described above with individual Gist primitive plotting commands, 
+the following keywords are available to modify the details of the plots. 
+
+<P>
+<DL>
+<DT><STRONG>legend</STRONG></DT>
+<DD>...
+<A NAME="975"></A>
+<PRE>
+legend = "text destined for the legend"
+</PRE>
+
+<P>
+Set the legend for a plot. There are no default legends in PyGist. Legends are never plotted to 
+the X window; use the plq command to see them interactively. Legends will appear in hardcopy 
+output unless they have been explicitly turned off. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plm, plc, plv, plf, pli, plt, pldj 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>hide 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>hide</STRONG></DT>
+<DD>...
+<A NAME="980"></A>
+<PRE>
+hide = 0/ 1
+</PRE>
+
+<P>
+Set the visibility of a plotted element. The default is hide= 0, which means that the element 
+will be visible. Use hide= 1 to remove the element from the plot (but not from the display 
+list). 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plm, plc, plv, plf, pli, plt, pldj, plh 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>legend 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>type</STRONG></DT>
+<DD>...
+<A NAME="985"></A>
+<A NAME="986"></A>
+
+<P>
+<PRE>
+type = &lt;line type value&gt;
+</PRE>
+
+<P>
+Select line type. Valid values are the strings <code>"solid"</code>, <code>"dash"</code>, <code>"dot"</code>, <code>"dashdot"</code>, 
+<code>"dashdotdot"</code>, and <code>"none"</code>. The <code>"none"</code> value causes the line to be plotted as a polymarker. 
+The type value may also be a number; 0 is <code>"none"</code>, 1 is <code>"solid"</code>, 2 is <code>"dash"</code>, 3 
+is <code>"dot"</code>, 4 is <code>"dashdot"</code>, and 5 is <code>"dashdotdot"</code>. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plm, plc, pldj 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>width, color, marks, marker, rays, closed, smooth 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>width</STRONG></DT>
+<DD>...
+<A NAME="991"></A>
+<A NAME="992"></A>
+
+<P>
+<PRE>
+width = &lt;floating point value&gt;
+</PRE>
+
+<P>
+Select line width. Valid values are positive floating point numbers giving the line thickness 
+relative to the default line width of one half point, which is width = 1.0. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plm, plc, pldj, plv (only if hollow= 1), plh 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>type, color, marks, marker, rays, closed, smooth 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>color</STRONG></DT>
+<DD>...
+<A NAME="997"></A>
+<A NAME="998"></A>
+<PRE>
+color = &lt;color value&gt;
+</PRE>
+
+<P>
+Select line or text color. Valid values are the strings <code>"bg"</code>, <code>"fg"</code>, <code>"black"</code>, <code>"white"</code>, 
+<code>"red"</code>, <code>"green"</code>, <code>"blue"</code>, <code>"cyan"</code>, <code>"magenta"</code>, <code>"yellow"</code>, or a 0-origin index into 
+the current palette. The default is <code>"fg"</code>. Negative numbers may be used instead of the 
+strings: -1 is <code>"bg"</code> (background), -2 is <code>"fg"</code> (foreground), -3 is black, -4 is white, -5 is red, -6 
+is green, -7 is blue, -8 is cyan, -9 is magenta, and -10 is yellow. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plm, plc, pldj, plt, plh 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>type, width, marks, marker, mcolor, rays, closed, smooth 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>marks</STRONG></DT>
+<DD>...
+<A NAME="1003"></A>
+
+<P>
+<PRE>
+marks = 0/ 1
+</PRE>
+
+<P>
+Select unadorned lines (marks= 0), or lines with occasional markers (marks= 1). Ignored if 
+type is <code>"none"</code> (indicating polymarkers instead of occasional markers). The spacing and 
+phase of the occasional markers can be altered using the mspace and mphase keywords; the 
+character used to make the mark can be altered using the marker keyword. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plc 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>type, width, color, marker, rays, mspace, mphase, msize, mcolor 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>marker</STRONG></DT>
+<DD>...
+<A NAME="1008"></A>
+<A NAME="1009"></A>
+<PRE>
+marker = &lt;character or integer value&gt;
+</PRE>
+
+<P>
+Select the character used for occasional markers along a polyline, or for the polymarker if 
+type=<code>"none"</code>. The special values <code>'\ 1'</code>, <code>'\ 2'</code>, <code>'\ 3'</code>, <code>'\ 4'</code>, and <code>'\ 5'</code> stand for point, 
+plus, asterisk, circle, and cross, which are prettier than text characters on output to some 
+devices. The default marker is the next available capital letter: <code>'A', 'B', ..., 'Z'</code>. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plc 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>type, width, color, marks, rays, mspace, mphase, msize, mcolor 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>mspace</STRONG></DT>
+<DD>...
+<A NAME="1014"></A>
+<A NAME="1015"></A>
+<A NAME="1016"></A>
+<PRE>
+mspace = &lt;float value&gt; 
+mphase = &lt;float value&gt; 
+msize = &lt;float value&gt;
+</PRE>
+
+<P>
+Select the spacing, phase, and size of occasional markers placed along polylines. The msize 
+also selects polymarker size if type is <code>"none"</code>. The spacing and phase are in NDC units 
+(0. 0013 NDC equals 1.0 point); the default mspace is 0.16, and the default mphase is 0.14, 
+but mphase is automatically incremented for successive curves on a single plot. The msize 
+is in relative units, with the default msize of 1.0 representing 10 points. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plc 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>type, width, color, marks, marker, rays 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>mcolor</STRONG></DT>
+<DD>...
+<A NAME="1021"></A>
+<A NAME="1022"></A>
+<PRE>
+mcolor = &lt;color value&gt;
+</PRE>
+
+<P>
+The mcolor keyword is the same as the color keyword, but controls the marker color 
+instead of the line color. Setting the color automatically sets the mcolor to the same value, 
+so you only need to use mcolor if you want the markers for a curve to be a different color 
+than the curve itself. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plc 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>type, width, color, marks, marker, rays 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>rays</STRONG></DT>
+<DD>...
+<A NAME="1027"></A>
+<PRE>
+rays = 0/ 1
+</PRE>
+
+<P>
+Select unadorned lines (rays= 0), or lines with occasional ray arrows (rays= 1). Ignored if 
+type is <code>"none"</code>. The spacing and phase of the occasional arrows can be altered using the 
+rspace and rphase keywords; the shape of the arrowhead can be modified using the 
+arroww and arrowl keywords. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plc 
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>type, width, color, marker, marks, rspace, rphase, arroww, arrowl 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>closed/smooth</STRONG></DT>
+<DD>...
+
+<P>
+<A NAME="1032"></A>
+<A NAME="1033"></A>
+<PRE>
+closed = 0/ 1 
+smooth = 0/ 1/ 2/ 3/ 4
+</PRE>
+
+<P>
+Select closed curves (closed= 1) or default open curves (closed= 0), or Bezier smoothing 
+(smooth&gt; 0) or default piecewise linear curves (smooth= 0). The value of smooth can be 
+1, 2, 3, or 4 to get successively more smoothing. Only the Bezier control points are plotted to 
+an X window; the actual Bezier curves will show up in PostScript hardcopy files. Closed 
+curves join correctly, which becomes more noticeable for wide lines; non-solid closed curves 
+may look bad because the dashing pattern may be incommensurate with the length of the 
+curve. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plg, plc (smooth only) 
+
+<P>
+</DD>
+<DT><STRONG>See also:</STRONG></DT>
+<DD>type, width, color, marks, marker, rays 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>region</STRONG></DT>
+<DD>...
+<A NAME="1038"></A>
+<PRE>
+region = &lt;region number&gt;
+</PRE>
+
+<P>
+Select the part of mesh to consider. The region should match one of the numbers in the ireg 
+array. Putting region= 0 (the default) means to plot the entire mesh; that is, everything 
+EXCEPT region zero (non-existent zones). Any other number means to plot only the specified 
+region number; region= 3 would plot region 3 only. 
+
+<P>
+<DL>
+<DT><STRONG>Plotting Commands:</STRONG></DT>
+<DD>plm, plc, plv, plf 
+</DD>
+</DL>
+
+<P>
+</DD>
+</DL>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1140"
+  HREF="node58.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1134"
+  HREF="node42.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1130"
+  HREF="node56.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1136"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1138"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1141"
+  HREF="node58.html">Inquiry and Miscellaneous Functions</A>
+<B> Up:</B> <A NAME="tex2html1135"
+  HREF="node42.html">Two-Dimensional Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1131"
+  HREF="node56.html">plh: Plot a Histogram</A>
+ &nbsp; <B>  <A NAME="tex2html1137"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1139"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

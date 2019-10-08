@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>pl3tree: add a surface to a plotting tree</TITLE>
+<META NAME="description" CONTENT="pl3tree: add a surface to a plotting tree">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node93.html">
+<LINK REL="up" HREF="node91.html">
+<LINK REL="next" HREF="node95.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1712"
+  HREF="node95.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1706"
+  HREF="node91.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1702"
+  HREF="node93.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1708"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1710"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1713"
+  HREF="node95.html">Contour Plotting on Surfaces:</A>
+<B> Up:</B> <A NAME="tex2html1707"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1703"
+  HREF="node93.html">pl3surf: plot a 3-D</A>
+ &nbsp; <B>  <A NAME="tex2html1709"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1711"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001053000000000000000"></A>
+<A NAME="1933"></A>
+<A NAME="1934"></A>
+<A NAME="pl3tree"></A>
+<BR>
+pl3tree: add a surface to a plotting tree
+</H2>
+
+<P>
+pl3tree accepts surfaces and slices of surfaces in the slice2/ slice3 format, and, as its name 
+suggests, builds a b-tree. Its purpose is to attempt to analyze multiple surface plots in such a way as to 
+determine the order of plotting, so that hidden portions of the surfaces will be graphed first, and this 
+covered by later portions. pl3tree may be called multiple times to build plots of arbitrary complexity. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+pl3tree (nverts, xyzverts [, values] [, &lt;keylist&gt;])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+pl3tree accepts the following keywords: 
+plane, cmin, cmax, split 
+pl3tree adds the polygon list specified by nverts (number of vertices in each polygon) and 
+xyzverts (3-by-sum (nverts) vertex coordinates) to the currently displayed b-tree. If values 
+is specified, it must have the same dimension as nverts, and represents the color of each polygon. 
+If values is not specified, then the polygons are assumed to form an isosurface which will be shaded 
+by the current 3D lighting model; the isosurfaces are at the leaves of he b-tree, sliced by all of the 
+planes. If plane (in the format returned by a call to plane3) is specified, then the xyzverts must 
+all lie in that plane, and that plane becomes a new slicing plane in the b-tree. 
+
+<P>
+Each leaf of the b-tree consists of a set of sliced isosurfaces. A node of the b-tree consists of some 
+polygons in one of the planes, a b-tree or leaf entirely on one side of that plane, and a b-tree or leaf on 
+the other side. The first plane you add becomes the root node, slicing any existing leaf in half. When 
+you add an isosurface, it propagates down the tree, getting sliced at each node, until its pieces reach 
+the existing leaves, to which they are added. When you add a plane, it also propagates down the tree, 
+getting sliced at each node, until its pieces reach the leaves, which it slices, becoming the nodes closest 
+to the leaves. 
+
+<P>
+This structure is relatively easy to plot, since from any viewpoint, a node can always be plotted in 
+the order from one side, then the plane, then the other side. 
+
+<P>
+If keyword split is set nonzero (the default), then this routine assumes a ``split palette''; the current 
+palette will be ``split'' or truncated so that its colors are numbered 0 to 99, while colors 100 to 199 
+will be greyscale. Colors for the values will be scaled to fit from color 0 to color 99, while the colors 
+from the shading calculation will be scaled to fit from color 100 to color 199. (If values is specified 
+as an unsigned char array (Python typecode ``b''), however, it will be used without scaling.) You may 
+specify a cmin or cmax keyword to affect the scaling; cmin is ignored if values is not specified 
+(use the ambient keyword from light3 for that case). 
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD><P>
+In the following example, nx, ny, and nz are each 20. First we compute the mesh and some data on 
+the mesh. 
+
+<P>
+<PRE> 
+xyz = zeros ( (3, nx, ny, nz), Float) 
+xyz [0] = multiply. outer ( span (-1, 1, nx), 
+ones ( (ny, nz), Float)) 
+xyz [1] = multiply. outer ( ones (nx, Float), 
+multiply. outer ( span (-1, 1, ny), 
+ones (nz, Float))) 
+xyz [2] = multiply. outer ( ones ( (nx, ny), Float), 
+span (-1, 1, nz)) 
+r = sqrt (xyz [0] ** 2 + xyz [1] ** 2 + xyz [2] ** 2) 
+theta = arccos (xyz [2] / r) 
+phi = arctan2 (xyz [1] , xyz [0] + logical_not (r)) 
+y32 = sin (theta) ** 2 * cos (theta) * cos (2 * phi) 
+m3 = mesh3 (xyz, funcs = [r * (1. + y32)])
+</PRE>
+
+<P>
+Next we construct two isosurfaces, an inner (function value .5) and an outer (function value 1.0) 
+using slice3. 
+
+<P>
+<PRE> 
+[nv, xyzv, dum] = slice3 (m3, 1, None, None, value = .50) 
+# (inner isosurface) 
+[nw, xyzw, dum] = slice3 (m3, 1, None, None, value = 1.) 
+# (outer isosurface)
+</PRE>
+
+<P>
+Now we create two planes, use one to form a plane slice through the mesh, then the second to slice 
+the first in half. 
+
+<P>
+<PRE> 
+pxy = plane3 ( array ([ 0, 0, 1], Float ), zeros (3, Float)) 
+pyz = plane3 ( array ([ 1, 0, 0], Float ), zeros (3, Float)) 
+[np, xyzp, vp] = slice3 (m3, pyz, None, None, 1) 
+# (pseudo-colored plane slice) 
+[np, xyzp, vp] = slice2 (pxy, np, xyzp, vp) 
+# (cut slice in half)
+</PRE>
+
+<P>
+Finally, we slice each isosurface in half, keeping both halves (slice2x calls), then slice the 
+``top'' half of each in half again, discarding the front of each (slice2 calls). 
+
+<P>
+<PRE> 
+[nv, xyzv, d1, nvb, xyzvb, d2] = \ 
+slice2x (pxy, nv, xyzv, None) 
+[nv, xyzv, d1] = slice2 (-pyz, nv, xyzv, None) 
+# (... halve one of those halves) 
+[nw, xyzw, d1, nwb, xyzwb, d2] = \ 
+slice2x ( pxy , nw, xyzw, None) 
+# (split outer in halves) 
+[nw, xyzw, d1] = slice2 (-pyz, nw, xyzw, None)
+</PRE>
+
+<P>
+Now, a sequence of calls to pl3tree sets up the graph, and a call to 
+<code>demo5_light</code> actually plots it. For completeness, we give the 
+function <code>demo5_light</code> first. 
+
+<P>
+<PRE> 
+making_movie = 0 
+def demo5_light (i) : 
+global making_movie 
+if i &gt;= 30 : return 0 
+theta = pi / 4 + (i -1) * 2 * pi/ 29 
+light3 (sdir = array ( [cos( theta), .25, sin( theta)], 
+Float)) 
+draw3 ( not making_movie ) 
+return 1 
+fma () 
+split_palette (" earth. gp") 
+gnomon (1) 
+clear3 () 
+# Make sure we don't draw till ready 
+set_draw3_(0) 
+pl3tree (np, xyzp, vp, pyz) 
+pl3tree (nvb, xyzvb) 
+pl3tree (nwb, xyzwb) 
+pl3tree (nv, xyzv) 
+pl3tree (nw, xyzw) 
+orient3 () 
+light3 (diffuse = .2, specular = 1) 
+limits (square= 1) 
+demo5_light (1)
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1712"
+  HREF="node95.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1706"
+  HREF="node91.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1702"
+  HREF="node93.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1708"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1710"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1713"
+  HREF="node95.html">Contour Plotting on Surfaces:</A>
+<B> Up:</B> <A NAME="tex2html1707"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1703"
+  HREF="node93.html">pl3surf: plot a 3-D</A>
+ &nbsp; <B>  <A NAME="tex2html1709"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1711"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

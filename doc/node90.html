@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>slice2 and slice2x: Slicing Surfaces with planes</TITLE>
+<META NAME="description" CONTENT="slice2 and slice2x: Slicing Surfaces with planes">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node89.html">
+<LINK REL="up" HREF="node87.html">
+<LINK REL="next" HREF="node91.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1655"
+  HREF="node91.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1649"
+  HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1645"
+  HREF="node89.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1651"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1653"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1656"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<B> Up:</B> <A NAME="tex2html1650"
+  HREF="node87.html">The Slicing Functions</A>
+<B> Previous:</B> <A NAME="tex2html1646"
+  HREF="node89.html">slice3: Plane and Isosurface</A>
+ &nbsp; <B>  <A NAME="tex2html1652"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1654"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001043000000000000000"></A>
+<A NAME="1890"></A>
+<A NAME="1891"></A>
+<A NAME="slice2"></A>
+<BR>
+slice2 and slice2x: Slicing Surfaces with planes
+</H2>
+
+<P>
+The functions slice2 and slice2x allow one to slice surfaces specified by slice3-type output. 
+slice2 will return the portion on one side of the slicing plane; slice2x will return both portions. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+<PRE> 
+[nverts, xyzverts, values] = slice2 (plane, nv, 
+xyzv, vals) 
+[nverts, xyzverts, values, nvertb, xyzvertb, valueb] = 
+slice2x (plane, nv, xyzv, vals)
+</PRE> 
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The argument plane can be either a scalar or a plane3 (see ``Creating a Plane'' on page&nbsp;<A HREF="node85.html#creating_a_plane"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>); nv is 
+an array of integers, the i th entry of which gives the number of vertices of the i-th polygonal cell; <code>xyzv</code> 
+are the vertices of the coordinates of the cells, with each consecutive nv [i] entries representing the 
+
+<P>
+vertices of the i th cell; and vals being a set of values as explained below. These arguments are the 
+same format as returned by slice3 and slice3mesh. 
+
+<P>
+If plane is a plane3, then vals (if not None) is a cell-centered set of values expressing the 
+color of each cell, and the outputs nverts, xyzverts, and values represent the polygons and 
+their colors (if any) describing the portion of the sliced surface that is on the positive side of the plane. 
+That's all you get with slice2. With slice2x, you get in addition nvertb, xyzvertb, and 
+valueb, which describe the part of the surface on the negative side of the slicing plane. Warning: one 
+of these specifications could be None, None, None if the entire surface lies on one side of the plane. 
+
+<P>
+If plane is a scalar value, then vals must be present and must be node-centered. In this case, the 
+outputs nverts, xyzverts, and values represent the polygons and their colors (if any) describing 
+the portion of the sliced surface where vals on the vertices are greater than or equal to the scalar value 
+plane. (This actually allows you to form an arbitrary two-dimensional slice of a surface.) With 
+slice2x, you get in addition nvertb, xyzvertb, and valueb, which describe the part of the surface 
+where vals on the vertices are less than the scalar value plane. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1655"
+  HREF="node91.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1649"
+  HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1645"
+  HREF="node89.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1651"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1653"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1656"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<B> Up:</B> <A NAME="tex2html1650"
+  HREF="node87.html">The Slicing Functions</A>
+<B> Previous:</B> <A NAME="tex2html1646"
+  HREF="node89.html">slice3: Plane and Isosurface</A>
+ &nbsp; <B>  <A NAME="tex2html1652"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1654"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

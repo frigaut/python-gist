@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Getting a Window</TITLE>
+<META NAME="description" CONTENT="Getting a Window">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node81.html">
+<LINK REL="previous" HREF="node79.html">
+<LINK REL="up" HREF="node79.html">
+<LINK REL="next" HREF="node81.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1516"
+  HREF="node81.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1510"
+  HREF="node79.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1504"
+  HREF="node79.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1512"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1514"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1517"
+  HREF="node81.html">Displaying the Gnomon</A>
+<B> Up:</B> <A NAME="tex2html1511"
+  HREF="node79.html">3D Graphics Control Functions</A>
+<B> Previous:</B> <A NAME="tex2html1505"
+  HREF="node79.html">3D Graphics Control Functions</A>
+ &nbsp; <B>  <A NAME="tex2html1513"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1515"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001021000000000000000"></A>
+<A NAME="1783"></A>
+<A NAME="1784"></A>
+<A NAME="window3"></A>
+<BR>
+Getting a Window
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+window3 ( [n] [, dump = val] [, hcp = filename])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>If n is specified, make window n the active window (open a window if necessary). If n is not specified, 
+connect to the active window, or open one if none is active. Associate the hardopy file named 
+filename with the window if hcp is specified; this will be postscript if the name ends in .ps, or 
+cgm if it ends in .cgm. The style sheet associated with the window will be <code>nobox. gs</code>, i. e., a 
+plain window with no axes (except possibly a gnomon). The dump keyword, if 1, causes the color 
+palette to be dumped to the hcp file with each frame that is sent there (otherwise hardcopy plots will 
+be in greyscale). 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

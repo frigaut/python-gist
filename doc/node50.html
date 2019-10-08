@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plfc: Plot filled contours</TITLE>
+<META NAME="description" CONTENT="plfc: Plot filled contours">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node51.html">
+<LINK REL="previous" HREF="node49.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node51.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1046"
+  HREF="node51.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1040"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1034"
+  HREF="node49.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1042"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1044"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1047"
+  HREF="node51.html">plfp: Plot a List</A>
+<B> Up:</B> <A NAME="tex2html1041"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1035"
+  HREF="node49.html">plf: Plot a Filled</A>
+ &nbsp; <B>  <A NAME="tex2html1043"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1045"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00817000000000000000"></A> 
+<A NAME="plfc"></A><A NAME="874"></A>
+<A NAME="875"></A>
+<BR>
+plfc: Plot filled contours
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+plfc (z, y, x, ireg, contours = 20, colors = None, 
+   region = 0, triangle = None, scale = "lin")
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Unlike the other plotting primitives, plfc is implemented in Python code. It calls a C module to 
+compute the contours, then uses plfp (described in the next subsection) to draw the filled contour 
+lines. It does not use the mesh plotting routines; hence the arguments z, y, x, and ireg must be given 
+explicitly. They will not default to the values set by plmesh. 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+The values given above for the keyword arguments are the defaults. The meanings of the keywords 
+are as follows: 
+
+<P>
+<code>contours</code>
+
+<P>
+If an integer, specifies the number of contour lines desired. The contour levels will be computed 
+automatically. If an array of floats, specifies the actual contour levels. 
+
+<P>
+<code>colors</code>
+
+<P>
+An array of unsigned char (Python typecode <code>'b'</code>) with values between 0 and 199 specifying 
+the indices into the current palette of the fill colors to use. The size of this array (if present) 
+must be one larger than the number of contours specified. 
+
+<P>
+<code>triangle</code> 
+
+<P>
+As described for the mesh plots. 
+scale 
+If the number of contours was given, this keyword specifies how they are to be computed: 
+<code>"lin"</code> (linearly), <code>"log"</code> (logarithmically) and <code>"normal"</code> (based on the normal distribution; 
+the minimum and maximum contours will be two standard deviations from the mean). 
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD><P>
+In the following example, we have to explicitly compute and pass an ireg array. We plot filled contours 
+and then plot contour lines on top of them. Note that the contour divisions do not coincide, since 
+the two routines use different algorithms for computing contour levels. Perhaps someday this defect 
+will be remedied. 
+
+<P>
+<PRE>
+ireg = ones (xx. shape, Int) 
+ireg [0, :] = 0 
+ireg [:, 0] = 0 
+plfc(mag(x+. 5, y-. 5), yy, xx, ireg, contours= 8) 
+plc (mag(x+. 5, y-. 5), marks= 1)
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER">
+
+<P><A NAME="fig:plfc_plc"></A></P>
+<DIV ALIGN="CENTER">
+9#9
+
+</DIV>
+</DIV>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1046"
+  HREF="node51.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1040"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1034"
+  HREF="node49.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1042"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1044"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1047"
+  HREF="node51.html">plfp: Plot a List</A>
+<B> Up:</B> <A NAME="tex2html1041"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1035"
+  HREF="node49.html">plf: Plot a Filled</A>
+ &nbsp; <B>  <A NAME="tex2html1043"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1045"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

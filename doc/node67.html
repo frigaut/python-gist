@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>mesh_loc: Get Mesh Location</TITLE>
+<META NAME="description" CONTENT="mesh_loc: Get Mesh Location">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node68.html">
+<LINK REL="previous" HREF="node66.html">
+<LINK REL="up" HREF="node64.html">
+<LINK REL="next" HREF="node68.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1298"
+  HREF="node68.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1292"
+  HREF="node64.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1286"
+  HREF="node66.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1294"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1296"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1299"
+  HREF="node68.html">mouse: Handle Mouse Click</A>
+<B> Up:</B> <A NAME="tex2html1293"
+  HREF="node64.html">Miscellaneous Functions</A>
+<B> Previous:</B> <A NAME="tex2html1287"
+  HREF="node66.html">histeq_scale: Histogram Equalized Scaling</A>
+ &nbsp; <B>  <A NAME="tex2html1295"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1297"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00923000000000000000"></A>
+<A NAME="1531"></A>
+<A NAME="1532"></A>
+<BR>
+mesh_loc: Get Mesh Location
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+mesh_loc(y0, x0[, y, x[, ireg]])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+<code>mesh_loc</code> returns the zone index (= i+ imax*(j-1)) of the zone of the mesh (x, y) (with optional 
+region number array ireg) containing the point (x0, y0). If (x0, y0) lies outside the mesh, returns 0. 
+For example, <code>ireg(mesh_loc(x0,y0,y,x,ireg))</code> is the region number of the region containing 
+(x0, y0). If no mesh specified, uses default. x0 and y0 may be arrays as long as they are 
+conformable. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

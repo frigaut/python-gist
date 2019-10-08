@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plwf: plot a wire frame</TITLE>
+<META NAME="description" CONTENT="plwf: plot a wire frame">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node93.html">
+<LINK REL="previous" HREF="node91.html">
+<LINK REL="up" HREF="node91.html">
+<LINK REL="next" HREF="node93.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1686"
+  HREF="node93.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1680"
+  HREF="node91.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1674"
+  HREF="node91.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1682"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1684"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1687"
+  HREF="node93.html">pl3surf: plot a 3-D</A>
+<B> Up:</B> <A NAME="tex2html1681"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1675"
+  HREF="node91.html">The 3D Plotting Functions</A>
+ &nbsp; <B>  <A NAME="tex2html1683"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1685"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001051000000000000000"></A>
+<A NAME="1900"></A>
+<A NAME="1901"></A>
+<A NAME="plwf"></A>
+<BR>
+plwf: plot a wire frame
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+plwf (z [, y, x] [, &lt;keylist&gt;] )
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>plwf plots a 3D wire frame of the given 2D array z. If x and y are given, then they must be the 
+same shape as z or else len (x) should be the first dimension of z and len (y) the second. If x 
+and y are not given, they default to the first and second indices of z, respectively. plwf calls 
+clear3 before putting the plot command on the display list, which means that PyGist can only show 
+one wire frame at a time using this function. (See pl3tree for graphs with multiple components). 
+
+<P>
+plwf accepts the following keyword arguments: 
+
+<P>
+fill, shade, edges, ecolor, ewidth, cull, scale, cmax 
+A description of the keywords follows: 
+fill: optional colors to use (default is to make zones have background color), same dimension 
+options as for z argument to plf function, i. e., it should be the same dimension as the mesh (vertex-centered 
+values) or one smaller in each dimension (cell-centered values). 
+
+<P>
+<DL>
+<DT><STRONG>shade:</STRONG></DT>
+<DD>set non-zero to compute shading from the current 3D lighting sources. 
+</DD>
+<DT><STRONG>edges:</STRONG></DT>
+<DD>default is 1 (draw edges), but if you provide fill colors, you may set to 0 to suppress the 
+edges. 
+
+<P>
+</DD>
+<DT><STRONG>ecolor, ewidth:</STRONG></DT>
+<DD>color and width of edges. 
+cull: default is 1 (cull back surfaces), but if you want to see the ``underside'' of the model, set to 
+0. 
+
+<P>
+</DD>
+<DT><STRONG>scale:</STRONG></DT>
+<DD>by default, z is scaled to ``reasonable'' maximum and minimum values related to the scale 
+of (x, y). This keyword alters the default scaling factor, in the sense that scale = 2.0 will produce 
+twice the z-relief of the default scale = 1.0. 
+
+<P>
+</DD>
+<DT><STRONG>cmax:</STRONG></DT>
+<DD>the ambient keyword in light3 can be used to control how dark the darkest surface is; 
+use this to control how light the lightest surface is. The lightwf routine can change this parameter 
+interactively. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Examples</STRONG></DT>
+<DD><P>
+The following example computes the information for a surface with a peak and a valley, and then 
+plots the resulting wire frame with various options. In the first case, we see simply an opaque wire 
+frame. 
+
+<P>
+<A NAME="valley_peak"></A>
+<P>
+<PRE>  
+set_draw3_(0) 
+x = span (-1, 1, 64, 64) 
+y = transpose (x) 
+z = (x + y) * exp (-6.*( x* x+ y* y)) 
+orient3 ( ) 
+light3 ( ) 
+plwf (z, y, x) 
+[xmin, xmax, ymin, ymax] = draw3( 1) 
+limits (xmin, xmax, ymin, ymax) 
+plt(" opaque wire mesh", .30, .42)
+</PRE>  
+
+<P>
+Next, we see the same surface shaded from a default light source (roughly over the viewer's right 
+shoulder) and with the mesh lined in red. 
+
+<P>
+<PRE>  
+plwf( z, y, x, shade= 1, ecolor=" red") 
+[xmin, xmax, ymin, ymax] = draw3( 1) 
+limits (xmin, xmax, ymin, ymax)
+</PRE>  
+
+<P>
+Finally, the following sequence plots the same surface with no edges, and with lighting coming 
+from the back. 
+
+<P>
+<PRE>  
+plwf( z, y, x, shade= 1, edges= 0) 
+light3 ( diffuse=. 1, specular= 1., sdir= array([ 0,0,-1])) 
+[xmin, xmax, ymin, ymax] = draw3( 1) 
+limits (xmin, xmax, ymin, ymax)
+</PRE>  
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1686"
+  HREF="node93.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1680"
+  HREF="node91.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1674"
+  HREF="node91.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1682"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1684"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1687"
+  HREF="node93.html">pl3surf: plot a 3-D</A>
+<B> Up:</B> <A NAME="tex2html1681"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1675"
+  HREF="node91.html">The 3D Plotting Functions</A>
+ &nbsp; <B>  <A NAME="tex2html1683"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1685"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

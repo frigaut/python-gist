@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Computing slices: slice2, slice2x, _slice2_part</TITLE>
+<META NAME="description" CONTENT="Computing slices: slice2, slice2x, _slice2_part">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node126.html">
+<LINK REL="up" HREF="node122.html">
+<LINK REL="next" HREF="node128.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2212"
+  HREF="node128.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2206"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2202"
+  HREF="node126.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2208"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2210"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2213"
+  HREF="node128.html">Some Yorick-like Functions: yorick.py</A>
+<B> Up:</B> <A NAME="tex2html2207"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2203"
+  HREF="node126.html">Computing contour curves: contour</A>
+ &nbsp; <B>  <A NAME="tex2html2209"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2211"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001415000000000000000">
+Computing slices: slice2, slice2x, _slice2_part</A>
+</H2> 
+
+<P>
+The 3D graphics in Gist itself is still experimental, and virtually all the computational functions are 
+written in Yorick, an interpreted language. Many of the PyGist 3D computations were translated into 
+Python from Yorick, originally including the slice2 and slice2x functions, and their auxiliary, 
+<code>_slice2_part</code>. When we implemented contours and filled contours on surfaces (which is currently 
+not implemented in Gist itself), we used slice2 and slice2x to compute the contours and 
+the polygon lists enclosed within them. These computations were much too slow, so we rewrote 
+slice2 in C (slice2x remains in Python; it just calls slice2 with a parameter set) and put them 
+into the gistCmodule. The user interface to these functions has been discussed in a previous section 
+``slice2 and slice2x: Slicing Surfaces with planes'', but we discuss them here from the 
+viewpoint of implementation. We also discuss the ``hidden'' function <code>_slice2_part</code> here for the 
+first time. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+
+<P>
+<PRE> 
+[nverts, xyzverts, values] = slice2 (plane, nv, 
+xyzv, vals = None, _slice2x = 0) 
+[nverts, xyzverts, values, nvertb, xyzvertb, valueb] = 
+slice2x (plane, nv, xyzv, vals) 
+static int _slice2_part (ArrayObject * xyzc, 
+ArrayObject * keep, ArrayObject * next, ArrayObject * dp, 
+ArrayObject * prev, ArrayObject * last, 
+ArrayObject * valc, ArrayObject ** xyzc_new, 
+ArrayObject ** nvertc, ArrayObject ** valc_new, 
+int freexyzc, int freevalc)
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The argument plane can be either a scalar or a plane3 (see ``Creating a Plane'' on page&nbsp;<A HREF="node85.html#creating_a_plane"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>); nv is an 
+array of integers, the i th entry of which gives the number of vertices of the i th polygonal cell; <code>xyzv</code> 
+are the vertices of the coordinates of the cells, with each consecutive <code>nv[i]</code> entries representing the 
+
+<P>
+vertices of the i-th cell; and vals being a set of values, one for each cell. These arguments are the 
+same format as returned by slice3 and slice3mesh. 
+
+<P>
+If plane is a plane3, then vals (if not None) is a cell-centered set of values expressing the 
+color of each cell, and the outputs nverts, xyzverts, and values represent the polygons and 
+their colors (if any) describing the portion of the sliced surface that is on the positive side of the plane. 
+That's all you get with slice2. With slice2x, you get in addition nvertb, xyzvertb, and 
+valueb, which describe the part of the surface on the negative side of the slicing plane. Warning: one 
+of these specifications could be None, None, None if the entire surface lies on one side of the plane. 
+If plane is a scalar value, then vals must be present and must be node-centered. In this case, the 
+outputs nverts, xyzverts, and values represent the polygons and their colors (if any) describing 
+the portion of the sliced surface where vals on the vertices are greater than or equal to the scalar value 
+plane. (This actually allows you to form an arbitrary two-dimensional slice of a surface.) With 
+slice2x, you get in addition nvertb, xyzvertb, and valueb, which describe the part of the surface 
+where vals on the vertices are less than the scalar value plane. 
+
+<P>
+The optional parameter <code>_slice2x</code>, if 1, tells <code>slice2</code> to return slices on both sides of the slicing 
+surface or plane; if not present, or 0, then the slice on ``top'' is returned. slice2 works by deciding 
+which polygons lie entirely ``above'' the slicing surface, which ones lie entirely ``below'' the slicing 
+surface, and which ones are cut by the surface. If <code>_slice2x</code> is 0, then the ones ``below'' the surface 
+are discarded. slice2 then calls <code>_slice2_part</code> with the polygons to be cut by the plane; once to 
+get the cut polygons ``above'' the surface, then, if <code>_slice2x</code> is 1, a second time to get the cut polygons 
+``below'' the surface. The list of uncut and cut polygons ``above'' the surface is concatenated and 
+returned (<code>_slice2x == 0</code>); the list of uncut and cut polygons ``below'' the surface is concatenated 
+and returned also if <code>_slice2x</code> is 1. 
+
+<P>
+In the case of a plane slice, suppose that the equation of the slicing plane is 
+<PRE>
+ax + by + cz = d
+</PRE>
+Then a point <code>(x1,y1,z1)</code> is considered to be on the positive side of the plane if 
+<PRE>
+ax 1 + by 1 + cz 1 -d &gt;= _slice2_precision
+</PRE>
+and on the negative side if 
+<PRE>
+ax 1 + by 1 + cz 1 -d &lt; _slice2_precision
+</PRE>
+For a discussion of <code>_slice2_precision</code>, and how to get and set its value, see Section ``Controlling 
+Points Close to the Slicing Plane: _slice2_precision'' on page&nbsp;<A HREF="node116.html#_slice2_precision"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+
+<P>
+In the case of a slicing surface, vertex i is considered to be above the surface if 
+<PRE>
+vals [i] -plane &gt;= _slice2_precision
+</PRE>
+and below it if 
+
+<P>
+<PRE>
+vals [i] -plane &lt; _slice2_precision
+</PRE>
+For all intents and purposes, the user may assume that <code>_slice2_precision</code> is 0.0, as this is the 
+default. However, we allow you to change this if you think you have good reason. 
+
+<P>
+There is a conceptual difficulty for the case of a quad face all four of whose edges are cut by the 
+slicing plane or surface. This can only happen when two opposite corners are above and the other two 
+below the slicing plane. There are three possible ways to connect the four intersection points in two 
+pairs: (1) // (2) 
+<BR>
+and (3) X. There is a severe problem with (1) and (2) in that a consistent decision 
+must be made when connecting the points on the two cells which share the face--that is, each face must 
+carry information on which way it is triangulated. For a regular 3D mesh, it is relatively easy to come 
+up with a consistent scheme for triangulating faces, but for a general unstructured mesh, each face itself 
+must carry this information. This presents a huge challenge for data flow, which we don't believe is 
+worthwhile, because the X choice is unique, and we don't see why we shouldn't use it here. For contouring 
+routines, we reject the X choice on aesthetic grounds, and perhaps that will prove to be the case 
+here as well but we believe we should try the simple way out first. In this case, we are going to be 
+filling these polygons with a color representing a function value in the cell. Since the adjacent cells 
+should have nearly the same values, the X-traced polygons will have nearly the same color, and we 
+doubt there will be an aesthetic problem. Anyway, our implementation of slice3, slice2, and 
+<code>_slice2_part</code> produces the unique X (bowtied) polygons, rather than attempting to choose between 
+// or 
+<BR>(non-bowtied) alternatives. Besides, in the case of contours, the trivial alternating triangulation 
+scheme is just as bad aesthetically as every zone triangulated the same way! 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2212"
+  HREF="node128.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2206"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2202"
+  HREF="node126.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2208"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2210"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2213"
+  HREF="node128.html">Some Yorick-like Functions: yorick.py</A>
+<B> Up:</B> <A NAME="tex2html2207"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2203"
+  HREF="node126.html">Computing contour curves: contour</A>
+ &nbsp; <B>  <A NAME="tex2html2209"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2211"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

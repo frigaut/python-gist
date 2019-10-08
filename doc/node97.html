@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The movie module and function</TITLE>
+<META NAME="description" CONTENT="The movie module and function">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node98.html">
+<LINK REL="previous" HREF="node96.html">
+<LINK REL="up" HREF="node96.html">
+<LINK REL="next" HREF="node98.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1756"
+  HREF="node98.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1750"
+  HREF="node96.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1744"
+  HREF="node96.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1752"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1754"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1757"
+  HREF="node98.html">The spin3 function</A>
+<B> Up:</B> <A NAME="tex2html1751"
+  HREF="node96.html">Animation: movie and spin3</A>
+<B> Previous:</B> <A NAME="tex2html1745"
+  HREF="node96.html">Animation: movie and spin3</A>
+ &nbsp; <B>  <A NAME="tex2html1753"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1755"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001071000000000000000"></A>
+<A NAME="1971"></A>
+<A NAME="movie"></A>
+<BR>
+The movie module and function
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+movie (draw_frame [, time_limit = 120.] 
+[, min_interframe = 0.0] 
+[, bracket_time = array ([ 2., 2.], Float )] 
+[, lims = None] 
+[, timing = 0])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Note: All but the first argument are keyword arguments, with defaults as shown. 
+This function runs a movie based on the given <code>draw_frame</code> function. The movie stops after a 
+total elapsed time of <code>time_limit</code> seconds, which defaults to 60 (one minute), or when the 
+<code>draw_frame</code> function returns zero. (N. B. Currently the timing option described here and in a subsequent 
+paragraph is not completely implemented.) 
+
+<P>
+<PRE>  
+draw_frame is a function described as follows: 
+def draw_frame (i) : 
+# Input argument i is the frame number. 
+# draw_frame should return non-zero if there are more 
+# frames in this movie. A zero return will stop the 
+# movie. 
+# draw_frame must NOT include any fma command if the 
+# making_movie variable is set (movie sets this variable 
+# before calling draw_frame)
+</PRE>  
+
+<P>
+If <code>min_interframe</code> is specified, a pause will be added as necessary to slow down the movie. 
+<code>min_interframe</code> is a time in seconds (default 0). The keyword <code>bracket_time</code> (again a time in 
+seconds) can be used to adjust the duration of the pauses after the first and last frames. It may also be 
+a two element array [beg, end]. If the pause at the end is greater than five seconds, you will be 
+prompted to explain that hitting &lt;RETURN&gt; will abort the final pause. (Well, the Python version does 
+not currently have this capability due to the difficulty of implementing it consistently over various platforms.) 
+
+<P>
+timing = 1 enables a timing printout for your movie. 
+If every frame of your movie has the same limits, use the lims keyword argument to fix the limits 
+during the movie. 
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD>In the following example, the movie demonstrates the effect of a moving light source on the currently 
+drawn surface. (The plot functions creating the surface have not been shown; it is assumed that the 
+data for the surface is on the current display list.) 
+
+<P>
+<A NAME="moving_light_source"></A>
+<P>
+The <code>draw_frame</code> function is as follows: 
+
+<P>
+<PRE>
+def demo5_light (i) : 
+global making_movie 
+if i &gt;= 30 : return 0 
+theta = pi / 4 + (i -1) * 2 * pi/ 29 
+light3 (sdir = 
+array ( [cos( theta), .25, sin( theta)], Float)) 
+# without an explicit call to draw3, the light3 
+# function would cause no changes until Python 
+# paused for input from the keyboard, since 
+# unlike the primitive plotting functions (plg, plf, 
+# plfp, ...) the fma call made by the movie function 
+# will not trigger the 3-D display list. any movie 
+# frame display function which uses the 3-D drawing 
+# functions in pl3d. py will need to do this. the 
+# !making_movie flag supresses the fma in draw3 if 
+# this function is called by movie (which issues 
+# its own fma), but allows it otherwise 
+draw3 ( not making_movie ) 
+return 1
+</PRE>
+
+<P>
+Here is the Python code necessary to run a movie. This particular animation shows the surface with a 
+peak and valley which we saw earlier in this chapter ( See ``Examples'' on page&nbsp;<A HREF="node92.html#valley_peak"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), with a moving 
+light source. A few frames of the movie are shown on the next page. 
+
+<P>
+<PRE>
+set_draw3_(0) 
+x = span (-1, 1, 64, 64) 
+y = transpose (x) 
+z = (x + y) * exp (-6.*( x* x+ y* y)) 
+orient3 ( ) 
+light3 (diffuse=. 2, specular= 1 ) 
+limits_( square = 1) 
+plwf (z, y, x, shade= 1, edges= 0) 
+[xmin, xmax, ymin, ymax] = draw3 (1) 
+limits (xmin, xmax, ymin, ymax) 
+making_movie = 1 
+movie( demo5_light, lims = [xmin, xmax, ymin, ymax]) 
+making_movie = 0
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1756"
+  HREF="node98.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1750"
+  HREF="node96.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1744"
+  HREF="node96.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1752"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1754"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1757"
+  HREF="node98.html">The spin3 function</A>
+<B> Up:</B> <A NAME="tex2html1751"
+  HREF="node96.html">Animation: movie and spin3</A>
+<B> Previous:</B> <A NAME="tex2html1745"
+  HREF="node96.html">Animation: movie and spin3</A>
+ &nbsp; <B>  <A NAME="tex2html1753"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1755"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

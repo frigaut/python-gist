@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Three-Dimensional Plotting Functions</TITLE>
+<META NAME="description" CONTENT="Three-Dimensional Plotting Functions">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node102.html">
+<LINK REL="previous" HREF="node58.html">
+<LINK REL="up" HREF="pygist.html">
+<LINK REL="next" HREF="node72.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1352"
+  HREF="node72.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1346"
+  HREF="pygist.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1340"
+  HREF="node70.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1348"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1350"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1353"
+  HREF="node72.html">Setting Up For 3D</A>
+<B> Up:</B> <A NAME="tex2html1347"
+  HREF="pygist.html">pygist</A>
+<B> Previous:</B> <A NAME="tex2html1341"
+  HREF="node70.html">pause: Pause</A>
+ &nbsp; <B>  <A NAME="tex2html1349"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1351"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001000000000000000000"></A>
+<A NAME="plot3d"></A>
+<BR>
+Three-Dimensional Plotting Functions
+</H1>
+
+<P>
+The PyGist 3D graphics uses the PyGist 2D graphics to draw its pictures; most of the 3D routines 
+are computational, and take 3D data in one form or another and massage it until, when plotted, it will 
+appear to be a correct two-dimensional projection of a three-dimensional graph. The usual order of operation 
+in 3D PyGist is 
+
+<P>
+
+<UL>
+<LI>Retrieve or compute your data; 
+</LI>
+<LI>Tell PyGist orientation and lighting information; 
+</LI>
+<LI>Call the appropriate PyGist computational routines; 
+</LI>
+<LI>Call one or more PyGist 3D plotting routines; 
+</LI>
+<LI>Call the master function draw3, which actually displays the graph. 
+</LI>
+</UL>
+
+<P>
+PyGist builds a list of information about the graph which you wish to plot, but in its normal operating 
+mode, does not actually draw the graph until you ask it to do so, by invoking draw3. Meanwhile, 
+it stores the information about the graph in a Python list. In this chapter we shall describe the contents 
+of this list in general terms, and the commands which you use to build it (orientation and lighting functions); 
+the setup functions for complicated 3D plots; and the plotting functions themselves. In a final 
+section, for people who may some day be maintaining or adding to this code, we describe the auxiliary 
+functions which everyday users will seldom if ever use. 
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1354"
+  HREF="node72.html">Setting Up For 3D Graphics</A>
+<UL>
+<LI><A NAME="tex2html1355"
+  HREF="node73.html">The Plotting List</A>
+<LI><A NAME="tex2html1356"
+  HREF="node74.html">Functions For Setting Viewing Parameters</A>
+<UL>
+<LI><A NAME="tex2html1357"
+  HREF="node75.html">Angular orientation</A>
+<LI><A NAME="tex2html1358"
+  HREF="node76.html">Physical orientation</A>
+</UL>
+<LI><A NAME="tex2html1359"
+  HREF="node77.html">Lighting Parameters</A>
+<LI><A NAME="tex2html1360"
+  HREF="node78.html">Display List</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1361"
+  HREF="node79.html">3D Graphics Control Functions</A>
+<UL>
+<LI><A NAME="tex2html1362"
+  HREF="node80.html">Getting a Window</A>
+<LI><A NAME="tex2html1363"
+  HREF="node81.html">Displaying the Gnomon</A>
+<LI><A NAME="tex2html1364"
+  HREF="node82.html">Plotting the Display List</A>
+<LI><A NAME="tex2html1365"
+  HREF="node83.html">The variable _draw3 and the idler</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1366"
+  HREF="node84.html">Data Setup Functions for Plotting</A>
+<UL>
+<LI><A NAME="tex2html1367"
+  HREF="node85.html">Creating a Plane</A>
+<LI><A NAME="tex2html1368"
+  HREF="node86.html">Creating a mesh3 argument</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1369"
+  HREF="node87.html">The Slicing Functions</A>
+<UL>
+<LI><A NAME="tex2html1370"
+  HREF="node88.html">slice3mesh: Pseudo-slice for a surface</A>
+<LI><A NAME="tex2html1371"
+  HREF="node89.html">slice3: Plane and Isosurface Slices of a 3D mesh</A>
+<LI><A NAME="tex2html1372"
+  HREF="node90.html">slice2 and slice2x: Slicing Surfaces with planes</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1373"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<UL>
+<LI><A NAME="tex2html1374"
+  HREF="node92.html">plwf: plot a wire frame</A>
+<LI><A NAME="tex2html1375"
+  HREF="node93.html">pl3surf: plot a 3-D surface</A>
+<LI><A NAME="tex2html1376"
+  HREF="node94.html">pl3tree: add a surface to a plotting tree</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1377"
+  HREF="node95.html">Contour Plotting on Surfaces: plzcont and pl4cont</A>
+<LI><A NAME="tex2html1378"
+  HREF="node96.html">Animation: movie and spin3</A>
+<UL>
+<LI><A NAME="tex2html1379"
+  HREF="node97.html">The movie module and function</A>
+<LI><A NAME="tex2html1380"
+  HREF="node98.html">The spin3 function</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1381"
+  HREF="node99.html">Syntactic Sugar: Some Helpful Functions </A>
+<UL>
+<LI><A NAME="tex2html1382"
+  HREF="node100.html">Specifying the palette to be split: split_palette</A>
+<LI><A NAME="tex2html1383"
+  HREF="node101.html">Saving and restoring the view and lighting: save3, restore3</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1352"
+  HREF="node72.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1346"
+  HREF="pygist.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1340"
+  HREF="node70.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1348"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1350"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1353"
+  HREF="node72.html">Setting Up For 3D</A>
+<B> Up:</B> <A NAME="tex2html1347"
+  HREF="pygist.html">pygist</A>
+<B> Previous:</B> <A NAME="tex2html1341"
+  HREF="node70.html">pause: Pause</A>
+ &nbsp; <B>  <A NAME="tex2html1349"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1351"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

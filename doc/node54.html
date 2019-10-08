@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plt: Plot Text</TITLE>
+<META NAME="description" CONTENT="plt: Plot Text">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node55.html">
+<LINK REL="previous" HREF="node53.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node55.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1102"
+  HREF="node55.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1096"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1090"
+  HREF="node53.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1098"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1100"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1103"
+  HREF="node55.html">pltitle: Plot a Title</A>
+<B> Up:</B> <A NAME="tex2html1097"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1091"
+  HREF="node53.html">pldj: Plot Disjoint Lines</A>
+ &nbsp; <B>  <A NAME="tex2html1099"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1101"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008111000000000000000"></A> 
+<A NAME="plt"></A><A NAME="944"></A>
+<A NAME="945"></A>
+<BR>
+plt: Plot Text
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+plt(text, x, y[, &lt;keylist&gt;])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Plot text (a string) at the point (x, y). The exact relationship between the point (x, y) and the text 
+is determined by the justify keyword. text may contain newline (<code>"\n"</code>) characters to output 
+multiple lines of text with a single call. 
+
+<P>
+The coordinates (x, y) are NDC coordinates (outside of any coordinate system) unless the tosys 
+keyword is present and non-zero, in which case the text will be placed in the current coordinate system. 
+However, the character height is never affected by the scale of the coordinate system to which 
+the text belongs. 
+
+<P>
+Note that the pledit command (see ``pledit: Change Plotting Properties'' on page&nbsp;<A HREF="node61.html#pledit"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) takes dx 
+and/ or dy keywords to adjust the position of existing text elements. 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+The following keyword argument(s) apply only to this function. 
+tosys = 0/ 1 
+Establish the interpretation of (x, y). If tosys= 0 (the default), use Normalized Device Coordinates; 
+if nonzero, use the current coordinate system. 
+
+<P>
+<PRE>
+font = &lt;font value&gt; 
+height = &lt;float value&gt; 
+opaque = 0/ 1 
+path = 0/ 1 
+orient = &lt;integer value&gt; 
+justify = (see text description)
+</PRE>
+
+<P>
+Select text properties. The font can be any of the strings <code>"courier"</code>, <code>"times"</code>, <code>"helvetica"</code> 
+(the default), <code>"symbol"</code>, or <code>"schoolbook"</code>. Append B for boldface and 
+<code>"I"</code> for italic, so <code>"courierB"</code> is boldface Courier, <code>"timesI"</code> is Times italic, and <code>"helveticaBI"</code> 
+is bold italic (oblique) Helvetica. Your X server should have the Adobe fonts 
+(available free from the MIT X distribution tapes) for all these fonts, preferably at both 75 and 
+100 dpi. Occasionally, a PostScript printer will not be equipped for some fonts; often New 
+Century Schoolbook is missing. The font keyword may also be an integer: 0 is Courier, 4 is 
+Times, 8 is Helvetica, 12 is Symbol, 16 is New Century Schoolbook, and you add 1 to get 
+boldface and/ or 2 to get italic (or oblique). 
+
+<P>
+The height is the font size in points; 14.0 is the default. X windows only has 8, 10, 12, 14, 
+18, and 24 point fonts, so don't stray from these sizes if you want what you see on the screen 
+to be a reasonably close match to what will be printed. 
+By default, opaque= 0 and text is transparent. Set opaque= 1 to white-out a box before 
+drawing the text. 
+
+<P>
+The default path (path= 0) is left-to-right text; set path= 1 for top-to-bottom text. 
+The default text justification, <code>justify="NN"</code> is normal in both the horizontal and vertical 
+directions. Other possibilities are <code>"L"</code>, <code>"C"</code>, or <code>"R"</code> for the first character, meaning left, center, 
+and right horizontal justification, and <code>"T"</code>, <code>"C"</code>, <code>"H"</code>, <code>"A"</code>, or <code>"B"</code> for the second character, 
+meaning top, capline, half, baseline, and bottom vertical justification. The normal 
+justification <code>"NN"</code> is equivalent to <code>"LA"</code> if path= 0, and to <code>"CT"</code> if path= 1. Common values 
+are <code>"LA"</code>, <code>"CA"</code>, and <code>"RA"</code> for garden variety left, center, and right justified text, with the 
+y coordinate at the baseline of the last line in the string presented to plt. The characters 
+labeling the right axis of a plot are <code>"RH"</code>, so that the y value of the text will match the y value 
+of the corresponding tick. Similarly, the characters labeling the bottom axis of a plot are 
+<code>"CT"</code>. The justification may also be a number, horizontal+ vertical, where horizontal is 0 for 
+<code>"N"</code>, 1 for <code>"L"</code>, 2 for <code>"C"</code>, or 3 for <code>"R"</code>, and vertical is 0 for <code>"N"</code>, 4 for <code>"T"</code>, 8 for <code>"C"</code>, 12 
+for <code>"H"</code>, 16 for <code>"A"</code>, or 20 for <code>"B"</code>. 
+
+<P>
+The integer value orient (default 0) specifies one of four angles that the text makes with the 
+horizontal (0 is horizontal, 1 is ninety degrees, 2 is 180 degrees, and 3 is 270 degrees). 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1102"
+  HREF="node55.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1096"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1090"
+  HREF="node53.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1098"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1100"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1103"
+  HREF="node55.html">pltitle: Plot a Title</A>
+<B> Up:</B> <A NAME="tex2html1097"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1091"
+  HREF="node53.html">pldj: Plot Disjoint Lines</A>
+ &nbsp; <B>  <A NAME="tex2html1099"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1101"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

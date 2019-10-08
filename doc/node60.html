@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plq: Query Plot Element Status</TITLE>
+<META NAME="description" CONTENT="plq: Query Plot Element Status">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node61.html">
+<LINK REL="previous" HREF="node59.html">
+<LINK REL="up" HREF="node59.html">
+<LINK REL="next" HREF="node61.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1198"
+  HREF="node61.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1192"
+  HREF="node59.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1186"
+  HREF="node59.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1194"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1196"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1199"
+  HREF="node61.html">pledit: Change Plotting Properties</A>
+<B> Up:</B> <A NAME="tex2html1193"
+  HREF="node59.html">Inquiry and Editing Functions</A>
+<B> Previous:</B> <A NAME="tex2html1187"
+  HREF="node59.html">Inquiry and Editing Functions</A>
+ &nbsp; <B>  <A NAME="tex2html1195"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1197"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00911000000000000000"></A> 
+<A NAME="1482"></A>
+<A NAME="1483"></A>
+<BR>
+plq: Query Plot Element Status
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+plq() 
+legend_list = plq() **** RETURN VALUE NOT YET IMPLEMENTED **** 
+plq(n_element[, n_contour]) 
+properties = plq(n_element[, n_contour])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+Called as a subroutine, plq prints the list of legends for the current coordinate system (with an 
+<code>(H)</code> to mark hidden elements), or prints a list of current properties of element <code>n_element</code> (such 
+as line type, width, font, etc.), or of contour number <code>n_contour</code> of element number <code>n_element</code> 
+(which must be contours generated using the plc command). Elements and contours are both numbered 
+starting with one; hidden elements or contours are included in this numbering. 
+
+<P>
+The plq function always operates on the current coordinate system in the current graphics window; 
+use window and plsys to change these. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

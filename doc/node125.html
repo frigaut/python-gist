@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Memory Management: naked memory</TITLE>
+<META NAME="description" CONTENT="Memory Management: naked memory">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node126.html">
+<LINK REL="previous" HREF="node124.html">
+<LINK REL="up" HREF="node122.html">
+<LINK REL="next" HREF="node126.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2186"
+  HREF="node126.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2180"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2174"
+  HREF="node124.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2182"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2184"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2187"
+  HREF="node126.html">Computing contour curves: contour</A>
+<B> Up:</B> <A NAME="tex2html2181"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2175"
+  HREF="node124.html">Memory Management: ArrayObjects</A>
+ &nbsp; <B>  <A NAME="tex2html2183"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2185"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001413000000000000000">
+Memory Management: naked memory</A>
+</H2>
+
+<P>
+Occasionally in gistCmodule it is necessary to malloc a block of memory which is not contained 
+inside some type of object. 
+
+<P>
+<DL>
+<DT><STRONG>Definition</STRONG></DT>
+<DD><P>
+MemList is used to keep track of such memory: 
+
+<P>
+<PRE>
+#define MEM_LIST_SIZE 15 
+
+static void * PyMemList [MEM_LIST_SIZE]; 
+static int mem_list_length = 0;
+</PRE>
+
+<P>
+MemList is maintained by its own suite of functions. 
+
+<P>
+</DD>
+<DT><STRONG>Function Prototypes</STRONG></DT>
+<DD><P>
+<PRE>
+static int addToMemList (void * addr) 
+static void clearMemList ()
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The first function adds an address to MemList; the second frees everything on MemList and sets its 
+length back to 0. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Standard numbering of cells in a regular rectangular mesh</TITLE>
+<META NAME="description" CONTENT="Standard numbering of cells in a regular rectangular mesh">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node144.html">
+<LINK REL="previous" HREF="node142.html">
+<LINK REL="up" HREF="node141.html">
+<LINK REL="next" HREF="node144.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2446"
+  HREF="node144.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2440"
+  HREF="node141.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2434"
+  HREF="node142.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2442"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2444"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2447"
+  HREF="node144.html">How slice3 works</A>
+<B> Up:</B> <A NAME="tex2html2441"
+  HREF="node141.html">More slice3 details</A>
+<B> Previous:</B> <A NAME="tex2html2435"
+  HREF="node142.html">Standard ordering for the</A>
+ &nbsp; <B>  <A NAME="tex2html2443"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2445"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001442000000000000000">
+Standard numbering of cells in a regular rectangular mesh</A>
+</H2> 
+
+<P>
+Suppose we have a regular rectangular mesh whose cell dimensions are ni-1 by nj-1 by nk-1 
+(and thus the vertex array is ni by nj by nk). The total number of cells is 
+
+<P>
+<PRE>
+ncells = (ni-1) * (nj-1) * (nk-1)
+</PRE>
+
+<P>
+TABLE 5. pri face numbering 
+face number edges 
+
+<P>
+f0 e2, e7, e3, e6 
+f1 e0, e6, e1, e8 
+f2 e4, e8, e5, e7 
+f3 e0, e4, e2 
+f4 e1, e3, e5 
+
+<P>
+TABLE 6. hex face numbering 
+face number edges 
+
+<P>
+f0 e0, e6, e2, e4 
+f1 e1, e5, e3, e7 
+f2 e0, e8, e1, e10 
+f3 e2, e11, e3, e9 
+f4 e4, e9, e5, e8 
+f5 e6, e10, e7, e11 
+
+<P>
+v0 
+v1 
+
+<P>
+v2 
+v3 
+v4 
+
+<P>
+v5 
+e0 
+
+<P>
+e1 
+
+<P>
+e2 
+e3 
+
+<P>
+e4 
+e5 
+e6 
+e7 
+e8 
+
+<P>
+v0 
+v1 
+v2 
+v3 
+
+<P>
+v4 
+v5 
+v6 
+v7 
+e0 
+
+<P>
+e1 
+e2 
+e3 
+e4 
+
+<P>
+e5 
+
+<P>
+e6 
+e7 
+e8 e9 
+
+<P>
+e10 e11 
+
+<P>
+and the cells are numbered from 0 to ncells-1 according to the following scheme. Suppose that 
+(i, j, k) are the maximum subscripts of the eight vertices of a cell numbered N in our scheme. Then 
+the number of the cell with maximum vertex subscripts (i, j, k + 1) will be N + 1; the number of 
+the cell with maximum vertex subscripts( i, j + 1, k) will be N + nk; and the number of the cell with 
+maximum vertex subscripts( i + 1, j, k) will be N + nj * nk. Thus each triple of subscripts (i, j, 
+k), where none of the three is zero, uniquely determines a cell number, and cell numbers run consecutively 
+as we increment the subscripts through their ranges (starting with 1) in row major order. Similarly, 
+we can number the vertices from 0 through ni * nj * nk-1 by numbering them 
+consecutively as we increment the subscripts through their ranges (starting with 0) in row major 
+order. 
+
+<P>
+This leads for the following scheme for computing the vertex numbers for all eight of the vertices 
+of a cell, given the cell number. First, construct the scalar 
+
+<P>
+<PRE>
+N1 = N + N / (nk-1) + nk * (N / ( (nk-1) * (nj-1))) 
+Then, add this scalar to each element of the 2 x 2 x 2 array 
+array ( [ [ [0, 1], [nk, nk + 1]], 
+[ [njnk, njnk + 1], [nk + njnk, nk + njnk + 1]]])
+</PRE>
+
+<P>
+The result is a 2 x 2 x 2 array of the vertex numbers of the vertices of the cell. Given that the arrays of 
+vertex coordinates are stored in row major order, then if we ravel them (i. e., flatten them out), flatten 
+the above array of vertex numbers, extract precisely those eight coordinates from each coordinate 
+array, and then reshape them to 2 x 2 x 2, then we have the coordinates of the vertices of the cell 
+under consideration. 
+
+<P>
+The function <code>to_corners3</code> does this calculation for an arbitrary list of cell numbers 
+(see ``Find Corner Indices of List of Cells: to_corners3''). 
+The function <code>slice3</code> calls <code>to_corners3</code> with a list of cells which are cut by a plane 
+or isosurface in a rectangular mesh in order to determine the coordinates of their vertices, the final goal 
+being to find the points at which the edges are cut by the plane or isosurface. These edge points are 
+then connected in a systematic way using (among other things) the numbering schemes described previously, 
+in order to yield the polygonal sections through cells made by the plane or isosurface. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2446"
+  HREF="node144.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2440"
+  HREF="node141.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2434"
+  HREF="node142.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2442"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2444"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2447"
+  HREF="node144.html">How slice3 works</A>
+<B> Up:</B> <A NAME="tex2html2441"
+  HREF="node141.html">More slice3 details</A>
+<B> Previous:</B> <A NAME="tex2html2435"
+  HREF="node142.html">Standard ordering for the</A>
+ &nbsp; <B>  <A NAME="tex2html2443"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2445"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

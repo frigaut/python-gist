@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>gridxy: Specify Grid Lines</TITLE>
+<META NAME="description" CONTENT="gridxy: Specify Grid Lines">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node39.html">
+<LINK REL="up" HREF="node38.html">
+<LINK REL="next" HREF="node41.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html880"
+  HREF="node41.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html874"
+  HREF="node38.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html870"
+  HREF="node39.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html876"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html878"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html881"
+  HREF="node41.html">Zooming Operations</A>
+<B> Up:</B> <A NAME="tex2html875"
+  HREF="node38.html">Scaling and Grid Lines</A>
+<B> Previous:</B> <A NAME="tex2html871"
+  HREF="node39.html">logxy: Set Linear/ Log</A>
+ &nbsp; <B>  <A NAME="tex2html877"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html879"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00722000000000000000"></A> 
+<A NAME="619"></A>
+<A NAME="620"></A>
+<BR>
+gridxy: Specify Grid Lines
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+gridxy(flag) 
+gridxy(xflag, yflag)
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+Turns on or off grid lines according to flag. In the first form, both the x and y axes are affected. In 
+the second form, xflag and yflag may differ to have different grid options for the two axes. In 
+either case, a flag value of 0 means no grid lines (the default), a value of 1 means grid lines at all 
+major ticks (the level of ticks which get grid lines can be set in the style sheet), and a flag value of 2 
+means that the coordinate origin only will get a grid line. In styles with multiple coordinate systems, 
+only the current coordinate system is affected. The keywords can be used to affect the style of the 
+grid lines. 
+
+<P>
+You can also turn the ticks off entirely. (You might want to do this to plot your own custom set of 
+tick marks when the automatic tick generating machinery will never give the ticks you want. For example 
+a latitude axis in degrees might reasonably be labeled ``0, 30, 60, 90'', but the automatic machinery 
+considers 3 an ``ugly'' number--only 1, 2, and 5 are ``pretty''--and cannot make the required scale. 
+In this case, you can turn off the automatic ticks and labels, and use plsys, pldj, and plt to generate 
+your own.) 
+
+<P>
+To fiddle with the tick flags in this general manner, set the 0x200 bit of flag (or xflag or 
+yflag), and ``or-in'' the 0x1ff bits however you wish. The meaning of the various flags is described 
+in the <code>work.gs</code> Gist style sheet. Additionally, you can use the 0x400 bit to turn on or off the 
+frame drawn around the viewport. Here are some examples: 
+
+<P>
+<PRE>
+gridxy(0x233)    work.gs default setting 
+gridxy(0, 0x200) like work.gs, but no y-axis ticks or labels 
+gridxy(0, 0x231) like work.gs, but no y-axis ticks on right 
+gridxy(0x62b)    boxed.gs default setting
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html880"
+  HREF="node41.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html874"
+  HREF="node38.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html870"
+  HREF="node39.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html876"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html878"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html881"
+  HREF="node41.html">Zooming Operations</A>
+<B> Up:</B> <A NAME="tex2html875"
+  HREF="node38.html">Scaling and Grid Lines</A>
+<B> Previous:</B> <A NAME="tex2html871"
+  HREF="node39.html">logxy: Set Linear/ Log</A>
+ &nbsp; <B>  <A NAME="tex2html877"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html879"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

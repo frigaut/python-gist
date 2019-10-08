@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Find 3D Lighting: get3_light</TITLE>
+<META NAME="description" CONTENT="Find 3D Lighting: get3_light">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node106.html">
+<LINK REL="previous" HREF="node104.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node106.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1880"
+  HREF="node106.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1874"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1868"
+  HREF="node104.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1876"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1878"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1881"
+  HREF="node106.html">Get Normals to Polygon</A>
+<B> Up:</B> <A NAME="tex2html1875"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1869"
+  HREF="node104.html">Useful Functions for Developers</A>
+ &nbsp; <B>  <A NAME="tex2html1877"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1879"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001310000000000000000"></A>
+<A NAME="get3_light"></A><A NAME="2641"></A>
+<A NAME="2642"></A>
+<BR>
+Find 3D Lighting: get3_light
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+get3_light(xyz [, nxyz])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Return 3D lighting for polygons with vertices XYZ. If NXYZ is specified, XYZ should be 
+sum(nxyz)-by-3, with NXYZ being the list of numbers of vertices for each polygon (as for the 
+plfp function; see page&nbsp;<A HREF="node51.html#plfp"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). If NXYZ is not specified, XYZ should be a quadrilateral mesh, ni-by-nj-by-3 (as for the plf function; see page&nbsp;<A HREF="node49.html#plf"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). In the first case, the return value is len (NXYZ) 
+long; in the second case, the return value is (ni-1)-by-(nj-1). 
+
+<P>
+The parameters of the lighting calculation are set by the light3 function (see ``Lighting Parameters'' 
+on page&nbsp;<A HREF="node77.html#lighting_par"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

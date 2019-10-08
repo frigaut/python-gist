@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Function Summary</TITLE>
+<META NAME="description" CONTENT="Function Summary">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node21.html">
+<LINK REL="up" HREF="node12.html">
+<LINK REL="next" HREF="node24.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html625"
+  HREF="node24.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html619"
+  HREF="node12.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html615"
+  HREF="node22.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html621"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html623"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html626"
+  HREF="node24.html">Control Functions</A>
+<B> Up:</B> <A NAME="tex2html620"
+  HREF="node12.html">Python Gist Graphics</A>
+<B> Previous:</B> <A NAME="tex2html616"
+  HREF="node22.html">Examples</A>
+ &nbsp; <B>  <A NAME="tex2html622"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html624"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00540000000000000000"></A> 
+<A NAME="254"></A>
+<BR>
+Function Summary
+</H1>
+
+<P>
+Here is a summary of the functions which are described in the remainder of this manual. 
+
+<P>
+<DL>
+<DT><STRONG>Control functions</STRONG></DT>
+<DD>See page&nbsp;<A HREF="node24.html#control_functions"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+
+<P>
+<PRE>
+window ([n] [, &lt;keylist&gt;]) # open or select device n 
+   keywords: display, dpi, dump, hcp, legends, private, style, wait 
+
+winkill ([n]) # delete device n 
+
+n = current_window () # determine active device 
+
+fma () # frame advance
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Plot limits and scaling</STRONG></DT>
+<DD>See page&nbsp;<A HREF="node34.html#plot_limits"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+
+<P>
+<PRE>
+old_limits = limits () 
+
+old_limits = limits (xmin [, xmax[, ymin[, ymax]]] 
+                     [, &lt;keylist&gt;]) 
+   keywords: square, nice, restrict 
+
+limits (old_limits) 
+
+ylimits (ymin[, ymax]) 
+
+logxy (xflag[, yflag]) 
+
+gridxy (flag) 
+
+gridxy (xflag, yflag) 
+
+zoom_factor (factor) 
+
+unzoom ()
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Two-dimensional plotting functions</STRONG></DT>
+<DD>See page&nbsp;<A HREF="node42.html#plot2d"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+
+<P>
+<PRE>
+plg (y [, x][, &lt;keylist&gt;]) # plot a graph 
+   keywords: legend, hide, type, width, color, closed, 
+             smooth, marks, marker, mspace, mphase, rays 
+
+plmesh ([ y, x][, ireg][, triangle= tri_array]) 
+# set default mesh 
+
+plmesh () # delete default mesh 
+
+plm ([ y, x][, ireg][, &lt;keylist&gt;]) 
+# plot mesh 
+   keywords: boundary, inhibit, legend, hide, type, width, 
+             color, region 
+
+plc (z[, y, x][, ireg][, &lt;keylist&gt;]) 
+# plot contours 
+   keywords: levs, triangle, legend, hide, type, width, 
+             color, smooth, marks, marker, mspace, mphase, 
+             region 
+
+plfc (z[, y, x][, ireg][, &lt;keylist&gt;]) 
+# plot filled contours 
+   keywords: contours, colors, region, triangle, scale 
+
+plv (vy, vx[, y, x][, ireg][, &lt;keylist&gt;]) 
+# plot vector field 
+   keywords: scale, hollow, aspect, legend, hide, type, 
+             width, color, smooth, marks, marker, mspace, 
+             mphase, triangle, region 
+
+plf (z[, y, x][, ireg][, &lt;keylist&gt;]) 
+# Plot a filled mesh 
+   keywords: edges, ecolor, ewidth, legend, hide, region, 
+             top, cmin, cmax 
+
+plfp (z, y, x, n[, &lt;keylist&gt;]) 
+# Plot filled polygons 
+   keywords: legend, hide, top, cmin, cmax 
+
+pli (z[[, x0, y0], x1, y1][, &lt;keylist&gt;]) 
+# Plot a cell array 
+   keywords: legend, hide, top, cmin, cmax 
+
+pldj (x0, y0, x1, y1[, &lt;keylist&gt;]) 
+# Plot disjoint lines 
+   keywords: legend, hide, type, width, color 
+
+plt (text, x, y[, &lt;keylist&gt;]) 
+   keywords: tosys, font, height, opaque, path, justify, 
+             legend, hide, color 
+
+pltitle (title) # Plot a title
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Inquiry and Miscellaneous functions</STRONG></DT>
+<DD>See page&nbsp;<A HREF="node58.html#inquiry"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+
+<P>
+<PRE>
+plq () # Query plot element status 
+
+legend_list = plq () 
+**** RETURN VALUE NOT YET IMPLEMENTED **** 
+
+plq (n_element[, n_contour]) 
+
+properties = plq (n_element[, n_contour]) 
+
+pledit ([ n_element[, n_contour],] &lt;keylist&gt;) 
+# Change Plotting Properties of Current Element 
+The keywords can be any of the keywords that apply to the current element. 
+
+pldefault (key1= value1, key2= value2, ...) 
+# Set default values 
+The keywords can be most of the keywords that can be passed to the plotting 
+commands. 
+Also, one can specify a larger CGM file size:
+pldefault (cgmfilesize=20)  # default is 10 MB; reset to 20 MB
+
+bytscl (z[, top= max_byte][, cmin= lower_cutoff] 
+[, cmax= upper_cutoff]) 
+# Convert data to color array 
+
+histeq_scale (z[, top= top_value][, cmin= cmin][, 
+cmax= cmax]) **** NOT YET IMPLEMENTED **** 
+# Histogram Equalized Scaling 
+
+mesh_loc (y0, x0[, y, x[, ireg]]) 
+# Get zone index of (x0, y0) 
+
+result = mouse (system, style, prompt) 
+# Handle Mouse Click 
+
+moush ([ y, x[, ireg]]) 
+# Return zone index of point clicked in mesh 
+
+pause (milliseconds) # self-explanatory
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Three-dimensional plotting functions</STRONG></DT>
+<DD>See page&nbsp;<A HREF="node71.html#plot3d"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<PRE>
+orient3 (phi = angle 1 , theta = angle 2) 
+
+rot3 (xa = angle x , ya = angle y , za = angle z) 
+
+mov3 (xa = val 1 , ya = val 2 , za = val 3) 
+
+aim3 (xa = val 1 , ya = val 2 , za = val 3) 
+
+light3 (ambient= a_level, diffuse= d_level, 
+        specular= s_level, spower= n, sdir= xyz) 
+
+clear3 () 
+
+window3 ([n] [, dump = val] [, hcp = filename]) 
+
+gnomon ([onoff] [, chr = &lt;labels&gt;]) 
+
+set_default_gnomon ([onoff]) 
+
+[lims = ] draw3 ([called_as_idler = &lt;val&gt;]) 
+
+limits (lims [0], lims [1], lims [2], lims [3]) 
+
+set_draw3_ (n) 
+
+n = get_draw3_ () 
+
+clear_idler () 
+
+set_idler (func_name) 
+
+set_default_idler () 
+
+call_idler () 
+
+plane3 (&lt; normal&gt;, &lt;point&gt;) 
+
+mesh3 (x, y, z) 
+
+mesh3 (x, y, z, funcs = [f1, f2, ...], [verts = &lt;spec&gt;]) 
+
+mesh3 (xyz, funcs = [f1, f2, ...]) 
+
+mesh3 (nxnynz, dxdydz, x0y0z0, funcs = [f1, f2, ...]) 
+
+slice3mesh (z [, color]) 
+
+slice3mesh (nxny, dxdy, x0y0, z [, color]) 
+
+slice3mesh (x, y, z [, color]) 
+
+slice3 (m3, fslice, nv, xyzv [, fcolor [, flg 1 ]] 
+        [, value = &lt;val&gt;] [, node = flg 2 ]) 
+        [nverts, xyzverts, values] = slice2 (plane, nv, xyzv, vals) 
+        [nverts, xyzverts, values, nvertb, xyzvertb, valueb] = 
+
+slice2x (plane, nv, xyzv, vals) 
+
+plwf (z [, y, x] [, &lt;keylist&gt;]) 
+   keywords: fill, shade, edges, ecolor, ewidth, cull, scale, cmax 
+
+pl3surf (nverts, xyzverts [, values] [, &lt;keylist&gt;]) 
+   keywords: cmin, cmax 
+
+pl3tree (nverts, xyzverts [, values] [, &lt;keylist&gt;]) 
+   keywords: plane, cmin, cmax, split
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Animation functions</STRONG></DT>
+<DD>See page&nbsp;<A HREF="node96.html#animation"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+<PRE>
+movie (draw_frame [, time_limit = 120.] 
+       [, min_interframe = 0.0] 
+       [, bracket_time = array ([ 2., 2.], Float)] 
+       [, lims = None] 
+       [, timing = 0]) 
+
+spin3 (nframes = 30, 
+       axis = array ([-1, 1, 0], Float), 
+       tlimit = 60., 
+       dtmin = 0.0, 
+       bracket_time = array ([ 2., 2.], Float), 
+       lims = None, 
+       timing = 0, 
+       angle = 2. * pi)
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Syntactic Sugar</STRONG></DT>
+<DD>See page&nbsp;<A HREF="node99.html#helpful_functions"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+<PRE>
+split_palette ([palette_name]) 
+
+view = save3 () 
+
+restore3 (view)
+</PRE>
+</DD>
+</DL>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

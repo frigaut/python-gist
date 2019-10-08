@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>pl3surf: plot a 3-D surface</TITLE>
+<META NAME="description" CONTENT="pl3surf: plot a 3-D surface">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node94.html">
+<LINK REL="previous" HREF="node92.html">
+<LINK REL="up" HREF="node91.html">
+<LINK REL="next" HREF="node94.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1700"
+  HREF="node94.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1694"
+  HREF="node91.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1688"
+  HREF="node92.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1696"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1698"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1701"
+  HREF="node94.html">pl3tree: add a surface</A>
+<B> Up:</B> <A NAME="tex2html1695"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1689"
+  HREF="node92.html">plwf: plot a wire</A>
+ &nbsp; <B>  <A NAME="tex2html1697"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1699"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001052000000000000000"></A>
+<A NAME="1917"></A>
+<A NAME="1918"></A>
+<A NAME="pl3surf"></A>
+<BR>
+pl3surf: plot a 3-D surface
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+pl3surf (nverts, xyzverts [, values] [, &lt;keylist&gt;])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Perform simple 3D rendering of an object created by slice3 (possibly followed by slice2). 
+nverts and xyzverts are polygon lists as returned by slice3, so xyzverts is sum 
+(nverts)-by-3, where nverts is a list of the number of vertices in each polygon. If present, the 
+values should have the same length as nverts; they are used to color the polygon. If values is 
+not specified, the 3D lighting calculation set up using the light3 function will be carried out. Keywords 
+cmin and cmax as for plf, pli, or plfp are also accepted. (If you do not supply values, 
+you probably want to use the ambient keyword to light3 instead of cmin here, but cmax may 
+still be useful.) 
+
+<P>
+pl3surf calls clear3 before putting the plot command on the display list, which means that 
+PyGist can only show one surface at a time using this function. (See pl3tree below for graphs with 
+multiple components). 
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD>The following example is the familiar sombrero function. The first few lines of code compute its 
+value. 
+
+<P>
+<PRE>
+nc1 = 100 
+nv1 = nc1 + 1 
+br = -(nc1 / 2) 
+tr = nc1 / 2 + 1 
+x = arange (br, tr, typecode = Float) * 40. / nc1 
+y = arange (br, tr, typecode = Float) * 40. / nc1 
+z = zeros ( (nv1, nv1), Float) 
+r = sqrt (add. outer ( x ** 2, y ** 2)) + 1e-6 
+z = sin (r) / r
+</PRE>
+
+<P>
+In order to use pl3surf, we need to construct a mesh using mesh3. The way we shall do that is 
+to define a function on the 3d mesh so that the sombrero function is its 0-isosurface. 
+
+<P>
+<PRE>
+z0 = min (ravel (z)) 
+z0 = z0 -.05 * abs (z0) 
+maxz = max (ravel (z)) 
+maxz = maxz + .05 * abs (maxz) 
+zmult = max (max (abs (x)), max (abs (y))) 
+dz = (maxz -z0) 
+nxnynz = array ( [nc1, nc1, 1], Int) 
+dxdydz = array ( [1.0, 1.0, zmult* dz], Float ) 
+x0y0z0 = array ( [float (br), float (br), z0* zmult], Float ) 
+meshf = zeros ( (nv1, nv1, 2), Float ) 
+meshf [:, :, 0] = zmult* z -(x0y0z0 [2]) 
+meshf [:, :, 1] = zmult* z -(x0y0z0 [2] + dxdydz [2])
+</PRE>
+
+<P>
+Finally, we create the mesh and call the plotting functions. 
+<PRE>
+m3 = mesh3 (nxnynz, dxdydz, x0y0z0, funcs = [meshf]) 
+fma () 
+# Make sure we don't draw till ready 
+set_draw3_(0) 
+pldefault( edges= 0) 
+[nv, xyzv, col] = slice3 (m3, 1, None, None, value = 0.) 
+orient3 () # (default orientation) 
+pl3surf (nv, xyzv) 
+lim = draw3 (1) 
+dif = 0.5 * (lim [3] -lim [2]) 
+# dif is used to compress the y scale a bit. 
+limits (lim [0], lim [1], lim [2] -dif, lim [3] + dif) 
+palette (" gray. gp")
+</PRE>
+
+<P>
+The graph that results from this sequence of code is on the next page. 
+This next sequence of functions uses slice3mesh to draw the same surface; this time the polygons 
+that make up the surface are colored according to height (using the rainbow palette). 
+
+<P>
+<PRE>
+# Try new slicing function to get color graph 
+[nv, xyzv, col] = slice3mesh (nxnynz [0: 2], dxdydz [0: 2], 
+x0y0z0 [0: 2], zmult * z, color = zmult * z) 
+pl3surf (nv, xyzv, values = col) 
+lim = draw3 (1) 
+dif = 0.5 * (lim [3] -lim [2]) 
+limits (lim [0], lim [1], lim [2] -dif, lim [3] + dif) 
+palette (" rainbow. gp")
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1700"
+  HREF="node94.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1694"
+  HREF="node91.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1688"
+  HREF="node92.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1696"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1698"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1701"
+  HREF="node94.html">pl3tree: add a surface</A>
+<B> Up:</B> <A NAME="tex2html1695"
+  HREF="node91.html">The 3D Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1689"
+  HREF="node92.html">plwf: plot a wire</A>
+ &nbsp; <B>  <A NAME="tex2html1697"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1699"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

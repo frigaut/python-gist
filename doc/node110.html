@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Sort z Coordinates: sort3d</TITLE>
+<META NAME="description" CONTENT="Sort z Coordinates: sort3d">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node111.html">
+<LINK REL="previous" HREF="node109.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node111.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1950"
+  HREF="node111.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1944"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1938"
+  HREF="node109.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1946"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1948"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1951"
+  HREF="node111.html">Set the cmax parameter:</A>
+<B> Up:</B> <A NAME="tex2html1945"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1939"
+  HREF="node109.html">Add object to drawing</A>
+ &nbsp; <B>  <A NAME="tex2html1947"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1949"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001360000000000000000"></A>
+<A NAME="2691"></A>
+<A NAME="2692"></A>
+<A NAME="sort3d"></A>
+<BR>
+Sort z Coordinates: sort3d
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+sort3d(z, npolys)
+</PRE>  
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Given Z and NPOLYS, with len(Z)== sum(npolys), return a 2-element list [LIST, VLIST] 
+such that take(Z, VLIST) and take (NPOLYS, LIST) are sorted from smallest average Z to 
+largest average Z, where the averages are taken over the clusters of length NPOLYS. Within each cluster 
+(polygon), the cyclic order of take (Z, VLIST) remains unchanged, but the absolute order may 
+change. 
+
+<P>
+This sorting order produces correct or nearly correct order for a plfp call to make a plot involving 
+hidden or partially hidden surfaces in three dimensions. It works best when the polygons form a set of 
+disjoint closed, convex surfaces, and when the surface normal changes only very little between neighboring 
+polygons. (If the latter condition holds, then even if sort3d misorders two neighboring polygons, 
+their colors will be very nearly the same, and the mistake won't be noticeable.) A truly correct 
+3D sorting routine is impossible, since there may be no rendering order which produces correct surface 
+hiding (some polygons may need to be split into pieces in order to do that). There are more nearly 
+correct algorithms than this, but they are much slower. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1950"
+  HREF="node111.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1944"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1938"
+  HREF="node109.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1946"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1948"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1951"
+  HREF="node111.html">Set the cmax parameter:</A>
+<B> Up:</B> <A NAME="tex2html1945"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1939"
+  HREF="node109.html">Add object to drawing</A>
+ &nbsp; <B>  <A NAME="tex2html1947"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1949"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

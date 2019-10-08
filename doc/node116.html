@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Controlling Points Close to the Slicing Plane: _slice2_precision</TITLE>
+<META NAME="description" CONTENT="Controlling Points Close to the Slicing Plane: _slice2_precision">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node117.html">
+<LINK REL="previous" HREF="node115.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node117.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2034"
+  HREF="node117.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2028"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2022"
+  HREF="node115.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2030"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2032"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2035"
+  HREF="node117.html">Scale variables to a</A>
+<B> Up:</B> <A NAME="tex2html2029"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html2023"
+  HREF="node115.html">Get Cell Values of</A>
+ &nbsp; <B>  <A NAME="tex2html2031"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2033"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013120000000000000000"></A>
+<A NAME="2744"></A>
+<A NAME="_slice2_precision"></A><A NAME="2746"></A>
+<BR>
+Controlling Points Close to the Slicing Plane: _slice2_precision
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+
+<P>
+<PRE> 
+precision = get_slice2_precision () 
+set_slice2_precision (precision)
+</PRE> 
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Internal variable <code>_slice2_precision</code> controls how slice2 (or slice2x) handles points 
+very close to the slicing plane or surface. PRECISION should be a positive number or zero. Zero 
+PRECISION means to clip exactly to the plane, with points exactly on the plane acting as if they were 
+slightly on the side the normal points toward. Positive PRECISION means that edges are clipped to 
+parallel planes a distance PRECISION on either side of the given plane. (Polygons lying entirely between 
+these planes are completely discarded.) 
+
+<P>
+Default value is 0.0. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

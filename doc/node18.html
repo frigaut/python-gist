@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Overview of module plwf</TITLE>
+<META NAME="description" CONTENT="Overview of module plwf">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node20.html">
+<LINK REL="previous" HREF="node17.html">
+<LINK REL="up" HREF="node16.html">
+<LINK REL="next" HREF="node19.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html561"
+  HREF="node19.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html555"
+  HREF="node16.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html549"
+  HREF="node17.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html557"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html559"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html562"
+  HREF="node19.html">Examples</A>
+<B> Up:</B> <A NAME="tex2html556"
+  HREF="node16.html">PyGist 3D Graphics</A>
+<B> Previous:</B> <A NAME="tex2html550"
+  HREF="node17.html">General overview of module</A>
+ &nbsp; <B>  <A NAME="tex2html558"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html560"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00522000000000000000"></A> 
+<A NAME="239"></A>
+<BR>
+Overview of module plwf
+</H2>
+
+<P>
+The main function of interest in plwf.py is the function plwf (``plot wire frame''), which enables 
+the user to plot an arbitrary wire frame on a quadrilateral grid. The grid may be see-through or not 
+(cells filled with the background color). In the latter case, the drawing order of the zones is 
+determined by a simple ``painter's algorithm'', which works fairly well if the mesh is reasonably nearly 
+rectilinear, but can fail even then if the viewpoint is chosen to produce extreme fisheye perspective 
+effects. One must look at the resulting plot carefully to be sure the algorithm has correctly rendered 
+the model in each case. 
+
+<P>
+A 3D wire mesh can also be plotted using shading and lighting effects as determined by values set 
+in the pl3d module; or the zones can be colored (using the current palette) by their average height or 
+by the values of some function, which may be zone-centered or node-centered. 
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html563"
+  HREF="node19.html">Examples</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

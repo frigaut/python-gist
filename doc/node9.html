@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Cygwin</TITLE>
+<META NAME="description" CONTENT="Cygwin">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node8.html">
+<LINK REL="up" HREF="node7.html">
+<LINK REL="next" HREF="node10.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html421"
+  HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html415"
+  HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html411"
+  HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html417"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html419"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html422"
+  HREF="node10.html">User Setup and Demo</A>
+<B> Up:</B> <A NAME="tex2html416"
+  HREF="node7.html">PyGist Installation</A>
+<B> Previous:</B> <A NAME="tex2html412"
+  HREF="node8.html">Windows</A>
+ &nbsp; <B>  <A NAME="tex2html418"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html420"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00320000000000000000"></A>
+<A NAME="158"></A>
+<BR>
+Cygwin
+</H1>
+
+<P>
+For Cygwin without XFree86, the usual installation procedure is used:
+<PRE>
+   python setup.py config
+   python setup.py install
+</PRE>
+
+<P>
+If you want to use Cygwin with the XFree86 implementation of the X Windows System, you need to add <code>--x11</code> to these commands:
+<PRE>
+   python setup.py config --x11
+   python setup.py install --x11
+</PRE>
+
+<P>
+For Python versions older than 2.3, for the config step it is necessary to
+specify the Cygwin compiler explicitly by adding <code>--compiler=cygwin</code>:
+<PRE>
+   python setup.py config --compiler=cygwin
+</PRE>
+or
+<PRE>
+   python setup.py config --compiler=cygwin --x11
+</PRE>
+The install command does not change.
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

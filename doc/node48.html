@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plv: Plot a Vector Field</TITLE>
+<META NAME="description" CONTENT="plv: Plot a Vector Field">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node49.html">
+<LINK REL="previous" HREF="node47.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node49.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1018"
+  HREF="node49.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1012"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1006"
+  HREF="node47.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1014"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1016"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1019"
+  HREF="node49.html">plf: Plot a Filled</A>
+<B> Up:</B> <A NAME="tex2html1013"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1007"
+  HREF="node47.html">plc: Plot Contours</A>
+ &nbsp; <B>  <A NAME="tex2html1015"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1017"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00815000000000000000"></A>
+<A NAME="plv"></A><A NAME="833"></A>
+<A NAME="834"></A>
+<BR>
+plv: Plot a Vector Field
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+plv(vy, vx[, y, x][, ireg][, &lt;keylist&gt;])
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER">
+
+<P><A NAME="fig:plv"></A></P>
+<DIV ALIGN="CENTER">
+7#7
+
+</DIV>
+</DIV>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Plot a vector field (vx, vy) on the mesh (x, y). y, x, and ireg are as for plm. The vy and vx arrays 
+must have the same shape as y and x. The y, x, and ireg arguments may all be omitted to default to 
+the mesh set by the most recent plmesh call. 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+The following keyword argument(s) apply only to this function. 
+<PRE>
+scale = dt
+</PRE>
+The scale keyword is the conversion factor from the units of (vx, vy) to the units of (x, y) --
+a time interval if (vx, vy) is a velocity and (x, y) is a position -- which determines the length of 
+the vector ``darts'' plotted at the (x, y) points. 
+
+<P>
+If omitted, scale is chosen so that the longest ray arrows have a length comparable to a ``typical'' 
+zone size. You can use the scalem keyword in pledit to make adjustments to the 
+scale factor computed by default. 
+
+<P>
+<PRE>
+hollow = 0/ 1 
+aspect = &lt;float value&gt;
+</PRE>
+
+<P>
+Set the appearance of the ``darts'' of a vector field plot. The default darts, hollow= 0, are 
+filled; use hollow= 1 to get just the dart outlines. The default is aspect= 0.125; aspect 
+is the ratio of the half-width to the length of the darts. Use the color keyword to control the 
+color of the darts. 
+
+<P>
+The following additional keyword arguments can be specified with this function. 
+legend, hide, type, width, color, smooth, marks, marker, 
+mspace, mphase, triangle, region 
+
+<P>
+See ``Plot Function Keywords'' on page&nbsp;<A HREF="node57.html#plot_function_keywords"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for detailed descriptions of these keywords. 
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD>This example applies to the same mesh that we have considered in the last three examples. 
+<PRE>
+plv(x+. 5, y-. 5)
+</PRE>
+The plot appears on the next page. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1018"
+  HREF="node49.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1012"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1006"
+  HREF="node47.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1014"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1016"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1019"
+  HREF="node49.html">plf: Plot a Filled</A>
+<B> Up:</B> <A NAME="tex2html1013"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1007"
+  HREF="node47.html">plc: Plot Contours</A>
+ &nbsp; <B>  <A NAME="tex2html1015"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1017"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

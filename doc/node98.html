@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The spin3 function</TITLE>
+<META NAME="description" CONTENT="The spin3 function">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node97.html">
+<LINK REL="up" HREF="node96.html">
+<LINK REL="next" HREF="node99.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1768"
+  HREF="node99.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1762"
+  HREF="node96.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1758"
+  HREF="node97.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1764"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1766"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1769"
+  HREF="node99.html">Syntactic Sugar: Some Helpful</A>
+<B> Up:</B> <A NAME="tex2html1763"
+  HREF="node96.html">Animation: movie and spin3</A>
+<B> Previous:</B> <A NAME="tex2html1759"
+  HREF="node97.html">The movie module and</A>
+ &nbsp; <B>  <A NAME="tex2html1765"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1767"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001072000000000000000"></A>
+<A NAME="1986"></A>
+<A NAME="spin3"></A>
+<BR>
+The spin3 function
+</H2>
+
+<P>
+spin3 is a function which takes an existing 3D plot and spins it about an axis. It actually calls 
+movie for you, with a <code>draw_frame</code> function which is internal to the pl3d module and not available 
+outside this module, because its name begins with an underscore. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+spin3 (nframes = 30, 
+axis = array ([-1, 1, 0], Float), 
+tlimit = 60., 
+dtmin = 0.0, 
+bracket_time = array ([ 2., 2.], Float), 
+lims = None, 
+timing = 0, 
+angle = 2. * pi)
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Spin the current 3D display list about axis (default <code>[-1,1,0]</code>) over nframes (default 30). 
+Note that all arguments are keywords. Also note that the timing keywords are allowed but are not currently 
+implemented. Their meanings are: 
+
+<P>
+<DL>
+<DT><STRONG>tlimit:</STRONG></DT>
+<DD>the total time allowed for the movie in seconds (default 60). 
+</DD>
+<DT><STRONG>dtmin:</STRONG></DT>
+<DD>the minimum allowed interframe time in seconds (default 0.0). 
+</DD>
+<DT><STRONG>bracket_time:</STRONG></DT>
+<DD>(as for movie function in movie.py). 
+</DD>
+<DT><STRONG>lims:</STRONG></DT>
+<DD>the axis limits, if you wish to specify them. 
+timing = 1 if you want timing measured and printed out, 0 if not. 
+</DD>
+<DT><STRONG>angle:</STRONG></DT>
+<DD>the total angle about the axis through which the object will be rotated. During each step 
+of the rotation, the object will rotate angle / (nframes-1). 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD>In this example, we take the surface discussed previously (see ``Example'' on page&nbsp;<A HREF="node97.html#moving_light_source"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) and rotate it 
+about an axis. Assume that the sequence of code given there has been executed, giving the figure 
+shown there. Then we do the following to run the movie: 
+
+<P>
+<PRE>  
+spin3 () # (lims = [l0, l1, l2, l3])
+</PRE>  
+Four frames from the resulting movie are shown on the next page. 
+
+<P>
+TABLE 2. Frames from Movie of Rotating Isosurfaces 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1768"
+  HREF="node99.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1762"
+  HREF="node96.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1758"
+  HREF="node97.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1764"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1766"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1769"
+  HREF="node99.html">Syntactic Sugar: Some Helpful</A>
+<B> Up:</B> <A NAME="tex2html1763"
+  HREF="node96.html">Animation: movie and spin3</A>
+<B> Previous:</B> <A NAME="tex2html1759"
+  HREF="node97.html">The movie module and</A>
+ &nbsp; <B>  <A NAME="tex2html1765"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1767"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

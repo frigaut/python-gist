@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Memory Management: ArrayObjects</TITLE>
+<META NAME="description" CONTENT="Memory Management: ArrayObjects">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node125.html">
+<LINK REL="previous" HREF="node123.html">
+<LINK REL="up" HREF="node122.html">
+<LINK REL="next" HREF="node125.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2172"
+  HREF="node125.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2166"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2160"
+  HREF="node123.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2168"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2170"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2173"
+  HREF="node125.html">Memory Management: naked memory</A>
+<B> Up:</B> <A NAME="tex2html2167"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2161"
+  HREF="node123.html">Memory Maintenance: PyObjects</A>
+ &nbsp; <B>  <A NAME="tex2html2169"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2171"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001412000000000000000">
+Memory Management: ArrayObjects</A>
+</H2> 
+
+<P>
+<DL>
+<DT><STRONG>Definition</STRONG></DT>
+<DD><P>
+ArrayObjects are defined as follows: 
+
+<P>
+<PRE>
+typedef struct arrayobject { 
+void * data ; 
+int size ; 
+char typecode ; 
+} ArrayObject;
+</PRE>
+
+<P>
+These objects are used primarily in the slice2 routines to store temporary results during the calculation. 
+The final results are passed back in PyArrayObjects created by <code>RET_ARR</code>. Two lists of 
+ArrayObjects are maintained by the slice2 suite: list 0 by slice2 itself, and list 1, which is 
+used by <code>_slice2_part</code>, which is called by <code>slice2</code>. These lists are declared as follows: 
+
+<P>
+<PRE>
+#define MAX_NO_LISTS 2 
+#define MAX_LIST_SIZE 30 
+
+static ArrayObject * freeList [MAX_NO_LISTS] [MAX_LIST_SIZE]; 
+static int freeListLen [MAX_NO_LISTS] = {0, 0};
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Function Prototypes</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+static ArrayObject * allocateArray (int size, char tc, 
+int nlist) 
+static ArrayObject * copyArray (ArrayObject * a) 
+static ArrayObject * arrayFromPointer (int size, char tc, 
+void * data, int nlist) 
+static void freeArray (ArrayObject * a, int n) 
+static void clearFreeList (int n) 
+static int addToFreeList (ArrayObject * x, int n) 
+static void removeArrayOnly (ArrayObject * x, int n) 
+static void removeFromFreeList (ArrayObject * x, int n)
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+allocateArray allocates an appropriate amount of space for size items of type tc. It then creates 
+an ArrayObject containing this data and puts it on freeList [nlist]. copyArray 
+makes and returns a copy of a. It does not add a to any freeList. arrayFromPointer creates 
+an arrayObject whose data pointer points to data; it is assumed that the caller has supplied correct 
+size and tc arguments. The resulting object is placed on freeList [nlist]. freeArray 
+frees a's data and then a itself, and removes it from freeList [n] if it is there. clearFreeList 
+frees everything on freeList [n] and sets the list length to 0. addToFreeList adds x to 
+freeList [n], if it can. removeArrayOnly removes the array from freeList [n], then 
+frees x without freeing its data. This would most likely be done when <code>RET_ARR</code> creates a 
+PyArrayObject which points to x's data. removeFromFreeList frees x's data, then x itself, 
+and removes x from freeList [n]. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2172"
+  HREF="node125.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2166"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2160"
+  HREF="node123.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2168"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2170"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2173"
+  HREF="node125.html">Memory Management: naked memory</A>
+<B> Up:</B> <A NAME="tex2html2167"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2161"
+  HREF="node123.html">Memory Maintenance: PyObjects</A>
+ &nbsp; <B>  <A NAME="tex2html2169"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2171"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

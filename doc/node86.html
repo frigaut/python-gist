@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Creating a mesh3 argument</TITLE>
+<META NAME="description" CONTENT="Creating a mesh3 argument">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node85.html">
+<LINK REL="up" HREF="node84.html">
+<LINK REL="next" HREF="node87.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1598"
+  HREF="node87.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1592"
+  HREF="node84.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1588"
+  HREF="node85.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1594"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1596"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1599"
+  HREF="node87.html">The Slicing Functions</A>
+<B> Up:</B> <A NAME="tex2html1593"
+  HREF="node84.html">Data Setup Functions for</A>
+<B> Previous:</B> <A NAME="tex2html1589"
+  HREF="node85.html">Creating a Plane</A>
+ &nbsp; <B>  <A NAME="tex2html1595"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1597"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001032000000000000000"></A>
+<A NAME="1824"></A>
+<A NAME="1825"></A>
+<A NAME="mesh3"></A>
+<BR>
+Creating a mesh3 argument
+</H2>
+
+<P>
+The function mesh3 is used to create a mesh3 object from your data. A mesh3 object is required as 
+an input to a number of routines, most importantly, the various slicing functions. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+mesh3 (x, y, z) 
+mesh3 (x, y, z, funcs = [f1, f2, ...], [verts = &lt;spec&gt;])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>mesh3 creates a mesh3 object as expected by the various functions slice3, xyz3, getv3, etc. 
+The form of a mesh3 object will be described below (See ``Description of a mesh3 object'' on 
+page&nbsp;<A HREF="node86.html#mesh3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). Note that Python is able to determine which of the above calls is intended because it can 
+check for the presence of optional and keyword arguments and can check the dimensions and types of 
+the arguments. 
+
+<P>
+In the first two forms of the call, x, y, and z are coordinate arrays specifying the mesh. If x, y, and 
+z are three dimensional of the same shape, then they represent the coordinates of the vertices of a regular 
+rectangular mesh. If x, y, and z are one dimensional of the same size, then the keyword argument 
+verts determines how they are interpreted. If verts is not present, then we have a structured rectangular 
+mesh with unequally spaced nodes. If verts is present, then they represent the coordinates of 
+an unstructured mesh, and the keyword argument verts must be used to pass information about the 
+cells to the mesh3 function. &lt;spec&gt; can be either a single two dimensional array of integer subscripts 
+into x, y, and z, or a Python list of up to four such objects, one for each type of cell in the mesh. The 
+format of the two dimensional array for each type of cell shape is as follows: 
+° hexahedra: the array is no<code>_hex_cells b</code>y 8. The first subscript is the hexahedron cell number; 
+for each value of this subscript, the second indexes the vertices in canonical order (the first side 
+in outward normal order, the opposite side's corresponding vertices in inward normal order). 
+
+<P>
+<DL>
+<DT><STRONG>prisms:</STRONG></DT>
+<DD>the array is no<code>_prism_cells b</code>y 6. The first subscript is the prism cell number; for 
+each value of this subscript, the second indexes the vertices in canonical order (the first side in 
+outward normal order, the opposite side's corresponding vertices in inward normal order). 
+
+<P>
+</DD>
+<DT><STRONG>pyramids:</STRONG></DT>
+<DD>the array is <code>no_pyr_cells</code> by 5. The first subscript is the pyramid cell number; for 
+each value of this subscript, the second indexes first the apex, then the vertices of the base in inward 
+normal order. 
+
+<P>
+</DD>
+<DT><STRONG>tetrahedra:</STRONG></DT>
+<DD>the array is <code>no_tet_cells</code> by 4. The first subscript is the tetrahedron cell number; 
+for each value of this subscript, the second indexes first some arbitrary cell as the apex, then the 
+vertices of the base in inward normal order. 
+Each type of cell has a relative cell number running from 0 to <code>no_celltype_cells</code> -1. The cells 
+are also assumed to have absolute cell numbers, which depend on the order in which the defining 
+arrays appear, but will run consecutively starting from 0 in the first cell of the first type up to the total 
+number of cells -1 for the last cell of the last type. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+The optional keyword funcs defines f1, f2, etc., which are arrays of function values (e. g. density, 
+temperature) defined on the mesh. In the case of a regular (or structured) rectangular mesh, these 
+functions are 3D arrays. If they represent cell-centered data, they will have one less value along each 
+dimension than the coordinate arrays. If they are vertex-centered data, then they will have the same 
+dimensions. In the case of an unstructured mesh, f1, f2, etc. are one-dimensional arrays. If they represent 
+cell-centered data, then they are indexed by the absolute cell number, and must be the same 
+length as the number of cells. If they represent vertex-centered data, then they are indexed the same as 
+the vertices, and must be the same length as the vertex arrays. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>
+mesh3 (xyz, funcs = [f1, f2, ...])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>In this case xyz is a four dimensional array specifying the mesh; xyz [0] is the three dimensional x 
+coordinate, xyz [1] is the three dimensional y coordinate, and xyz [2] is the three dimensional z 
+coordinate. (mesh3 actually converts the x, y, z arguments of the first two calls into this xyz form in 
+a mesh3 object; see ``Description of a mesh3 object'' on page&nbsp;<A HREF="node86.html#mesh3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. The funcs keyword operates as 
+previously described. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+mesh3 (nxnynz, dxdydz, x0y0z0, funcs = [f1, f2, ...])
+</PRE>  
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>nxnynz is a vector of 3 integers, specifying the number of cells of a uniform 3D mesh in the x, y, 
+and z directions, respectively. dxdydz is an array of three reals, specifying the size of the entire 
+mesh, not the size of one cell, in each of the three directions, and x0y0z0 is an array of three reals, 
+representing the point of minimum x, y, and z where the mesh begins. The funcs keyword operates 
+as previously described. 
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>of a mesh3 object 
+The form of a mesh3 object varies according to whether the mesh specified was uniform, structured, 
+or unstructured. 
+
+<P>
+<DL>
+<DT><STRONG>Uniform case, node equally spaced:</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+[[ xyz3_unif, getv3_rect, getc3_rect, iterator3_rect], 
+[ (nxnynz [0], nxnynz [1], nxnynz [2]), 
+array ( [dxdydz, x0y0z0])], [f1, f2, ...]]
+</PRE>  
+
+<P>
+The four items in the first list are the names of functions. The details of these need not concern us at 
+this time except in their broad outlines. The iterator3 function will split the mesh into chunks for 
+processing by the slicing functions, if necessary, in order to save space. xyz3 returns the vertex coordinates 
+of a chunk. getv3 returns the vertex values of a function on the chunk; getc3 returns cell 
+values. Because these routines necessarily differ depending on the type of mesh, their names are 
+passed along with the mesh specifications to that the appropriate ones can be called. The remainder 
+of the items in the object specify the mesh and the function( s) defined on the mesh (if any; if there are 
+none, the final list will be []). 
+
+<P>
+</DD>
+<DT><STRONG>Uniform case, nodes unequally spaced:</STRONG></DT>
+<DD>... 
+
+<P>
+<PRE>  
+[[ xyz3_unif, getv3_rect, getc3_rect, iterator3_rect], 
+[ (len (x) -1, len (y) -1, len (z) -1), 
+array ( [x, y, z])], [f1, f2, ...]]
+</PRE>  
+
+<P>
+The functions' purpose is as described above. x, y, and z are one-dimensional arrays, possibly of different 
+lengths, specifying the node coordinates of a uniform rectangular mesh, which might be 
+unequally spaced. The triple consisting of the three array lengths minus one gives the size of the mesh 
+in cells. 
+
+<P>
+</DD>
+<DT><STRONG>Structured case:</STRONG></DT>
+<DD>... 
+
+<P>
+<PRE>  
+[[ xyz3_rect, getv3_rect, getc3_rect, iterator3_rect], 
+[dim_cell, xyz], [f1, f2, ...]]
+</PRE>  
+
+<P>
+The functions' purpose is as described above. <code>dim_cell</code> is an integer vector of length three giving 
+the size of the mesh in cells, <code>dim_cell[0]</code> being the x direction size, 
+<code>dim_cell[1]</code> the y, and 
+<code>dim_cell[2]</code> the z. <code>xyz</code> is a four-dimensional array of coordinates; <code>xyz[0]</code> is the three dimensional 
+x coordinate array, <code>xyz[1]</code> is the three dimensional y coordinate array, 
+and <code>xyz[2]</code> is the three dimensional z coordinate array. 
+
+<P>
+</DD>
+<DT><STRONG>Unstructured case:</STRONG></DT>
+<DD>...
+<PRE>  
+[[ xyz3_irreg, getv3_irreg, getc3_irreg, iterator3_irreg], 
+[dims, array ( [x, y, z]), sizes, totals], [f1, f2, ...]]
+</PRE>  
+
+<P>
+</DD>
+</DL>
+
+<P>
+The functions' purpose is as described above. dims is the value of the keyword argument verts, i. 
+e., it represents one array, or a list of up to four arrays, specifying the subscripts of the cell vertices 
+into arrays x, y, and z in canonical order. If there is only one type of cell in the unstructured mesh, 
+then sizes and totals will not be present; otherwise, they are used to help recover the absolute 
+cell number from a cell's index in the list of cells of the same type. sizes [i] is the number of cells 
+of type i; totals [i] is the total number of cells up to and including type i. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1598"
+  HREF="node87.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1592"
+  HREF="node84.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1588"
+  HREF="node85.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1594"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1596"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1599"
+  HREF="node87.html">The Slicing Functions</A>
+<B> Up:</B> <A NAME="tex2html1593"
+  HREF="node84.html">Data Setup Functions for</A>
+<B> Previous:</B> <A NAME="tex2html1589"
+  HREF="node85.html">Creating a Plane</A>
+ &nbsp; <B>  <A NAME="tex2html1595"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1597"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

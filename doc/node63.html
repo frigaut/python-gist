@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>pldefault: Set Default Values</TITLE>
+<META NAME="description" CONTENT="pldefault: Set Default Values">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node62.html">
+<LINK REL="up" HREF="node59.html">
+<LINK REL="next" HREF="node64.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1238"
+  HREF="node64.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1232"
+  HREF="node59.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1228"
+  HREF="node62.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1234"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1236"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1239"
+  HREF="node64.html">Miscellaneous Functions</A>
+<B> Up:</B> <A NAME="tex2html1233"
+  HREF="node59.html">Inquiry and Editing Functions</A>
+<B> Previous:</B> <A NAME="tex2html1229"
+  HREF="node62.html">plremove: Remove Plot Element</A>
+ &nbsp; <B>  <A NAME="tex2html1235"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1237"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00914000000000000000"></A>
+<A NAME="1505"></A>
+<A NAME="1506"></A>
+<BR>
+pldefault: Set Default Values
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+pldefault(key1= value1, key2= value2, ...)
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+Set default values for the various properties of graphical elements. 
+The keywords can be most of the keywords that can be passed to the plotting commands: 
+
+<P>
+<PRE>  
+plg: color, type, width, marks, mcolor, msize, mspace, 
+     mphase, rays, rspace, rphase, arrowl, arroww 
+plm: color, type, width 
+plc: color, type, width, marks, mcolor, marker, msize, 
+     mspace, mphase 
+plv: color, hollow, width, aspect 
+plf: edges, ecolor, ewidth 
+pldj: color, type, width 
+plt: color, font, height, path, justify, opaque
+</PRE>  
+
+<P>
+The initial default values are: 
+<PRE>  
+color="fg", type="solid", width= 1.0 (1/ 2 point), 
+marks= 1, mcolor="fg", msize= 1.0 (10 points), mspace= 0.16, 
+mphase= 0.14, 
+rays= 0, arrowl= 1.0 (10 points), arroww= 1.0 (4 points), rspace= 0.13, 
+rphase= 0.11375, 
+font="helvetica", height= 12.0, path= 0, justify="NN", 
+opaque= 0, 
+hollow= 0, aspect= 0.125, 
+edges= 0, ecolor="fg", ewidth= 1.0 (1/ 2 point)
+</PRE>  
+
+<P>
+Additional default keywords are: 
+
+<P>
+<PRE>  
+dpi, style, legends (see window command) 
+palette      (to set default filename as in palette command) 
+maxcolors    (default 200) 
+cgmfilesize  (default 10 MB) in units of MBytes
+</PRE>  
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

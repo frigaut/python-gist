@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Changing the Window Style Interactively</TITLE>
+<META NAME="description" CONTENT="Changing the Window Style Interactively">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node28.html">
+<LINK REL="previous" HREF="node26.html">
+<LINK REL="up" HREF="node25.html">
+<LINK REL="next" HREF="node28.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html693"
+  HREF="node28.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html687"
+  HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html681"
+  HREF="node26.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html689"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html691"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html694"
+  HREF="node28.html">Hard Copy and File</A>
+<B> Up:</B> <A NAME="tex2html688"
+  HREF="node25.html">Device Control</A>
+<B> Previous:</B> <A NAME="tex2html682"
+  HREF="node26.html">Window Control</A>
+ &nbsp; <B>  <A NAME="tex2html690"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html692"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00612000000000000000"></A> 
+<A NAME="399"></A>
+<BR>
+Changing the Window Style Interactively
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+
+<P>
+<PRE> 
+style = get_style()
+set_style(style)
+</PRE> 
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The function <code>get_style()</code> returns a set of nested dictionaries that
+contain the style information that is currently used by the active window.
+The dictionary has the following structure: 
+<BR><code>style</code> 
+<BR><code>  ['landscape']</code>: Set orientation to portrait (0) or landscape (1) 
+<BR><code>  ['legend']</code>: 
+<BR><code>    ['x']</code>: NDC horizontal location of the legend box 
+<BR><code>    ['y']</code>: NDC vertical location of the legend box 
+<BR><code>    ['dx']</code>: NDC horizontal offset to 2nd column 
+<BR><code>    ['dy']</code>: NDC vertical offset to 2nd column 
+<BR><code>    ['nchars']</code>: Maximum number of characters on a line 
+<BR><code>    ['nlines']</code>: Maximum number of lines 
+<BR><code>    ['nwrap']</code>: Maximum number of lines to wrap long legends 
+<BR><code>    ['textStyle']</code>: 
+<BR><code>      ['height']</code>: Character height in NDC, default 0.0156 (12pt) 
+<BR><code>      ['font']</code>: Text font, specified by an integer: 
+<BR><code>                </code>Courier: 0 
+<BR><code>                </code>Times: 4 
+<BR><code>                </code>Helvetica: 8 
+<BR><code>                </code>Symbol: 12 
+<BR><code>                </code>New Century: 16 
+<BR><code>                </code>(add 1 for bold, 2 for italic) 
+<BR><code>      ['color']</code>: Text color 
+<BR><code>      ['orient']</code>: Text path 
+<BR><code>                 ('right', 'up', 'left', 'down')</code> 
+<BR><code>      ['alignH']</code>: Horizontal alignment 
+<BR><code>                 ('normal', 'left', 'center', 'right')</code> 
+<BR><code>      ['alignV']</code>: Vertical alignment 
+<BR><code>                 ('normal', 'top', 'cap', 'half', </code> 
+<BR><code>                  'base', 'bottom')</code> 
+<BR><code>  ['contourlegend']</code>: 
+<BR><code>    ['x']</code>: NDC horizontal location of the contour legend box 
+<BR><code>    ['y']</code>: NDC vertical location of the contour legend box 
+<BR><code>    ['dx']</code>: NDC horizontal offset to 2nd column in the contour legend box 
+<BR><code>    ['dy']</code>: NDC vertical offset to 2nd column in the contour legend box 
+<BR><code>    ['nchars']</code>: Maximum number of characters on a line 
+<BR><code>    ['nlines']</code>: Maximum number of lines 
+<BR><code>    ['nwrap']</code>: Maximum number of lines to wrap long legends 
+<BR><code>    ['textStyle']</code>: 
+<BR><code>      ['height']</code>: Character height in NDC, default 0.0156 (12pt) 
+<BR><code>      ['font']</code>: Text font, specified by an integer: 
+<BR><code>                </code>Courier: 0 
+<BR><code>                </code>Times: 4 
+<BR><code>                </code>Helvetica: 8 
+<BR><code>                </code>Symbol: 12 
+<BR><code>                </code>New Century: 16 
+<BR><code>                </code>(add 1 for bold, 2 for italic) 
+<BR><code>      ['color']</code>: Text color 
+<BR><code>      ['orient']</code>: Text path 
+<BR><code>                 ('right', 'up', 'left', 'down')</code> 
+<BR><code>      ['alignH']</code>: Horizontal alignment 
+<BR><code>                 ('normal', 'left', 'center', 'right')</code> 
+<BR><code>      ['alignV']</code>: Vertical alignment 
+<BR><code>                 ('normal', 'top', 'cap', 'half',</code> 
+<BR><code>                  'base', 'bottom')</code> 
+<BR><code>  ['systems']</code>: returns a list of systems, each of which is a dictionary
+                      with the keys: 
+<BR><code>    ['legend']</code>: default legend 
+<BR><code>    ['viewport']</code>: viewport size, <code>array([left, right, bottom, top])</code> 
+<BR><code>    ['ticks']</code>: 
+<BR><code>      ['frame']</code>: Switch the frame on (1) or off (0) 
+<BR><code>      ['frameStyle']</code>: 
+<BR><code>        ['color']</code>: Color of the frame 
+<BR><code>        ['width']</code>: Line width of the frame 
+<BR><code>        ['type']</code>: Line style of the frame: 
+<BR><code>                 ('none', 'solid', 'dash', 'dot',</code> 
+<BR><code>                  'dashdot', 'dashdotdot')</code> 
+<BR><code>      ['horizontal']</code>: 
+<BR><code>        ['nDigits']</code>: Number of digits for the tick labels 
+<BR><code>        ['nMinor']</code>: Number of minor tick marks 
+<BR><code>        ['nMajor']</code>: Number of major tick marks 
+<BR><code>        ['logAdjMinor']</code>: Adjustment factor for nMinor for a log scale 
+<BR><code>        ['logAdjMajor']</code>: Adjustment factor for nMajor for a log scale 
+<BR><code>        ['flags']</code>: Integer, given by the sum of 
+<BR><code>                    1</code>: There are ticks at the bottom edge of the viewport 
+<BR><code>                    2</code>: There are ticks at the upper edge of the viewport 
+<BR><code>                    4</code>: Ticks are centered on the axis 
+<BR><code>                    8</code>: Ticks are go inward from the axis 
+<BR><code>                   16</code>: Ticks are go outward from the axis 
+<BR><code>                   32</code>: There are labels at the bottom edge 
+<BR><code>                   64</code>: There are labels at the upper edge 
+<BR><code>                  128</code>: There is a full grid 
+<BR><code>                  256</code>: There is a single grid line at the origin 
+<BR><code>                  512</code>: Alternative tick generator is used 
+<BR><code>                 1024</code>: Alternative label generator is used 
+<BR><code>        ['xOver']</code>: Horizontal position of the overflow label 
+<BR><code>        ['yOver']</code>: Vertical position of the overflow label 
+<BR><code>        ['labelOff']</code>: Offset from the edge of the viewport to the labels 
+<BR><code>        ['tickOff']</code>: Offset from the edge of the viewport to the ticks 
+<BR><code>        ['tickLen']</code>: Tick lengths in NDC 
+<BR><code>        ['tickStyle']</code>: 
+<BR><code>          ['color']</code>: Color of the ticks 
+<BR><code>          ['width']</code>: Line width of the ticks 
+<BR><code>          ['type']</code>: Line type of the ticks 
+<BR><code>                   ('none', 'solid', 'dash', 'dot', </code>
+<BR><code>                    'dashdot', 'dashdotdot')</code> 
+<BR><code>          ['gridLevel']</code>: Level of the ticks at which the grid is drawn 
+<BR><code>        ['gridStyle']</code>: 
+<BR><code>          ['color']</code>: Color of the grid 
+<BR><code>          ['width']</code>: Line width of the grid 
+<BR><code>          ['type']</code>: Line type of the grid 
+<BR><code>                   ('none', 'solid', 'dash', 'dot', </code>
+<BR><code>                    'dashdot', 'dashdotdot')</code> 
+<BR><code>      ['vertical']</code>: 
+<BR><code>        ['nDigits']</code>: Number of digits for the tick labels 
+<BR><code>        ['nMinor']</code>: Number of minor tick marks 
+<BR><code>        ['nMajor']</code>: Number of major tick marks 
+<BR><code>        ['logAdjMinor']</code>: Adjustment factor for nMinor for a log scale 
+<BR><code>        ['logAdjMajor']</code>: Adjustment factor for nMajor for a log scale 
+<BR><code>        ['flags']</code>: Integer, given by the sum of 
+<BR><code>                    1</code>: There are ticks at the left edge of the viewport 
+<BR><code>                    2</code>: There are ticks at the right edge of the viewport 
+<BR><code>                    4</code>: Ticks are centered on the axis 
+<BR><code>                    8</code>: Ticks are go inward from the axis 
+<BR><code>                   16</code>: Ticks are go outward from the axis 
+<BR><code>                   32</code>: There are labels at the left edge 
+<BR><code>                   64</code>: There are labels at the right edge 
+<BR><code>                  128</code>: There is a full grid 
+<BR><code>                  256</code>: There is a single grid line at the origin 
+<BR><code>                  512</code>: Alternative tick generator is used 
+<BR><code>                 1024</code>: Alternative label generator is used 
+<BR><code>        ['xOver']</code>: Horizontal position of the overflow label 
+<BR><code>        ['yOver']</code>: Vertical position of the overflow label 
+<BR><code>        ['labelOff']</code>: Offset from the edge of the viewport to the labels 
+<BR><code>        ['tickOff']</code>: Offset from the edge of the viewport to the ticks 
+<BR><code>        ['tickLen']</code>: Tick lengths in NDC 
+<BR><code>        ['tickStyle']</code>: 
+<BR><code>          ['color']</code>: Color of the ticks 
+<BR><code>          ['width']</code>: Line width of the ticks 
+<BR><code>          ['type']</code>: Line type of the ticks 
+<BR><code>                   ('none', 'solid', 'dash', 'dot', </code>
+<BR><code>                    'dashdot', 'dashdotdot')</code> 
+<BR><code>        ['gridLevel']</code>: Level of the ticks at which the grid is drawn 
+<BR><code>        ['gridStyle']</code>: 
+<BR><code>          ['color']</code>: Color of the grid 
+<BR><code>          ['width']</code>: Line width of the grid 
+<BR><code>          ['type']</code>: Line type of the grid 
+<BR><code>                   ('none', 'solid', 'dash', 'dot', </code>
+<BR><code>                    'dashdot', 'dashdotdot')</code> 
+<BR>
+By changing the values of the appropriate keys in the dictionary <code>style</code>, and calling the routine <code>set_style(style)</code>, the style of the current window can be changed interactively. This is used in the <code>plh</code> routine
+(see page&nbsp;<A HREF="node56.html#plh"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>)
+to switch off the tick marks and labels below the horizontal axis in a histogram.
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html693"
+  HREF="node28.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html687"
+  HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html681"
+  HREF="node26.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html689"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html691"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html694"
+  HREF="node28.html">Hard Copy and File</A>
+<B> Up:</B> <A NAME="tex2html688"
+  HREF="node25.html">Device Control</A>
+<B> Previous:</B> <A NAME="tex2html682"
+  HREF="node26.html">Window Control</A>
+ &nbsp; <B>  <A NAME="tex2html690"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html692"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

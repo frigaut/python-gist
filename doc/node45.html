@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plmesh: Set Default Mesh</TITLE>
+<META NAME="description" CONTENT="plmesh: Set Default Mesh">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node46.html">
+<LINK REL="previous" HREF="node44.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node46.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html976"
+  HREF="node46.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html970"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html964"
+  HREF="node44.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html972"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html974"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html977"
+  HREF="node46.html">plm: Plot a Mesh</A>
+<B> Up:</B> <A NAME="tex2html971"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html965"
+  HREF="node44.html">plg: Plot a Graph</A>
+ &nbsp; <B>  <A NAME="tex2html973"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html975"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00812000000000000000"></A>
+<A NAME="plmesh"></A><A NAME="779"></A>
+<A NAME="780"></A>
+<BR>
+plmesh: Set Default Mesh
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+plmesh([y, x][, ireg][, triangle= tri_array]) 
+plmesh()
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Set the default mesh for subsequent plm, plc, plv, plf, and plfc calls. In the second form, 
+plmesh deletes the default mesh (until you do this, or switch to a new default mesh, the default mesh 
+arrays persist and takes up space in memory). The y, x, and ireg arrays should all be the same 
+shape; y and x will be converted to double, and ireg will be converted to int. 
+
+<P>
+If ireg is omitted, it defaults to ireg(0,)= ireg(, 0)= 0, ireg(1:, 1:)= 1; that is, region 
+number 1 is the whole mesh. The triangulation array <code>tri_array</code> is used by plc and plfc; the 
+correspondence between <code>tri_array</code> indices and zone indices is the same as for ireg, and its default 
+value is all zero. The ireg or <code>tri_array</code> arguments may be supplied without y and x to 
+change the region numbering or triangulation for a given set of mesh coordinates. However, a default 
+y and x must already have been defined if you do this. If y is supplied, x must be supplied, and vice-versa. 
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD>The following example creates a mesh whose graph we will see later. 
+For convenience, we show the functions span and a3, which are used to build the data. 
+
+<P>
+<PRE>
+def span(lb, ub, n): 
+if n &lt; 2: raise ValueError, '3rd arg must be at least 2' 
+b = lb 
+a = (ub -lb)/(n -1.0) 
+return map(lambda x, A= a, B= b: A* x + B, range(n)) 
+def a3(lb, ub, n): 
+return reshape (array(n* span(lb, ub, n), Float), (n, n)) 
+fma() 
+limits() 
+x = a3(-1, 1, 26) 
+y = transpose (x) 
+z = x+ 1j* y 
+z = 5.* z/(5.+ z* z) 
+xx = z. real 
+yy = z. imaginary 
+plmesh(yy, xx)
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html976"
+  HREF="node46.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html970"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html964"
+  HREF="node44.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html972"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html974"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html977"
+  HREF="node46.html">plm: Plot a Mesh</A>
+<B> Up:</B> <A NAME="tex2html971"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html965"
+  HREF="node44.html">plg: Plot a Graph</A>
+ &nbsp; <B>  <A NAME="tex2html973"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html975"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Computing contour curves: contour</TITLE>
+<META NAME="description" CONTENT="Computing contour curves: contour">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node127.html">
+<LINK REL="previous" HREF="node125.html">
+<LINK REL="up" HREF="node122.html">
+<LINK REL="next" HREF="node127.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2200"
+  HREF="node127.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2194"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2188"
+  HREF="node125.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2196"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2198"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2201"
+  HREF="node127.html">Computing slices: slice2, slice2x,</A>
+<B> Up:</B> <A NAME="tex2html2195"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2189"
+  HREF="node125.html">Memory Management: naked memory</A>
+ &nbsp; <B>  <A NAME="tex2html2197"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2199"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001414000000000000000">
+Computing contour curves: contour</A>
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+# Set mesh first 
+plmesh (y, x, ireg, triangle = triangle) 
+[nc, yc, xc] = contour (level, z)
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The calling sequence given above emphasizes that mesh parameters should be set by a call to plmesh 
+prior to calling contour. plmesh arguments are explained in section ``plmesh: Set Default Mesh'' 
+on page&nbsp;<A HREF="node45.html#plmesh"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. If level is a scalar floating point number, then the the returned values are the points at 
+that contour level. All such points lie on edges of the mesh. If a contour curve closes, the final point 
+is the same as the initial point (i. e., that point is included twice in the returned list). If level is a sequence 
+of two reals, then contour returns the points of a set of polygons which outline the regions 
+between the two contour levels. The returned values are in the form required for arguments of plfp 
+(see Section ``plfp: Plot a List of Filled Polygons'' on page&nbsp;<A HREF="node51.html#plfp"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). These will include points on the 
+mesh boundary which lie between the levels, in addition to the edge points for both levels. The polygons 
+are closed, simply connected, and will not contain more than about 4000 points (larger polygons 
+are split into pieces with a few points repeated where the pieces join). 
+The 2D filled contour plot routine plfc (see Section ``plfc: Plot filled contours'' on page&nbsp;<A HREF="node50.html#plfc"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) 
+operates by calling contour with pairs of adjacent contour levels, and then calling plfp with the 
+output and a single color, inside a loop. contour needed to be programmed in C because it can be 
+called many times to do a single filled contour plot, and the calculations take too long to be performed 
+in interpreted code. contour calls lower level Gist routines that do most of the work. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2200"
+  HREF="node127.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2194"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2188"
+  HREF="node125.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2196"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2198"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2201"
+  HREF="node127.html">Computing slices: slice2, slice2x,</A>
+<B> Up:</B> <A NAME="tex2html2195"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2189"
+  HREF="node125.html">Memory Management: naked memory</A>
+ &nbsp; <B>  <A NAME="tex2html2197"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2199"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

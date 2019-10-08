@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Get Normals to Polygon Set: get3_normal</TITLE>
+<META NAME="description" CONTENT="Get Normals to Polygon Set: get3_normal">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node107.html">
+<LINK REL="previous" HREF="node105.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node107.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1894"
+  HREF="node107.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1888"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1882"
+  HREF="node105.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1890"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1892"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1895"
+  HREF="node107.html">Get Centroids of Polygon</A>
+<B> Up:</B> <A NAME="tex2html1889"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1883"
+  HREF="node105.html">Find 3D Lighting: get3_light</A>
+ &nbsp; <B>  <A NAME="tex2html1891"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1893"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001320000000000000000"></A>
+<A NAME="2651"></A>
+<A NAME="2652"></A>
+<BR>
+Get Normals to Polygon Set: get3_normal
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+get3_normal(xyz [, nxyz])
+</PRE>  
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Return 3D normals for polygons with vertices XYZ. If NXYZ is specified, XYZ should be 
+sum(nxyz)-by-3, with NXYZ being the list of numbers of vertices for each polygon (as for the plfp 
+function; see page&nbsp;<A HREF="node51.html#plfp"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). If NXYZ is not specified, XYZ should be a quadrilateral mesh, ni-by-nj-by-3 
+(as for the plf function; see page&nbsp;<A HREF="node49.html#plf"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). In the first case, the return value is len(NXYZ)-by-3; in the 
+second case, the return value is (ni-1)-by-(nj-1)-by-3. 
+
+<P>
+The normals are constructed from the cross product of the lines joining the midpoints of two edges 
+which as nearly quarter the polygon as possible (the medians for a quadrilateral). No check is made 
+that these not be parallel; the returned ``normal'' is [0, 0, 0] in that case. Also, if the polygon vertices 
+are not coplanar, the ``normal'' has no precisely definable meaning. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1894"
+  HREF="node107.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1888"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1882"
+  HREF="node105.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1890"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1892"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1895"
+  HREF="node107.html">Get Centroids of Polygon</A>
+<B> Up:</B> <A NAME="tex2html1889"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1883"
+  HREF="node105.html">Find 3D Lighting: get3_light</A>
+ &nbsp; <B>  <A NAME="tex2html1891"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1893"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

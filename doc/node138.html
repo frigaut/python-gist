@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Finding Edges Cut by Isosurfaces: find_mask</TITLE>
+<META NAME="description" CONTENT="Finding Edges Cut by Isosurfaces: find_mask">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node139.html">
+<LINK REL="previous" HREF="node137.html">
+<LINK REL="up" HREF="node129.html">
+<LINK REL="next" HREF="node139.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2377"
+  HREF="node139.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2371"
+  HREF="node129.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2365"
+  HREF="node137.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2373"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2375"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2378"
+  HREF="node139.html">Order Cut Edges of</A>
+<B> Up:</B> <A NAME="tex2html2372"
+  HREF="node129.html">Additional Array Operations: arrayfnsmodule</A>
+<B> Previous:</B> <A NAME="tex2html2366"
+  HREF="node137.html">Effective Length of an</A>
+ &nbsp; <B>  <A NAME="tex2html2374"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2376"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001439000000000000000">
+Finding Edges Cut by Isosurfaces: find_mask</A>
+</H2> 
+
+<P>
+<A NAME="3101"></A>
+<A NAME="find_mask"></A>
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+find_mask (fs, node_edges)
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>This function is used to calculate a mask of integers whose corresponding entry is 1 precisely if an 
+edge of a cell is cut by an isosurface or plane, i. e., if the function fs is one on one of the two vertices 
+of an edge and zero on the other (fs = 1 represents where some function on the mesh was found to be 
+negative by the calling routine). fs is ntotal by nv, where nv is the number of vertices of a cell (4 
+for a tetrahedron, 5 for a pyramid, 6 for a prism, 8 for a hexahedron). <code>node_edges</code> is a nv by ne 
+array, where ne is the number of edges on a cell (6 for a tet, 8 for a pyramid, 9 for a prism, 12 for a 
+hexahedron). The entries in each row are 1 precisely if the corresponding edge is incident on the vertex. 
+The exclusive or of the rows which correspond to nonzero entries in fs contains 1 in entries corresponding 
+to edges where fs has opposite values on the vertices. (The vertices and edges of a cell 
+have a standard ordering which is discussed in ``Standard ordering for the four types of mesh cells'' on 
+page&nbsp;<A HREF="node142.html#standard_ordering"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.) 
+
+<P>
+The mask returned by this function will be a one dimensional array ntotal * ne long. An entry 
+[i * ne + j] in this mask will be 1 precisely if edge j of cell i is cut by the isosurface or plane. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2377"
+  HREF="node139.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2371"
+  HREF="node129.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2365"
+  HREF="node137.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2373"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2375"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2378"
+  HREF="node139.html">Order Cut Edges of</A>
+<B> Up:</B> <A NAME="tex2html2372"
+  HREF="node129.html">Additional Array Operations: arrayfnsmodule</A>
+<B> Previous:</B> <A NAME="tex2html2366"
+  HREF="node137.html">Effective Length of an</A>
+ &nbsp; <B>  <A NAME="tex2html2374"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2376"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

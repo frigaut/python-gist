@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plh: Plot a Histogram</TITLE>
+<META NAME="description" CONTENT="plh: Plot a Histogram">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node55.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node57.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1128"
+  HREF="node57.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1122"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1118"
+  HREF="node55.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1124"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1126"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1129"
+  HREF="node57.html">Plot Function Keywords</A>
+<B> Up:</B> <A NAME="tex2html1123"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1119"
+  HREF="node55.html">pltitle: Plot a Title</A>
+ &nbsp; <B>  <A NAME="tex2html1125"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1127"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008113000000000000000"></A>
+<A NAME="plh"></A><A NAME="963"></A>
+<A NAME="964"></A>
+<BR>
+plh: Plot a Histogram
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+plh(y, [x, labels, &lt;keylist&gt;])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Draws a histogram, where the height of the bars is given
+by Y. If X is None, the bars in the histogram have a
+width equal to unity. If X is a single real number, it
+is interpreted as the width of the bars. If X is a one-
+dimensional array with an equal number of elements as
+the Y array, then X is interpreted as the widths of the
+bars. In all of these cases, the histogram starts at
+the origin. However, if X is a one-dimensional array
+with one element more than Y, then X is interpreted as
+the locations of the start and end points of the bars in
+the histogram.  If X is a one-dimensional array with twice
+as many elements as Y, then X represents the start and
+end points for each bar separately.
+
+<P>
+The keyword color is either a single color to fill
+the bars with, or a list of colors, one for each bar.
+If the keyword labels is given, then the horizontal tick
+marks and numerical labels are switched off. The keyword
+labels should then consist of a list of strings, with the
+same number of elements as Y. These labels are drawn
+below the horizontal axis.
+
+<P>
+To switch the tick marks and labels back on for subsequent
+plots, you can execute
+<PRE>
+window(style="work.gs")
+</PRE>
+which will reset the window to the usual work.gs style sheet.
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+width, hide, color
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1128"
+  HREF="node57.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1122"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1118"
+  HREF="node55.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1124"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1126"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1129"
+  HREF="node57.html">Plot Function Keywords</A>
+<B> Up:</B> <A NAME="tex2html1123"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1119"
+  HREF="node55.html">pltitle: Plot a Title</A>
+ &nbsp; <B>  <A NAME="tex2html1125"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1127"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

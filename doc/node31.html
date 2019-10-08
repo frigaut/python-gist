@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>palette: Set or Retrieve Palette</TITLE>
+<META NAME="description" CONTENT="palette: Set or Retrieve Palette">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node32.html">
+<LINK REL="previous" HREF="node30.html">
+<LINK REL="up" HREF="node29.html">
+<LINK REL="next" HREF="node32.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html749"
+  HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html743"
+  HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html737"
+  HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html745"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html747"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html750"
+  HREF="node32.html">plsys: Set Coordinate System</A>
+<B> Up:</B> <A NAME="tex2html744"
+  HREF="node29.html">Other Controls</A>
+<B> Previous:</B> <A NAME="tex2html738"
+  HREF="node30.html">animate: Control Animation Mode</A>
+ &nbsp; <B>  <A NAME="tex2html746"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html748"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00622000000000000000"></A>
+<A NAME="426"></A>
+<A NAME="palette"></A>
+<BR>
+palette: Set or Retrieve Palette
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+palette (filename) 
+palette (source_window_number) 
+palette (red, green, blue[, gray][, query = 1] 
+          [, ntsc = 1/0])
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+Set (or retrieve with query = 1) the palette for the current graphics window. The filename is 
+the name of a Gist palette file; the standard palettes are <code>earth.gp</code>, <code>stern.gp</code>, <code>rainbow.gp</code>,
+<code>heat.gp</code>, <code>gray.gp</code>, and <code>yarg.gp</code>. Use the maxcolors keyword in the 
+pldefault command to put an upper limit on the number of colors which will be read from the palette 
+in filename. 
+
+<P>
+In the second form, the palette for the current window is copied from window number 
+<code>source_window_number</code>. If the X colormap for the window is private, there will still be two separate 
+X colormaps for the two windows, but they will have the same color values. 
+
+<P>
+In the third form, red, green, and blue are 1D arrays of unsigned char (Python typecode <code>"b"</code>) 
+and of the same length specifying the palette you wish to install; the values should vary between 0 and 
+255, and your palette should have no more than 240 colors. If ntsc= 0, monochrome devices (such 
+as most laser printers) will use the average brightness to translate your colors into gray; otherwise, the 
+NTSC (television) averaging will be used (<code>.30*red</code>.59*green+.11* blue+). Alternatively, you can 
+specify gray explicitly. 
+
+<P>
+Ordinarily, the palette is not dumped to a hardcopy file (color hardcopy is still rare and expensive), 
+but you can force the palette to dump using the <code>window()</code> or <code>hcp_file()</code> commands. 
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html749"
+  HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html743"
+  HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html737"
+  HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html745"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html747"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html750"
+  HREF="node32.html">plsys: Set Coordinate System</A>
+<B> Up:</B> <A NAME="tex2html744"
+  HREF="node29.html">Other Controls</A>
+<B> Previous:</B> <A NAME="tex2html738"
+  HREF="node30.html">animate: Control Animation Mode</A>
+ &nbsp; <B>  <A NAME="tex2html746"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html748"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

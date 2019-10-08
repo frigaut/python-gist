@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Get Viewer's Coordinates: get3_xy</TITLE>
+<META NAME="description" CONTENT="Get Viewer's Coordinates: get3_xy">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node109.html">
+<LINK REL="previous" HREF="node107.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node109.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1922"
+  HREF="node109.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1916"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1910"
+  HREF="node107.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1918"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1920"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1923"
+  HREF="node109.html">Add object to drawing</A>
+<B> Up:</B> <A NAME="tex2html1917"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1911"
+  HREF="node107.html">Get Centroids of Polygon</A>
+ &nbsp; <B>  <A NAME="tex2html1919"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1921"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001340000000000000000"></A>
+<A NAME="2669"></A>
+<A NAME="2670"></A>
+<BR>
+Get Viewer's Coordinates: get3_xy
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+get3_xy(xyz [, 1])
+</PRE>  
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Given 3-by-anything coordinates XYZ, return X and Y in viewer's coordinate system (set by rot3, 
+mov3, orient3, etc.; see ``Functions For Setting Viewing Parameters'' on page&nbsp;<A HREF="node74.html#set_view"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). If the second 
+argument is present and non-zero, also return Z (for use in sort3d or <code>get3_light</code>, for example; 
+see ``Sort z Coordinates: sort3d'' on page&nbsp;<A HREF="node110.html#sort3d"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> and ``Find 3D Lighting: get3_light'' on page&nbsp;<A HREF="node105.html#get3_light"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.). If the 
+camera position has been set to a finite distance with setz3 (see ``Physical orientation'' on page&nbsp;<A HREF="node76.html#phys_orient"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), 
+the returned coordinates will be tangents of angles for a perspective drawing (and Z will be scaled by 
+1/zc). x, y, and z can be either 1D or 2D, so this routine is written in two cases. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

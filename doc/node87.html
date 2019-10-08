@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The Slicing Functions</TITLE>
+<META NAME="description" CONTENT="The Slicing Functions">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node91.html">
+<LINK REL="previous" HREF="node84.html">
+<LINK REL="up" HREF="node71.html">
+<LINK REL="next" HREF="node88.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1612"
+  HREF="node88.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1606"
+  HREF="node71.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1600"
+  HREF="node86.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1608"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1610"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1613"
+  HREF="node88.html">slice3mesh: Pseudo-slice for a</A>
+<B> Up:</B> <A NAME="tex2html1607"
+  HREF="node71.html">Three-Dimensional Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1601"
+  HREF="node86.html">Creating a mesh3 argument</A>
+ &nbsp; <B>  <A NAME="tex2html1609"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1611"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001040000000000000000"></A>
+<A NAME="1854"></A>
+<BR>
+The Slicing Functions
+</H1>
+
+<P>
+The slicing functions must be called in order to create data appropriate for the pl3surf (plot a 3D 
+surface) and pl3tree (add a plot to a tree) routines. In general, the slicing routines take a mesh 
+specification of some sort and return a list of the form 
+
+<P>
+<PRE>  
+[nverts, xyzverts, color]
+</PRE>  
+
+<P>
+which specifies a set of polygonal cells and how to color them. 
+
+<P>
+<DL>
+<DT><STRONG>nverts</STRONG></DT>
+<DD>is <code>no_cells</code> long and the i th entry tells how many vertices the i th cell has. 
+</DD>
+<DT><STRONG>xyzverts</STRONG></DT>
+<DD>is sum (nverts) by 3 and gives the vertex coordinates of the cells in order, i. e., 
+the first <code>nverts[0]</code> entries in <code>xyzverts</code> are the coordinates of the first polygon's vertices, the next 
+<code>nverts[1]</code> entries are the coordinates of the second polygon's vertices, etc. 
+
+<P>
+</DD>
+<DT><STRONG>color</STRONG></DT>
+<DD>, if present, is <code>no_cells</code> long and contains a color value 
+for each cell in the mesh. 
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1614"
+  HREF="node88.html">slice3mesh: Pseudo-slice for a surface</A>
+<LI><A NAME="tex2html1615"
+  HREF="node89.html">slice3: Plane and Isosurface Slices of a 3D mesh</A>
+<LI><A NAME="tex2html1616"
+  HREF="node90.html">slice2 and slice2x: Slicing Surfaces with planes</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

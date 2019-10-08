@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The variable _draw3 and the idler</TITLE>
+<META NAME="description" CONTENT="The variable _draw3 and the idler">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node82.html">
+<LINK REL="up" HREF="node79.html">
+<LINK REL="next" HREF="node84.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1556"
+  HREF="node84.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1550"
+  HREF="node79.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1546"
+  HREF="node82.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1552"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1554"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1557"
+  HREF="node84.html">Data Setup Functions for</A>
+<B> Up:</B> <A NAME="tex2html1551"
+  HREF="node79.html">3D Graphics Control Functions</A>
+<B> Previous:</B> <A NAME="tex2html1547"
+  HREF="node82.html">Plotting the Display List</A>
+ &nbsp; <B>  <A NAME="tex2html1553"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1555"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001024000000000000000">
+The variable _draw3 and the idler</A>
+</H2>
+
+<P>
+<code>_draw3</code> is an internal 3D PyGist variable accessible to the user only by means of the access functions 
+described below. <code>_draw3</code>, in conjunction with a function called an idler, determines whether, 
+after a plot function and its arguments have been placed on the display list, some further action takes 
+place. The default idler (see below) will cause the graph to be plotted each time it is called; and it will 
+be called immediately after the plot function has been added to the display list, provided <code>_draw3</code> is 
+nonzero. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+<PRE> 
+set_draw3_ (n) 
+n = get_draw3_ ( )
+</PRE> 
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The first function is used to set <code>_draw3</code> to n (default 0), and the second, to read its current setting. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+<PRE>
+clear_idler ( ) 
+set_idler (func_name) 
+set_default_idler ( ) 
+call_idler ( )
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>The function <code>clear_idler</code> sets the idler function to a routine which does nothing. It will be called 
+after each plot function adds to the display list (if <code>_draw3</code> is nonzero), but will do nothing. 
+<code>set_idler</code> allows the user to define an action for 3D PyGist to take after each plot function call 
+adds to the display list. <code>func_name</code> must be callable with no arguments. It will be called only if 
+<code>_draw3</code> is nonzero. <code>set_default_idler</code> will set the idler to call the function whose code is 
+given below. <code>call_idler</code> gives you the capability to call the idler yourself, if you wish. 
+
+<P>
+The Default Idler 
+<A NAME="draw3_idler"></A><A NAME="default_idler"></A>
+<P>
+Below is the code for the default idler. 
+<PRE>
+def _draw3_idler ( ) : 
+global _default_gnomon 
+orient3 () 
+if current_window () == -1 : 
+window3 (0) 
+else : 
+window3 (current_window ()) 
+gnomon (_default_gnomon) 
+lims = draw3 (1) 
+if lims == None : 
+return 
+else : 
+limits (lims [0], lims [1], lims [2], lims [3])
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1556"
+  HREF="node84.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1550"
+  HREF="node79.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1546"
+  HREF="node82.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1552"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1554"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1557"
+  HREF="node84.html">Data Setup Functions for</A>
+<B> Up:</B> <A NAME="tex2html1551"
+  HREF="node79.html">3D Graphics Control Functions</A>
+<B> Previous:</B> <A NAME="tex2html1547"
+  HREF="node82.html">Plotting the Display List</A>
+ &nbsp; <B>  <A NAME="tex2html1553"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1555"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

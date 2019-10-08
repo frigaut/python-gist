@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>PyGist Installation</TITLE>
+<META NAME="description" CONTENT="PyGist Installation">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node10.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="pygist.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html393"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html387"
+  HREF="pygist.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html381"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html389"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html391"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html394"
+  HREF="node8.html">Windows</A>
+<B> Up:</B> <A NAME="tex2html388"
+  HREF="pygist.html">pygist</A>
+<B> Previous:</B> <A NAME="tex2html382"
+  HREF="node6.html">Current Maintenance</A>
+ &nbsp; <B>  <A NAME="tex2html390"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html392"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00300000000000000000"></A>
+<A NAME="142"></A>
+<BR>
+PyGist Installation
+</H1>
+
+<P>
+In general, the installation consists of running the following two steps:
+<PRE>
+   python setup.py config
+   python setup.py install
+</PRE>
+This works on Linux, Unix, Mac OS X, Cygwin, and Windows (for the latter two, see below).
+Some Python versions older than 2.3 contain bugs in the distutils package, and may therefore need a different installation procedure:
+<PRE>
+cd src; make clean; make config; cd ..
+python setup.py install
+</PRE>
+instead.
+
+<P>
+Alternatively, use the script provided:
+<PRE>
+   ./install      (for installation in a private directory)
+   ./llnl_install (for installation in a public LLNL directory)
+</PRE>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html395"
+  HREF="node8.html">Windows</A>
+<LI><A NAME="tex2html396"
+  HREF="node9.html">Cygwin</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

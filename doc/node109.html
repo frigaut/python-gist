@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Add object to drawing list: set3_object</TITLE>
+<META NAME="description" CONTENT="Add object to drawing list: set3_object">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node110.html">
+<LINK REL="previous" HREF="node108.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node110.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1936"
+  HREF="node110.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1930"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1924"
+  HREF="node108.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1932"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1934"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1937"
+  HREF="node110.html">Sort z Coordinates: sort3d</A>
+<B> Up:</B> <A NAME="tex2html1931"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1925"
+  HREF="node108.html">Get Viewer's Coordinates: get3_xy</A>
+ &nbsp; <B>  <A NAME="tex2html1933"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1935"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001350000000000000000"></A>
+<A NAME="2680"></A>
+<A NAME="2681"></A>
+<BR>
+Add object to drawing list: set3_object
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>  
+set3_object(drawing_function, [arg1, arg2,...])
+</PRE>  
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Set up to trigger a call to draw3, adding a call to the3D display list of the form: 
+<PRE>  
+DRAWING_FUNCTION ([ARG1, ARG2, ...]))
+</PRE>  
+
+<P>
+When draw3 calls <code>DRAWING_FUNCTION</code>, the external variable <code>draw3_</code> will be non-zero, so 
+<code>DRAWING_FUNCTION</code> can be written like this: 
+
+<P>
+<PRE>  
+def drawing_function(arg) : if (draw3_) : 
+arg1=arg[0] 
+arg1=arg[1] 
+... 
+...&lt; calls to get3_xy, sort3d, get3_light, etc.&gt;... 
+...&lt; calls to graphics functions plfp, plf, etc.&gt;... 
+return 
+
+
+...&lt; verify args&gt;... 
+...&lt; do orientation and lighting independent calcs&gt;... 
+set3_object (drawing_function, [arg1, arg2,...])
+</PRE>  
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

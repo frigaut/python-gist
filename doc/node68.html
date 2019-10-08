@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>mouse: Handle Mouse Click</TITLE>
+<META NAME="description" CONTENT="mouse: Handle Mouse Click">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node69.html">
+<LINK REL="previous" HREF="node67.html">
+<LINK REL="up" HREF="node64.html">
+<LINK REL="next" HREF="node69.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1312"
+  HREF="node69.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1306"
+  HREF="node64.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1300"
+  HREF="node67.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1308"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1310"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1313"
+  HREF="node69.html">moush: Mouse in a</A>
+<B> Up:</B> <A NAME="tex2html1307"
+  HREF="node64.html">Miscellaneous Functions</A>
+<B> Previous:</B> <A NAME="tex2html1301"
+  HREF="node67.html">mesh_loc: Get Mesh Location</A>
+ &nbsp; <B>  <A NAME="tex2html1309"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1311"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00924000000000000000"></A>
+<A NAME="1538"></A>
+<BR>
+mouse: Handle Mouse Click
+</H2>
+
+<P>
+This function is useful in developing interactive graphics applications. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+result = mouse(system, style, prompt)
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>mouse displays the specified prompt, then waits for a mouse button to be pressed, then released. It 
+returns a tuple of length eleven: 
+
+<P>
+<PRE>  
+result = [x_pressed, y_pressed, x_released, y_released, 
+          xndc_pressed, yndc_pressed, xndc_released, 
+          yndc_released, system, button, modifiers]
+</PRE>  
+
+<P>
+If <code>system&gt;=0</code>, the first four coordinate values will be relative to that coordinate system. For 
+<code>system&lt;0</code>, the first four coordinate values will be relative to the coordinate system under the mouse 
+when the button was pressed. 
+
+<P>
+The second four coordinates are always normalized device coordinates, which start at (0, 0) in the 
+lower left corner of the 8.5x11 sheet of paper the picture will be printed on, with 0.0013 NDC unit being 
+1/ 72.27 inch (1. 0 point). Look in the style sheet for the location of the viewport in NDC coordinates 
+(see the style keyword). 
+
+<P>
+If style is 0, there will be no visual cues that the mouse command has been called; this is intended 
+for a simple click. If style is 1, a rubber band box will be drawn; if style is 2, a rubber band 
+line will be drawn. These disappear when the button is released. 
+
+<P>
+Clicking a second button before releasing the first cancels the mouse function, which will then return 
+nil. Ordinary text input also cancels the mouse function, which again returns nil. 
+
+<P>
+The left button reverses foreground for background (by XOR) in order to draw the rubber band (if 
+any). The middle and right buttons use other masks, in case the rubber band is not visible with the left 
+button. 
+
+<P>
+result[8] is the coordinate system in which the first four coordinates are to be interpreted. 
+result[9] is the button which was pressed, 1 for left, 2 for middle, and 3 for right (4 and 5 are 
+also possible). 
+
+<P>
+result[10] is a mask representing the modifier keys which were pressed during the operation: 
+1 for shift, 2 for shift lock, 4 for control, 8 for mod1 (alt or meta), 16 for mod2, 32 for mod3, 64 for 
+mod4, and 128 for mod5. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1312"
+  HREF="node69.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1306"
+  HREF="node64.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1300"
+  HREF="node67.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1308"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1310"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1313"
+  HREF="node69.html">moush: Mouse in a</A>
+<B> Up:</B> <A NAME="tex2html1307"
+  HREF="node64.html">Miscellaneous Functions</A>
+<B> Previous:</B> <A NAME="tex2html1301"
+  HREF="node67.html">mesh_loc: Get Mesh Location</A>
+ &nbsp; <B>  <A NAME="tex2html1309"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1311"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Example 1</TITLE>
+<META NAME="description" CONTENT="Example 1">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node15.html">
+<LINK REL="previous" HREF="node13.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node15.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html503"
+  HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html497"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html491"
+  HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html499"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html501"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html504"
+  HREF="node15.html">Example 2</A>
+<B> Up:</B> <A NAME="tex2html498"
+  HREF="node13.html">PyGist 2D Graphics</A>
+<B> Previous:</B> <A NAME="tex2html492"
+  HREF="node13.html">PyGist 2D Graphics</A>
+ &nbsp; <B>  <A NAME="tex2html500"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html502"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00511000000000000000"></A> 
+<A NAME="215"></A>
+<BR>
+Example 1
+</H2>
+
+<P>
+In the first example we simply plot a straight line from (1, 0) to (2, 1). Note that only two coordinates 
+are specified for y; x is not specified. In such a case, the values of x default to the integers 
+from 1 to len (y). 
+
+<P>
+<PRE>
+from gist import *    # Put plot functions in name space. 
+pldefault (marks = 1, width = 0, type = 1, style = "work.gs", 
+           dpi = 100) # Set some defaults. 
+winkill (0)           # Kill any existing window. 
+window (0, wait = 1, dpi = 75) 
+plg ([0, 1])          # The first positional argument is y.
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER">
+
+<P><A NAME="fig:example1"></A></P>
+<DIV ALIGN="CENTER">
+1#1
+
+</DIV>
+</DIV>
+The first positional argument in PLG is <code>y</code>.
+
+<P>
+As can be deduced from this example, most PyGist function calls can be augmented with a number 
+of optional keyword arguments. These can (usually) be supplied in any order, and each is of the form 
+keyword= value. Throughout this manual, a list of the available keywords for a function is given 
+with the description of the function. 
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

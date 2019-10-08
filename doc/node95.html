@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Contour Plotting on Surfaces: plzcont and pl4cont</TITLE>
+<META NAME="description" CONTENT="Contour Plotting on Surfaces: plzcont and pl4cont">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node96.html">
+<LINK REL="previous" HREF="node91.html">
+<LINK REL="up" HREF="node71.html">
+<LINK REL="next" HREF="node96.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1726"
+  HREF="node96.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1720"
+  HREF="node71.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1714"
+  HREF="node94.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1722"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1724"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1727"
+  HREF="node96.html">Animation: movie and spin3</A>
+<B> Up:</B> <A NAME="tex2html1721"
+  HREF="node71.html">Three-Dimensional Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1715"
+  HREF="node94.html">pl3tree: add a surface</A>
+ &nbsp; <B>  <A NAME="tex2html1723"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1725"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001060000000000000000"></A>
+<A NAME="1951"></A>
+<A NAME="1952"></A>
+<A NAME="plzcont"></A><A NAME="1954"></A>
+<A NAME="pl4cont"></A>
+<BR>
+Contour Plotting on Surfaces: plzcont and pl4cont
+</H1>
+
+<P>
+Contour lines can be plotted on a surface, or filled contours can be drawn, or both, by means of the 
+two functions plzcont (plot z contours, i. e., contours according to height in the z direction) and 
+pl4cont (plot 4D contours, i. e., contours determined by some other function defined on the surface. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+<PRE> 
+plzcont (nverts, xyzverts, contours = 8, scale = "lin", 
+clear = 1, edges = 0, color = None, cmin = None, 
+cmax = None, zaxis_min = None, zaxis_max = 0, split = 0) 
+pl4cont (nverts, xyzverts, values, contours = 8, scale = 
+"lin", clear = 1, edges = 0, color = None, cmin = None, 
+cmax = None, caxis_min = None, caxis_max = 0, split = 0)
+</PRE> 
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>plzcont plots z contours, and pl4cont plots contours derived from the function values. 
+nverts and xyzverts specify the polygons which define the surface. nverts is an array of integers, 
+
+<P>
+the i th entry of which gives the number of vertices of the i th polygonal cell; xyzverts are the 
+vertices of the coordinates of the cells, with each consecutive nv [i] entries representing the vertices 
+
+<P>
+of the i-th cell; and values (for pl4cont) being a set of values, one for each vertex. These arguments 
+are the same format as returned by slice3 and slice3mesh ( see Section ``slice3: 
+Plane and Isosurface Slices of a 3D mesh'' on page&nbsp;<A HREF="node89.html#slice3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). plzcont and pl4cont actually do 
+repeated calls to slice2x (see Section ``slice2 and slice2x: Slicing Surfaces with planes'' on page&nbsp;<A HREF="node90.html#slice2"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) in order to obtain the contour curves. 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+<DL>
+<DT><STRONG>contours</STRONG></DT>
+<DD>can be one of the following: N, an integer: Plot N contours (therefore, N+ 1 colored 
+components of the surface) CVALS, a vector of floats: draw the contours 
+at the specified levels. 
+
+<P>
+</DD>
+<DT><STRONG>scale</STRONG></DT>
+<DD>can be <code>"lin"</code>, <code>"log"</code>, or <code>"normal"</code> specifying the contour scale. (Only applicable 
+if contours = N, of course). 
+
+<P>
+</DD>
+<DT><STRONG>clear</STRONG></DT>
+<DD>If <code>clear == 1</code>, clear the display list first. Otherwise the current contour plot 
+will be added to the display list. 
+
+<P>
+</DD>
+<DT><STRONG>edges</STRONG></DT>
+<DD>If <code>edges == 1</code>, plot the edges. 
+
+<P>
+</DD>
+<DT><STRONG>color</STRONG></DT>
+<DD>If <code>color == None</code>, then bytscl the palette into N + 1 colors and send each 
+of the slices to pl3tree with the appropriate color. If <code>color=="bg"</code>, will 
+plot only the edges. See also split (below). 
+
+<P>
+</DD>
+<DT><STRONG>cmin, cmax</STRONG></DT>
+<DD>If <code>cmin</code> is given, use it instead of the minimum c actually being plotted in the 
+computation of contour levels. If <code>cmax</code> is given, use it instead of the maximum 
+c actually being plotted in the computation of contour levels. This is done so 
+that a component of a larger graph will have the same colors at the same levels 
+as every other component, rather than its levels being based on its own maximum 
+and minimum, which may lie inside or outside those of the rest of the 
+graph. 
+
+<P>
+</DD>
+<DT><STRONG>zaxis_min, zaxis_max</STRONG></DT>
+<DD><code>zaxis_min</code> and <code>zaxis_max</code> represent axis limits on z as expressed by the 
+user. If present, <code>zaxis_min</code> will inhibit plotting of all lesser z values, and 
+<code>zaxis_max</code> will inhibit the plotting of all greater z values. 
+
+<P>
+</DD>
+<DT><STRONG>caxis_min, caxis_max</STRONG></DT>
+<DD><code>caxis_min</code> and <code>caxis_max</code> represent axis limits on c as expressed by the 
+user. If present, <code>caxis_min</code> will inhibit plotting of all lesser c values, and 
+<code>caxis_max</code> will inhibit the plotting of all greater c values. 
+
+<P>
+</DD>
+<DT><STRONG>split</STRONG></DT>
+<DD>If split == 1, then it is intended to plot this portion of the graph as if the palette 
+has been split, so only colors 0-99 will be used to color the contours. If 
+split == 0, then all colors from 0 to 199 will be used. 
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD>In the following example, we compute the sombrero function and then use plzcont to draw it with 
+contours in <code>"normal"</code> scale. In <code>"normal"</code> scale, the top and bottom contours are two standard 
+deviations away from the mean. Thus the peak of the sombrero is all the same color because its few 
+points contribute very little to the standard deviation. 
+
+<P>
+<PRE>
+# compute sombrero function 
+x = arange (-20, 21, typecode = Float) 
+y = arange (-20, 21, typecode = Float) 
+z = zeros ( (41, 41), Float) 
+r = sqrt (add. outer ( x ** 2, y ** 2)) + 1e-6 
+z = sin (r) / r 
+fma () 
+clear3 () 
+gnomon (0) 
+# Make sure we don't draw till ready 
+set_draw3_(0) 
+palette (" rainbow. gp") 
+[nv, xyzv, dum] = slice3mesh (x, y, z) 
+plzcont (nv, xyzv, contours = 20, scale = "normal") 
+[xmin, xmax, ymin, ymax] = draw3 (1) 
+limits (xmin, xmax, ymin, ymax)
+</PRE>
+
+<P>
+To draw the same function in <code>"lin"</code> scale, with edges visible, enter the following code: 
+<PRE>
+plzcont (nv, xyzv, contours = 20, scale = "lin", edges= 1) 
+[xmin, xmax, ymin, ymax] = draw3 (1) 
+limits (xmin, xmax, ymin, ymax)
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1726"
+  HREF="node96.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1720"
+  HREF="node71.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1714"
+  HREF="node94.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1722"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1724"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1727"
+  HREF="node96.html">Animation: movie and spin3</A>
+<B> Up:</B> <A NAME="tex2html1721"
+  HREF="node71.html">Three-Dimensional Plotting Functions</A>
+<B> Previous:</B> <A NAME="tex2html1715"
+  HREF="node94.html">pl3tree: add a surface</A>
+ &nbsp; <B>  <A NAME="tex2html1723"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1725"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

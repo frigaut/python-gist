@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plc: Plot Contours</TITLE>
+<META NAME="description" CONTENT="plc: Plot Contours">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node48.html">
+<LINK REL="previous" HREF="node46.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node48.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1004"
+  HREF="node48.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html998"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html992"
+  HREF="node46.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1000"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1002"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1005"
+  HREF="node48.html">plv: Plot a Vector</A>
+<B> Up:</B> <A NAME="tex2html999"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html993"
+  HREF="node46.html">plm: Plot a Mesh</A>
+ &nbsp; <B>  <A NAME="tex2html1001"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1003"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00814000000000000000"></A>
+<A NAME="plc"></A><A NAME="812"></A>
+<A NAME="813"></A>
+<BR>
+plc: Plot Contours
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+plc(z[, y, x][, ireg][, &lt;keylist&gt;])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Plot contours of z on the mesh y versus x. y, x, and ireg are as for plm. The z array must have the 
+same shape as y and x. The function being contoured takes the value z at each point (x, y); that is, 
+the z array is presumed to be point-centered. The y, x, and ireg arguments may all be omitted to 
+default to the mesh set by the most recent plmesh call. 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+The following keyword argument(s) apply only to this function. 
+<PRE>
+levs = z_values
+</PRE>
+The levs keyword specifies a list of the values of z at which you want contour curves. The 
+default is eight contours spanning the range of z. 
+
+<P>
+<PRE>
+triangle = triangle
+</PRE>
+
+<P>
+Set the triangulation array for a contour plot. triangle must be the same shape as the 
+ireg (region number) array, and the correspondence between mesh zones and indices is the 
+same as for ireg. The triangulation array is used to resolve the ambiguity in saddle zones, in 
+which the function z being contoured has two diagonally opposite corners high, and the other 
+two corners low. The triangulation array element for a zone is 0 if the algorithm is to choose a 
+triangulation, based on the curvature of the first contour to enter the zone. If zone (i, j) is to be 
+triangulated from point (i-1, j-1) to point (i, j), then triangle(i, j)= 1, while if it is to be triangulated 
+from (i-1, j) to (i, j-1), then triangle(i, j)=-1. Contours will never cross this ``triangulation line''. 
+
+<P>
+You should rarely need to fiddle with the triangulation array; it is a hedge for dealing with 
+pathological cases. 
+
+<P>
+The following additional keyword arguments can be specified with this function. 
+legend, hide, type, width, color, smooth, marks, marker, 
+mspace, mphase, region 
+
+<P>
+See ``Plot Function Keywords'' on page&nbsp;<A HREF="node57.html#plot_function_keywords"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for detailed descriptions of these keywords. 
+
+<P>
+</DD>
+<DT><STRONG>Examples</STRONG></DT>
+<DD>The following example gives a contour plot of the same mesh used in the preceding two examples. 
+Calling plm with boundary = 1 and region = 1 plots the boundary of the mesh (which, by default, is 
+one region); then calling plc plots a default number of contours (8). 
+
+<P>
+<PRE>
+fma() 
+def mag(* args): 
+   r = 0 
+   for i in range(len(args)): 
+      r = r + args[i]* args[i] 
+   return sqrt(r) 
+plm(region= 1, boundary= 1) 
+plc (mag(x+. 5, y-. 5), marks= 1, region= 1) 
+plm(inhibit= 3, boundary= 1, region= 1) 
+plm(boundary= 1, region= 1)
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER">
+
+<P><A NAME="fig:plc"></A></P>
+<DIV ALIGN="CENTER">
+6#6
+
+</DIV>
+</DIV>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1004"
+  HREF="node48.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html998"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html992"
+  HREF="node46.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1000"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1002"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1005"
+  HREF="node48.html">plv: Plot a Vector</A>
+<B> Up:</B> <A NAME="tex2html999"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html993"
+  HREF="node46.html">plm: Plot a Mesh</A>
+ &nbsp; <B>  <A NAME="tex2html1001"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1003"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

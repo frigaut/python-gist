@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Angular orientation</TITLE>
+<META NAME="description" CONTENT="Angular orientation">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node76.html">
+<LINK REL="previous" HREF="node74.html">
+<LINK REL="up" HREF="node74.html">
+<LINK REL="next" HREF="node76.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1446"
+  HREF="node76.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1440"
+  HREF="node74.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1434"
+  HREF="node74.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1442"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1444"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1447"
+  HREF="node76.html">Physical orientation</A>
+<B> Up:</B> <A NAME="tex2html1441"
+  HREF="node74.html">Functions For Setting Viewing</A>
+<B> Previous:</B> <A NAME="tex2html1435"
+  HREF="node74.html">Functions For Setting Viewing</A>
+ &nbsp; <B>  <A NAME="tex2html1443"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1445"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION001012100000000000000">
+Angular orientation</A>
+</H3> 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+orient3 (phi = angle 1 , theta = angle 2 ) 
+rot3 (xa = angle x , ya = angle y , za = angle z )
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Note that most of the functions in 3D PyGist accept keyword arguments. These arguments may be 
+entered in any order; omitted arguments will default to a sensible value. 
+
+<P>
+<code>orient3</code> sets the orientation of the object to (angle 1 , angle 2 ). Orientations are a subset of the 
+possible rotation matrices in which the z axis of the object appears vertical on the screen (that is, the 
+object z axis projects onto the viewer y axis). The theta angle is the angle from the viewer y axis to 
+the object z axis, positive if the object z axis is tilted towards you (toward viewer +z). phi is zero when 
+the object x axis coincides with the viewer x axis. If neither phi nor theta is specified, phi defaults 
+to -pi / 4 and theta defaults to pi / 6. If only phi is specified, theta remains unchanged, 
+unless the current theta is near pi / 2, in which case theta returns to pi / 6, or unless the current 
+orientation does not have a vertical z axis, in which case theta returns to its default. If only theta is 
+specified, phi retains its current value. Unlike rot3, orient3 is not a cumulative operation. 
+
+<P>
+<code>rot3</code> rotates the current 3D plot by angle x about viewer's x axis, angle y about viewer's y axis, 
+and angle z about viewer's z-axis. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1446"
+  HREF="node76.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1440"
+  HREF="node74.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1434"
+  HREF="node74.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1442"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1444"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1447"
+  HREF="node76.html">Physical orientation</A>
+<B> Up:</B> <A NAME="tex2html1441"
+  HREF="node74.html">Functions For Setting Viewing</A>
+<B> Previous:</B> <A NAME="tex2html1435"
+  HREF="node74.html">Functions For Setting Viewing</A>
+ &nbsp; <B>  <A NAME="tex2html1443"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1445"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

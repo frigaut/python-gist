@@ -1,0 +1,80 @@
+
+fixed a bug in setup.py where if you don't have . in your PATH,
+setup somewhat fails to warn you the play/unix/config.h use suboptimal
+defaults (because it cannot find the exe, it assume it's bad status)
+   src/play/./unix/fpuset.c
+      #ifdef FPU_GCC_X86
+
+
+added window(parent=,xpos=,ypos=) argument from latest FR patch.
+
+reformed setup.py monblock using the one from xplt
+
+merged all the latest changes from yorick/cvs
+
+synched to latest yorick:
+   pygist/src/* to /opt/yorick/yorick/*
+   merged extra kwd for window (parent=,xpos=,ypos=)
+
+understand how the loop is implemented: would be nice to wrap it out
+   for gtk applications for example
+   
+   I beleive the python loop is wrapped inside yorick/gist loop
+   ie. when stdin is readable, it goes back to the interpreter
+   there is also PyOS_InputHook (150208 - I think I understand things better
+   now but I don't have time to rephrase what is said above)
+
+implement the extra arg to window(...,xid=xid)
+
+added pyg_hook(func) to set the PyOS_InputHook --xxxx---
+
+mesh.py is broken
+
+
+cp -f /opt/yorick/play/win/pwin.c /opt/yorick-2.1.02/./play/win/pwin.c
+cp -f /opt/yorick/play/x11/pwin.c /opt/yorick-2.1.02/./play/x11/pwin.c
+cp -f /opt/yorick/yorick/graph.c /opt/yorick-2.1.02/./yorick/graph.c
+cp -f /opt/yorick/gist/xbasic.h /opt/yorick-2.1.02/./gist/xbasic.h
+cp -f /opt/yorick/gist/bench.c /opt/yorick-2.1.02/./gist/bench.c
+cp -f /opt/yorick/gist/xbasic.c /opt/yorick-2.1.02/./gist/xbasic.c
+cp -f /opt/yorick/gist/hlevel.c /opt/yorick-2.1.02/./gist/hlevel.c
+
+from scipy/Lib/sandbox/xplt
+   info_xplt.py
+   Mplot.py
+   (U) colorbar.py
+   slice3.py
+   shapetest.py
+   pl3d.py
+   movie.py
+   gistfuncs.so
+
+fixme: there are more stuff.py (test + wrapper class) -- check in ??
+
+of note:
+   the change in pli for the shape of the array for color plots
+      ... As for plf and plfp, Z may also be a 3D array with 1st dimension 3
+   became
+      As for plf and plfp, Z may also be a 3D array with *last* dimension 3
+      
+tag PG1-0 : numpy compat + fixes (b/B) to get the gistdemo* scripts working
+
+note: numpy.ones -> float but some script expect that to be int
+      (eg. Mplot.barplot), the fixe is to specify numpy.ones(..,dtype=numpy.int32)
+   
+   
+X11 defaults
+============
+   Gist.boldfont
+   Gist.font
+   Gist.Font
+
+
+install
+
+export PATH=${PATH}:.
+export PYTHONPATH=${PWD}
+python setup.py clean bdist_rpm
+
+
+   

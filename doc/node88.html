@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>slice3mesh: Pseudo-slice for a surface</TITLE>
+<META NAME="description" CONTENT="slice3mesh: Pseudo-slice for a surface">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node89.html">
+<LINK REL="previous" HREF="node87.html">
+<LINK REL="up" HREF="node87.html">
+<LINK REL="next" HREF="node89.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1629"
+  HREF="node89.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1623"
+  HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1617"
+  HREF="node87.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1625"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1627"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1630"
+  HREF="node89.html">slice3: Plane and Isosurface</A>
+<B> Up:</B> <A NAME="tex2html1624"
+  HREF="node87.html">The Slicing Functions</A>
+<B> Previous:</B> <A NAME="tex2html1618"
+  HREF="node87.html">The Slicing Functions</A>
+ &nbsp; <B>  <A NAME="tex2html1626"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1628"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001041000000000000000"></A> 
+<A NAME="1860"></A>
+<A NAME="1861"></A>
+<A NAME="slice3mesh"></A>
+<BR>
+slice3mesh: Pseudo-slice for a surface
+</H2>
+
+<P>
+The function slice3mesh is designed specifically to produce an input argument for pl3surf, although if you want more than one surface in a picture, it can also be fed to pl3tree. It has several distinct calling sequences, which Python can distinguish with its type savvy. 
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>
+slice3mesh (z [, color])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>z is a two dimensional array of function values, assumed to be on a uniform mesh nx by ny cells 
+(assuming z is nx by ny) nx being the number of cells in the x direction, ny the number in the y 
+direction. color, if specified, is either an nx by ny array of cell-centered values by which the surface 
+is to be colored, or an nx+1 by ny+1 array of vertex-centered values, which will be averaged 
+over each cell to give cell-centered values. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>
+slice3mesh (nxny, dxdy, x0y0, z [, color])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>In this case, slice3mesh accepts the specification for a regular 2D mesh: nxny is the number of 
+cells in the x direction and the y direction; <code>x0y0</code> are the initial values of x and y; and dxdy are the 
+increments in the two directions. z is the height of a surface above the xy plane and must be dimensioned 
+nx + 1 by ny + 1. color, if specified, is as above. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+<PRE>
+slice3mesh (x, y, z [, color])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>z is as above, an nx by ny array of function values on a mesh of the same dimensions. There are two 
+choices for x and y: they can both be one-dimensional, dimensioned nx and ny respectively, in 
+which case they represent a mesh whose edges are parallel to the axes; or else they can both be nx by 
+ny, in which case they represent a general quadrilateral mesh. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1629"
+  HREF="node89.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1623"
+  HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1617"
+  HREF="node87.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1625"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1627"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1630"
+  HREF="node89.html">slice3: Plane and Isosurface</A>
+<B> Up:</B> <A NAME="tex2html1624"
+  HREF="node87.html">The Slicing Functions</A>
+<B> Previous:</B> <A NAME="tex2html1618"
+  HREF="node87.html">The Slicing Functions</A>
+ &nbsp; <B>  <A NAME="tex2html1626"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1628"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

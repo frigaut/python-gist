@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Some Yorick-like Functions: yorick.py</TITLE>
+<META NAME="description" CONTENT="Some Yorick-like Functions: yorick.py">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node129.html">
+<LINK REL="previous" HREF="node122.html">
+<LINK REL="up" HREF="node121.html">
+<LINK REL="next" HREF="node129.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2226"
+  HREF="node129.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2220"
+  HREF="node121.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2214"
+  HREF="node127.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2222"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2224"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2227"
+  HREF="node129.html">Additional Array Operations: arrayfnsmodule</A>
+<B> Up:</B> <A NAME="tex2html2221"
+  HREF="node121.html">Maintenance: Things You Really</A>
+<B> Previous:</B> <A NAME="tex2html2215"
+  HREF="node127.html">Computing slices: slice2, slice2x,</A>
+ &nbsp; <B>  <A NAME="tex2html2223"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2225"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001420000000000000000">
+Some Yorick-like Functions: yorick.py</A>
+</H1> 
+
+<P>
+The module <code>yorick.py</code> contains a few functions similar to ones in Yorick, which perform array 
+manipulations necessary in doing 3D graphics. 
+
+<P>
+We shall depart from our 
+usual format here, and just give the calling sequences followed by a short explanation for each of the 
+functions. 
+
+<P>
+<A NAME="zcen_"></A><A NAME="3036"></A>
+
+<P>
+<PRE>
+zcen_(x, i = 0)
+</PRE>
+
+<P>
+Returns an array whose i th dimension is one smaller than the i th dimension 
+of x, with the elements along the i th being the averages of two adjacent elements 
+in the original x. i cannot be larger than 5. 
+
+<P>
+<PRE>
+dif_(x, i = 0)
+</PRE>
+
+<P>
+Returns an array whose i th dimension is one smaller than the i th dimension 
+of x, with the elements along the i th being the differences of two adjacent elements 
+in the original x. i cannot be larger than 5. 
+
+<P>
+<PRE>
+maxelt_(* x)
+</PRE>
+
+<P>
+<code>maxelt_</code> accepts a sequence of one or more possible multi-dimensional numerical 
+objects and computes their maximum. In principle these can be of arbitrary 
+complexity, since the routine recurses. 
+
+<P>
+<PRE>
+minelt_(* x)
+</PRE>
+
+<P>
+<code>minelt_</code> accepts a sequence of one or more possible multi-dimensional numerical 
+objects and computes their minimum. In principle these can be of arbitrary 
+complexity, since the routine recurses. 
+
+<P>
+<PRE>
+rem_0_(z)
+</PRE>
+
+<P>
+<code>rem_0_(z)</code> returns a copy of array z after having replaced any zero elements 
+with 1.e-35. Assumes z has one or two dimensions. 
+
+<P>
+<PRE>
+avg_(z)
+</PRE>
+
+<P>
+<code>avg_(z)</code> returns the average of all elements of its array argument. 
+
+<P>
+<PRE>
+sign_(x)
+</PRE>
+
+<P>
+Returns 1 if 13#13, -1 otherwise. 
+
+<P>
+<PRE>
+timer_(elapsed, *split) 
+timer_print (label, split, *other_args)
+</PRE>
+see Section ``Timing: timer_, timer_print'' on page&nbsp;<A HREF="node120.html#timing"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2226"
+  HREF="node129.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2220"
+  HREF="node121.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2214"
+  HREF="node127.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2222"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2224"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2227"
+  HREF="node129.html">Additional Array Operations: arrayfnsmodule</A>
+<B> Up:</B> <A NAME="tex2html2221"
+  HREF="node121.html">Maintenance: Things You Really</A>
+<B> Previous:</B> <A NAME="tex2html2215"
+  HREF="node127.html">Computing slices: slice2, slice2x,</A>
+ &nbsp; <B>  <A NAME="tex2html2223"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2225"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

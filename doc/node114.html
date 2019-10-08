@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Get Vertex Values of Function: getv3</TITLE>
+<META NAME="description" CONTENT="Get Vertex Values of Function: getv3">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node115.html">
+<LINK REL="previous" HREF="node113.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node115.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2006"
+  HREF="node115.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2000"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1994"
+  HREF="node113.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2002"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2004"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2007"
+  HREF="node115.html">Get Cell Values of</A>
+<B> Up:</B> <A NAME="tex2html2001"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1995"
+  HREF="node113.html">Calculate Chunks of Mesh:</A>
+ &nbsp; <B>  <A NAME="tex2html2003"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2005"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013100000000000000000"></A>
+<A NAME="2725"></A>
+<A NAME="getv3"></A><A NAME="2727"></A>
+<BR>
+Get Vertex Values of Function: getv3
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+getv3(i, m3, chunk) 
+getv3_rect(i, m3, chunk) 
+getv3_irreg (i, m3, chunk)
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+getv3 returns vertex values of the I th function attached to 3D mesh M3 for cells in the specified 
+CHUNK. The CHUNK may be a list of cell indices, in which case getv3 returns a 
+2x2x2x(CHUNK. shape) list of vertex coordinates. CHUNK may also be a mesh-specific data structure 
+used in the slice3 routine (see ``slice3: Plane and Isosurface Slices of a 3D mesh'' on page&nbsp;<A HREF="node89.html#slice3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), in 
+which case getv3 may return a (ni) x(nj) x(nk) array of vertex values. For meshes which are 
+logically rectangular or consist of several rectangular patches, this is up to 8 times less data, with a 
+concomitant performance advantage. Use getv3 when writing slicing functions for slice3. 
+
+<P>
+<code>getv3_rect</code> does the job for a regular rectangular mesh. 
+<code>getv3_irreg</code>, for an irregular mesh, returns a 3-list whose elements are: 
+
+<P>
+
+<OL>
+<LI>the function values for the I th function on the vertices of the given CHUNK. (The function values 
+must have the same dimension as the coordinates; there is no attempt to convert zone-centered values 
+to vertex-centered values.) 
+
+<P>
+</LI>
+<LI>an array of relative cell numbers within the list of cells of this type. 
+
+<P>
+</LI>
+<LI>a number that can be added to these relative numbers to give the absolute cell numbers for correct 
+access to their coordinates and function values 
+</LI>
+</OL>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2006"
+  HREF="node115.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2000"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1994"
+  HREF="node113.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2002"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2004"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2007"
+  HREF="node115.html">Get Cell Values of</A>
+<B> Up:</B> <A NAME="tex2html2001"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html1995"
+  HREF="node113.html">Calculate Chunks of Mesh:</A>
+ &nbsp; <B>  <A NAME="tex2html2003"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2005"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

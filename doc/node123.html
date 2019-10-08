@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Memory Maintenance: PyObjects</TITLE>
+<META NAME="description" CONTENT="Memory Maintenance: PyObjects">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node124.html">
+<LINK REL="previous" HREF="node122.html">
+<LINK REL="up" HREF="node122.html">
+<LINK REL="next" HREF="node124.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2158"
+  HREF="node124.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2152"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2146"
+  HREF="node122.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2154"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2156"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2159"
+  HREF="node124.html">Memory Management: ArrayObjects</A>
+<B> Up:</B> <A NAME="tex2html2153"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2147"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+ &nbsp; <B>  <A NAME="tex2html2155"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2157"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001411000000000000000">
+Memory Maintenance: PyObjects</A>
+</H2>
+
+<P>
+One of the primary challenges facing the developer of Python extensions is correct management of 
+the reference counting for Python objects. Memory leaks will result if the programmer fails to decrement 
+the reference count in temporary objects. On the other hand, decrementing the reference count 
+too early can cause an object to go away that is referred to later, which can cause a segmentation fault 
+when it is referenced. We have semi-automated the process in gistCmodule by maintaining a list of all 
+PyObjects created in the process of running one of the module's functions. This list is declared as follows: 
+
+<P>
+<PRE>
+#define ARRAY_LIST_SIZE 30 
+static PyObject * PyArrayList [ARRAY_LIST_SIZE]; 
+static int array_list_length = 0;
+</PRE>
+
+<P>
+There is a suite of functions for manipulating PyArrayList. 
+
+<P>
+Function Prototypes 
+
+<P>
+<PRE>
+static int addToArrayList (PyObject * obj) 
+static void clearArrayList () 
+static void removeFromArrayList (PyObject * obj) 
+static void takeOffArrayList (PyObject * obj)
+</PRE>
+
+<P>
+<code>addToArrayList</code> places obj on <code>PyArrayList</code> and returns 1 if successful. If obj is NULL 
+or the list is full, returns 0. <code>clearArrayList</code> DECREF's everything on the list, and sets 
+<code>array_list_length</code> to 0. This needs to be done prior to any error return. <code>removeFromArrayList</code> 
+DECREF's obj (if it is on the list), removes it from the list, and compresses the list. <code>takeOffArrayList</code> 
+removes obj from the list and compresses the list, but does not DECREF obj. This is 
+done, for example, when obj is to be returned to the caller. 
+
+<P>
+addToArrayList occurs throughout gistCmodule primarily in macros which create arrays. 
+All of these macros use the TRY macro, which is defined as follows: 
+
+<P>
+<PRE>
+#define TRY( e, m) do{ if(!( e)){ clearArrayList(); \ 
+clearFreeList( 0); clearMemList(); return m;}} while( 0)
+</PRE>
+
+<P>
+The idea behind TRY is that generally Python functions return 0 or NULL if an error occurred. In this 
+case it is necessary to get rid of all temporary objects and memory which was allocated up to this 
+point. clearArrayList was discussed above, clearFreeList and clearMemList are discussed 
+later in the chapter. 
+
+<P>
+The array creation macros are as follows: 
+
+<P>
+<PRE>
+#define GET_ARR( ap, op, type, dim, cast) \ 
+TRY( addToArrayList(( PyObject *)( ap=( PyArrayObject *)\ 
+PyArray_ContiguousFromObject( op, type, dim, dim))), \ 
+(cast) PyErr_NoMemory ())
+</PRE>
+
+<P>
+This macro is the usual protocol for creating a contiguous array from a PyObject which has been 
+sent as an argument to a function. 
+
+<P>
+<PRE>
+#define NEW_ARR( ap, n, dims, type, cast) \ 
+TRY( addToArrayList(( PyObject *)( ap=\ 
+(PyArrayObject *) PyArray_FromDims( n, dims, type))), \ 
+(cast) PyErr_NoMemory ())
+</PRE>
+
+<P>
+This macro is used usually when creating an array whose dimensions are known and which is to be 
+filled with computed data. 
+
+<P>
+<PRE>
+#define RET_ARR( op, ndim, dim, type, data, cast)\ 
+TRY( addToArrayList( op=\ 
+PyArray_FromDimsAndData( ndim, dim, type, data)), \ 
+(cast) PyErr_NoMemory ())
+</PRE>
+
+<P>
+This final macro is used when we have a block of data and we wish to create an array containing this 
+data, usually as a return value from a function. In order to keep this object from being permanent, use 
+the following macro: 
+
+<P>
+<PRE>
+#define SET_OWN( op) \ 
+( (PyArrayObject *) op)-&gt; flags |= OWN_DATA
+</PRE>
+
+<P>
+This macro sets a flag in the PyObject which tells Python that it can be DECREF'ed. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2158"
+  HREF="node124.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2152"
+  HREF="node122.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2146"
+  HREF="node122.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2154"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2156"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2159"
+  HREF="node124.html">Memory Management: ArrayObjects</A>
+<B> Up:</B> <A NAME="tex2html2153"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Previous:</B> <A NAME="tex2html2147"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+ &nbsp; <B>  <A NAME="tex2html2155"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2157"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

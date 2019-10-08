@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Get Cell Values of Function: getc3</TITLE>
+<META NAME="description" CONTENT="Get Cell Values of Function: getc3">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node116.html">
+<LINK REL="previous" HREF="node114.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node116.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2020"
+  HREF="node116.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2014"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2008"
+  HREF="node114.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2016"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2018"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2021"
+  HREF="node116.html">Controlling Points Close to</A>
+<B> Up:</B> <A NAME="tex2html2015"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html2009"
+  HREF="node114.html">Get Vertex Values of</A>
+ &nbsp; <B>  <A NAME="tex2html2017"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2019"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013110000000000000000"></A>
+<A NAME="2736"></A>
+<A NAME="2737"></A>
+<BR>
+Get Cell Values of Function: getc3
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+getc3(i, m3, chunk) 
+getc3(i, m3, clist , l, u, fsl, fsu, cells)
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+Returns cell values of the I th function attached to 3D mesh M3 for cells in the specified CHUNK. 
+The CHUNK may be a list of cell indices, in which case getc3 returns a (CHUNK. shape) array of 
+vertex coordinates. CHUNK may also be a mesh-specific data structure used in the slice3 routine 
+(see ``slice3: Plane and Isosurface Slices of a 3D mesh'' on page&nbsp;<A HREF="node89.html#slice3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), in which case getc3 may return 
+a (ni) x(nj) x(nk) array of vertex values. There is no savings in the amount of data for such a 
+CHUNK, but the gather operation is cheaper than a general list of cell indices. Use getc3 when writing 
+coloring functions for slice3. 
+
+<P>
+If CHUNK is a CLIST, the additional arguments L, U, FSL, and FSU are vertex index lists which 
+override the CLIST if the I th attached function is defined on mesh vertices. L and U are index arrays 
+into the (CLIST. shape) x2x2x2 vertex value array, say vva, and FSL and FSU are corresponding 
+interpolation coefficients; the zone centered value is computed as a weighted average of involving 
+these coefficients. The CELLS argument is required by histogram to do the averaging. See the 
+source code for details. By default, this conversion (if necessary) is done by averaging the eight vertex-centered 
+values. 
+
+<P>
+<code>getc3_rect</code> does the job for a regular rectangular mesh. 
+<code>getc3_irreg</code>: Same thing as <code>getc3_rect</code>, i. e., returns the same type of data structure, but 
+from an irregular mesh. m3[1] is a 2-list; m3[1][0] is an array whose i th element is an array of 
+coordinate indices for the i th cell, or a list of up to four such arrays. m3 [1] [1] is the 3 by nverts 
+array of coordinates. m3 [2] is a list of arrays of vertex-centered or cell-centered data. chunk may 
+be a list, in which case chunk [0] is a 2-sequence representing a range of cell indices; or it may be 
+a one-dimensional array, in which case it is a nonconsecutive set of cell indices. It is guaranteed that 
+all cells indexed by the chunk are the same type. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2020"
+  HREF="node116.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2014"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2008"
+  HREF="node114.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2016"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2018"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2021"
+  HREF="node116.html">Controlling Points Close to</A>
+<B> Up:</B> <A NAME="tex2html2015"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html2009"
+  HREF="node114.html">Get Vertex Values of</A>
+ &nbsp; <B>  <A NAME="tex2html2017"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2019"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

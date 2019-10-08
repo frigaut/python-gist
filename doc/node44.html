@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>plg: Plot a Graph</TITLE>
+<META NAME="description" CONTENT="plg: Plot a Graph">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node45.html">
+<LINK REL="previous" HREF="node43.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node45.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html962"
+  HREF="node45.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html956"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html950"
+  HREF="node43.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html958"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html960"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html963"
+  HREF="node45.html">plmesh: Set Default Mesh</A>
+<B> Up:</B> <A NAME="tex2html957"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html951"
+  HREF="node43.html">Output Primitives</A>
+ &nbsp; <B>  <A NAME="tex2html959"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html961"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00811000000000000000"></A> 
+<A NAME="plg"></A><A NAME="751"></A>
+<A NAME="752"></A>
+<A NAME="753"></A>
+<BR>
+plg: Plot a Graph
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>... 
+
+<P>
+<PRE>
+plg(y [, x][, &lt;keylist&gt;])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+Plot a graph of y versus x. y and x must be 1D arrays of equal length. If x is omitted, it defaults to 
+[1, 2, ..., len(y)]. 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+The following keyword argument(s) apply only to this function. 
+<PRE>
+rspace = &lt;float value&gt; 
+rphase = &lt;float value&gt; 
+arroww = &lt;float value&gt; 
+arrowl = &lt;float value&gt;
+</PRE>
+
+<P>
+Select the spacing, phase, and size of occasional ray arrows placed along polylines. The spacing 
+and phase are in NDC units (0. 0013 NDC equals 1.0 point); the default rspace is 0.13, 
+and the default rphase is 0.11375, but rphase is automatically incremented for successive 
+curves on a single plot. The arrowhead width, arroww, and arrowhead length, arrowl are in 
+relative units, defaulting to 1.0, which translates to an arrowhead 10 points long and 4 points 
+in half-width. 
+
+<P>
+The following additional keyword arguments can be specified with this function. 
+legend, hide, type, width, color, closed, smooth, 
+marks, marker, mspace, mphase, rays 
+
+<P>
+See ``Plot Function Keywords'' on page&nbsp;<A HREF="node57.html#plot_function_keywords"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for detailed descriptions of these keywords. 
+
+<P>
+</DD>
+<DT><STRONG>Examples</STRONG></DT>
+<DD><P>
+The following example simply plots two straight lines. 
+
+<P>
+<PRE>
+&gt;&gt;&gt; from gist import * 
+&gt;&gt;&gt; window (0, wait= 1, dpi= 75) 
+0 
+&gt;&gt;&gt; plg([0,1]) 
+&gt;&gt;&gt; plg([1,0])
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER">
+
+<P><A NAME="fig:crossed_lines"></A></P>
+<DIV ALIGN="CENTER">
+3#3
+
+</DIV>
+</DIV>
+
+<P>
+The following draws the graph of a sine curve: 
+<PRE>
+fma() 
+x = 10* pi* arange(200, typecode = Float)/ 199.0 
+plg(sin(x), x)
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER">
+
+<P><A NAME="fig:sin_wave"></A></P>
+<DIV ALIGN="CENTER">
+4#4
+
+</DIV>
+</DIV>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html962"
+  HREF="node45.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html956"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html950"
+  HREF="node43.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html958"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html960"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html963"
+  HREF="node45.html">plmesh: Set Default Mesh</A>
+<B> Up:</B> <A NAME="tex2html957"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html951"
+  HREF="node43.html">Output Primitives</A>
+ &nbsp; <B>  <A NAME="tex2html959"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html961"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

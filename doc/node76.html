@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Physical orientation</TITLE>
+<META NAME="description" CONTENT="Physical orientation">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node75.html">
+<LINK REL="up" HREF="node74.html">
+<LINK REL="next" HREF="node77.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1458"
+  HREF="node77.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1452"
+  HREF="node74.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1448"
+  HREF="node75.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1454"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1456"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1459"
+  HREF="node77.html">Lighting Parameters</A>
+<B> Up:</B> <A NAME="tex2html1453"
+  HREF="node74.html">Functions For Setting Viewing</A>
+<B> Previous:</B> <A NAME="tex2html1449"
+  HREF="node75.html">Angular orientation</A>
+ &nbsp; <B>  <A NAME="tex2html1455"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1457"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION001012200000000000000"></A>
+<A NAME="phys_orient"></A>
+<BR>
+Physical orientation
+</H3>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+mov3 (xa = val 1 , ya = val 2 , za = val 3 ) 
+aim3 (xa = val 1 , ya = val 2 , za = val 3 ) 
+setz3 (zc = dist)
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD><P>
+<code>mov3</code> moves the current 3D plot by val 1 along the viewer's x axis, val 2 along the viewer's y axis, 
+and val 3 along the viewer's z axis. aim3 moves the current 3D plot to put the point (val 1 , val 2 , 
+val 3 ) in object coordinates at the point (0, 0, 0)--the aim point--in the viewer's coordinates. In both 
+functions, if any of the val 1 , val 2 , or val 3 is missing, it defaults to 0. 
+
+<P>
+<code>setz3</code> sets the camera position to dist (x = y = 0) in the viewer's coordinate system. If dist is 
+None or if zc is missing, set the camera to infinity (default). 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

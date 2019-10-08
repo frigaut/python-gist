@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>pli: Plot a Cell Array</TITLE>
+<META NAME="description" CONTENT="pli: Plot a Cell Array">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node53.html">
+<LINK REL="previous" HREF="node51.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node53.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html1074"
+  HREF="node53.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1068"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1062"
+  HREF="node51.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1070"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1072"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1075"
+  HREF="node53.html">pldj: Plot Disjoint Lines</A>
+<B> Up:</B> <A NAME="tex2html1069"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1063"
+  HREF="node51.html">plfp: Plot a List</A>
+ &nbsp; <B>  <A NAME="tex2html1071"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1073"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00819000000000000000"></A>
+<A NAME="pli"></A><A NAME="908"></A>
+<A NAME="909"></A>
+<BR>
+pli: Plot a Cell Array
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+pli(z[[, x0, y0], x1, y1][, &lt;keylist&gt;])
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>Plot the image z as a cell array: an array of equal rectangular cells colored according to the 2D array 
+z. The first dimension of z is plotted along x, the second dimension is along y. 
+If z is of type unsigned char (Python typecode <code>"b"</code>), it is used '' as is''; otherwise, it is linearly 
+scaled to fill the current palette, as with the bytscl function. 
+
+<P>
+If x1 and y1 are given, they represent the coordinates of the upper right corner of the image. If 
+x0, and y0 are given, they represent the coordinates of the lower left corner, which is at (0, 0) by
+default. If only the z array is given, each cell will be a 1x1 unit square, with the lower left corner of the 
+image at (0, 0). 
+
+<P>
+</DD>
+<DT><STRONG>Keyword Arguments</STRONG></DT>
+<DD><P>
+The following keyword arguments can be specified with this function. 
+legend, hide, top, cmin, cmax 
+See ``Plot Function Keywords'' on page&nbsp;<A HREF="node57.html#plot_function_keywords"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for detailed descriptions of these keywords. (See the 
+bytscl function description on page&nbsp;<A HREF="node117.html#bytscl"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for explanation of top, cmin, cmax.) 
+
+<P>
+</DD>
+<DT><STRONG>Example</STRONG></DT>
+<DD>The following example computes and draws an interesting cell array. 
+<PRE>
+fma() 
+unzoom() 
+x = a3 (-6,6,200) 
+y = transpose (x) 
+r = mag(y, x) 
+theta = arctan2 (y, x) 
+funky = cos(r)** 2 * cos(3* theta) 
+pli(funky)
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER">
+
+<P><A NAME="fig:pli"></A></P>
+<DIV ALIGN="CENTER">
+11#11
+
+</DIV>
+</DIV>
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1074"
+  HREF="node53.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1068"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1062"
+  HREF="node51.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1070"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1072"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1075"
+  HREF="node53.html">pldj: Plot Disjoint Lines</A>
+<B> Up:</B> <A NAME="tex2html1069"
+  HREF="node43.html">Output Primitives</A>
+<B> Previous:</B> <A NAME="tex2html1063"
+  HREF="node51.html">plfp: Plot a List</A>
+ &nbsp; <B>  <A NAME="tex2html1071"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1073"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

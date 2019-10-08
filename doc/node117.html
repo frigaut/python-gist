@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Scale variables to a palette: bytscl, split_bytscl</TITLE>
+<META NAME="description" CONTENT="Scale variables to a palette: bytscl, split_bytscl">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node118.html">
+<LINK REL="previous" HREF="node116.html">
+<LINK REL="up" HREF="node104.html">
+<LINK REL="next" HREF="node118.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2048"
+  HREF="node118.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2042"
+  HREF="node104.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2036"
+  HREF="node116.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2044"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2046"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2049"
+  HREF="node118.html">Return Vertex Coordinates for</A>
+<B> Up:</B> <A NAME="tex2html2043"
+  HREF="node104.html">Useful Functions for Developers</A>
+<B> Previous:</B> <A NAME="tex2html2037"
+  HREF="node116.html">Controlling Points Close to</A>
+ &nbsp; <B>  <A NAME="tex2html2045"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2047"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013130000000000000000">
+Scale variables to a palette: bytscl, split_bytscl</A>
+</H1> 
+
+<P>
+<A NAME="2752"></A>
+<A NAME="bytscl"></A><A NAME="2754"></A>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequence</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>  
+bytscl(z, top= max_byte, cmin= lower_cutoff, 
+cmax= upper_cutoff) 
+split_bytscl (x, upper, cmin = None, cmax = None)
+</PRE>  
+
+<P>
+</DD>
+<DT><STRONG>Description</STRONG></DT>
+<DD>bytscl returns an unsigned char array (Python typecode <code>"b"</code>) of the same shape as Z, with values 
+linearly scaled to the range 0 to one less than the current palette size. If <code>MAX_BYTE</code> is specified, then 
+the scaled values will run from 0 to <code>MAX_BYTE</code> instead. If <code>LOWER_CUTOFF</code> and/ or <code>UPPER_CUTOFF</code> 
+are specified, Z values outside this range are mapped to the cutoff value; otherwise the linear scaling 
+maps the extreme values of Z to 0 and <code>MAX_BYTE</code>. 
+
+<P>
+<code>split_bytscl</code> is as the bytscl function, but scales to the lower half of a split palette (0-99, 
+normally the color scale) if the second parameter is zero or nil, or the upper half (100-199, normally 
+the gray scale) if the second parameter is non-zero. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Zooming Operations</TITLE>
+<META NAME="description" CONTENT="Zooming Operations">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node38.html">
+<LINK REL="up" HREF="node34.html">
+<LINK REL="next" HREF="node42.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html892"
+  HREF="node42.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html886"
+  HREF="node34.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html882"
+  HREF="node40.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html888"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html890"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html893"
+  HREF="node42.html">Two-Dimensional Plotting Functions</A>
+<B> Up:</B> <A NAME="tex2html887"
+  HREF="node34.html">Plot Limits and Scaling</A>
+<B> Previous:</B> <A NAME="tex2html883"
+  HREF="node40.html">gridxy: Specify Grid Lines</A>
+ &nbsp; <B>  <A NAME="tex2html889"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html891"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00730000000000000000"></A> 
+<A NAME="zooming_ops"></A><A NAME="629"></A>
+<BR>
+Zooming Operations
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+
+<P>
+<PRE>
+zoom_factor(factor) 
+unzoom()
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Descriptions</STRONG></DT>
+<DD><P>
+<code>zoom_factor</code> sets the zoom factor for mouse-click zoom in and zoom out operations. The default 
+factor is 1.5; factor should always be greater than 1.0. 
+
+<P>
+<code>unzoom</code> restores limits to their values before zoom and pan operations performed interactively using 
+the mouse. Use 
+
+<P>
+<PRE>
+old_limits = limits() 
+... 
+limits(old_limits)
+</PRE>
+
+<P>
+to save and restore plot limits generally.
+
+<P>
+</DD>
+</DL>
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

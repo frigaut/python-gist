@@ -1,0 +1,438 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>How slice3 works</TITLE>
+<META NAME="description" CONTENT="How slice3 works">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node143.html">
+<LINK REL="up" HREF="node141.html">
+<LINK REL="next" HREF="node145.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2458"
+  HREF="node145.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2452"
+  HREF="node141.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2448"
+  HREF="node143.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2454"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2456"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2459"
+  HREF="node145.html">Index</A>
+<B> Up:</B> <A NAME="tex2html2453"
+  HREF="node141.html">More slice3 details</A>
+<B> Previous:</B> <A NAME="tex2html2449"
+  HREF="node143.html">Standard numbering of cells</A>
+ &nbsp; <B>  <A NAME="tex2html2455"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2457"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION001443000000000000000">
+How slice3 works</A>
+</H2> 
+
+<P>
+Recall the calling sequence of slice3 (see see Section ``slice3: Plane and Isosurface Slices of a 3D mesh'' on page&nbsp;<A HREF="node89.html#slice3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>): 
+
+<P>
+<PRE>
+[nverts, xyzverts, color] = \ 
+   slice3 ( m3, fslice, nv, xyzv [, fcolor [, flg 1 ]] 
+   [, value = &lt;val&gt;] [, node = flg 2 ] )
+</PRE>
+
+<P>
+The important arguments are m3, a mesh specification which was returned by an earlier call of 
+mesh3 (see ``Creating a mesh3 argument''); fslice (which specifies either the name of a slicing 
+function, a slicing plane in plane3 format (see Section ``Creating a Plane'' on page&nbsp;<A HREF="node85.html#creating_a_plane"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), or 
+the number of the function defined on the mesh with respect to which an isosurface is to be computed); 
+fcolor, which (if None) specifies that the section is to be shaded, or (if a function) gives a 
+set of values on the the cells specified to it when slice3 calls it; value, which in the case of an 
+isosurface specifies the value of the function doing the slicing; and node, which if nonzero and color 
+is calculated, says to return node-centered rather than cell-centered values. 
+
+<P>
+One of the first things that slice3 does is to call iterator3 with m3 as argument, which in 
+turn calls the appropriate iterator for the particular type of mesh. (Recall that m3 contains names of 
+appropriate functions to call for this mesh.) The purpose of iterator3 is to ``chunk'' up the mesh 
+into manageable pieces; the main loop in slice3 calls iterator3 repeatedly until it finally returns 
+None, signalling that the entire mesh has been processed. The details of both types of iterator are 
+straightforward and can be had by inspecting the source code. One thing to bear in mind is that in the 
+case of an unstructured mesh, iterator3 is guaranteed to return a chunk which consists of only one 
+type of cell. 
+
+<P>
+Why ``chunk'' up the mesh? The creators of the Yorick version of slice3, Langer and Munro, did 
+so in order to avoid the possibility of creating very large temporaries and thus, perhaps, having memory 
+problems. It seemed to us judicious to do the same thing. 
+
+<P>
+The first thing done inside the slice3 main loop is to call the appropriate slicing function. Two 
+functions are supplied in slice3. py. Their calling sequences and descriptions are as follows: 
+
+<P>
+<PRE>
+_isosurface_slicer (m3, chunk, iso_index, _value)
+</PRE>
+
+<P>
+an isosurface slicer brings back a list [vals, None] where vals is simply an 
+array of the values of the <code>iso_index</code>-th mesh function on the vertices of the 
+specified chunk, or (in the unstructured case) a triple, consisting of the array of 
+values, an array of relative cell numbers in the chunk, and an offset to add to the 
+preceding to get absolute cell numbers. 
+
+<P>
+<PRE>
+_plane_slicer (m3, chunk, normal, projection)
+</PRE>
+
+<P>
+In the case of a plane slice, this returns a list <code>[vals,_xyz3]</code> (or 
+<code>[[vals, clist, cell_offset], _xyz3]</code> in the irregular case) 
+where <code>_xyz3</code> is the 
+array of vertices of the chunk. <code>_xyz3</code> is ncells by 3 by something (in the irregular 
+case), ncells by 3 by 2 by 2 by 2 in the regular case, and 3 by ni by 
+nj by nk otherwise. vals will be the values of the projections of the corresponding 
+vertex on the normal to the plane, positive if in front, and negative if 
+in back. 
+
+<P>
+In addition, the user may supply a slicing function; if so, its calling sequence must be of the form 
+<PRE>
+fslice (m3, chunk)
+</PRE>
+and it must return something resembling the returned values above. If the m3 mesh is totally unstructured, 
+the chunk should be arranged so that fslice returns an ncells-by-2-by-2-by-2 [hex case] 
+(or ncells-by-3-by-2 [prism] or ncells-by-5 [pyramid] or ncells-by-4 [tet]) array of vertex 
+values of the slicing function. Note that a chunk of an irregular mesh always consists of just one kind 
+of cell. On the other hand, if the mesh vertices are arranged in a rectangular grid (or a few patches of 
+rectangular grids), the chunk should be the far less redundant rectangular patch. 
+Determination of the Critical Cells 
+The critical cells are those cells (if any) which are cut by the slicing plane or isosurface. There are 
+precisely those cells on the vertices of which the vals returned by the slicing function changes sign. 
+For cells of one of the four types present in an unstructured mesh, one adds up the number of vertices 
+on which vals is negative. If this is a positive number and also less than the number of vertices for that 
+cell type, then the cell is critical. In the structured case, vals is ni by nj by nk. To the array which 
+is 1 where vals is negative and 0 elsewhere, we apply the <code>zcen_</code> 
+(see page&nbsp;<A HREF="node128.html#zcen_"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) function along 
+each of its three dimensions. The result is an array ni-1 by nj-1 by nk-1 of values defined on 
+each cell which can be one of the nine values 0., .125, .25, .375, .5, .625, .75, .875, 1.0. Those cells 
+where the value is strictly between the two end values are critical. Thus we form clist, which is an 
+array of absolute cell numbers of the critical cells. 
+
+<P>
+If clist is not empty, then we extract the coordinates of the critical cells, the data values at these 
+points, and (if appropriate) the colors of the cells. In the case of a structured mesh, we use the 
+<code>to_corners3</code> function discussed earlier (see page&nbsp;<A HREF="node119.html#to_corners3"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) to convert cell numbers to node numbers, in 
+order to get the node coordinates and data. We append a list of this to our list of results (appending 
+[None, None, None, None] if clist is empty) and then continue iterating. 
+
+<P>
+Determination of the Cut Edges and the Intersection Points 
+Once this loop completes, there is another for loop which loops through each type of cell (structured 
+meshes are lumped under hex cells) present in the mesh, putting together the ``chunks'' of results if 
+necessary. It then calls <code>find_mask</code> (page&nbsp;<A HREF="node138.html#find_mask"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), which returns a mask array ncells * ne long 
+(ncells is the total number of cells of this type, ne the number of edges on a cell) which contains 
+1's corresponding to edges which are cut by the plane or isosurface (in the standard ordering discussed 
+earlier in this chapter; see page&nbsp;<A HREF="node142.html#standard_ordering"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>). It is now easy to get the coordinates of the endpoints of 
+the cut edges using the standard numbering embodied in the tables; we then linearly interpolate along 
+the cut edges, based on the values on their endpoints, to obtain a list of coordinates of the intersections 
+of the plane or isosurface with the cells. This list of points now needs to be ordered so that the polygons 
+of intersection can be drawn properly. 
+
+<P>
+Ordering of the Intersection Points 
+We associate with each critical cell a pattern number between 0 and 255 (non-inclusive) which 
+denotes in one number the pattern of its vertices where the function value is negative. The pattern 
+
+<P>
+number is arrived at by assigning the number 2 k to the k th vertex in the cell, then adding together for 
+each cell the numbers assigned to its vertices that have negative values. We now create a new pattern 
+array which is ncells * ne long and in which the entry corresponding to each cut edge contains 
+the same pattern number as its adjacent cell; i. e., if cell j has cut edge i and pattern number n, 
+then pattern [i * ne + j] will contain n. 
+
+<P>
+The <code>_poly_permutations</code> array. To each pattern, there corresponds a permutation of the 
+edges so that they occur in the order in which the edges are to be connected. Let each such permutation 
+be stored as a list of integers from 0 to ne-1 such that sorting the integers into increasing order rearranges 
+the edges at the corresponding indices into the correct order. (The position of unsliced edges 
+in the list is arbitrary as long as the sliced edges are in the proper order relative to each other.) Let these 
+permutations be stored in a ne-by-254 array <code>_poly_permutations</code>. 
+
+<P>
+<code>_poly_permutations</code> is computed (one time only) as follows. When slice3. py is imported, <code>_construct3</code> is called four times, once for each type of cell. <code>_construct3</code> first creates a 
+
+<P>
+mask array below dimensioned (2 nv-2) by nv. The row below [k] has an entry for each vertex, 
+marked 0 or 1 corresponding to the pattern number k + 1. <code>_construct3</code> now calls <code>find_mask</code> 
+(see ``Finding Edges Cut by Isosurfaces: find_mask'') with parameters below and the 
+<code>_node_edges</code> array for that particular type of cell. <code>find_mask</code> returns an array (called mask) 
+
+<P>
+(2 nv-1) by ne in size; each set of ne consecutive entries is filled with an edge mask, i. e., the entry 
+corresponding to an edge in the standard order is 1 or 0 according as the corresponding edge is cut or 
+not. <code>_construct3</code> now calls construct3, a function in arrayfnsmodule (see section ``Order 
+Cut Edges of a cell: construct3''), with mask and the cell type as parameters. 
+
+<P>
+The purpose of construct3 is to determine an order for the cut edges so that the polygons representing 
+the plane or isosurface cut of the cell will be drawn properly. construct3 does this by 
+calling an auxiliary function walk3 inside a loop, each call of walk3 being with the next ne entries 
+of mask. walk3 not only decides the correct order of the points of intersection in order to draw the 
+polygons, but also decides whether there are disjoint polygonal intersections with this cell. The walk3 
+algorithm begins with the lowest numbered cut edge (and marks that edge as having been used) and 
+examines the lowest numbered face incident upon this edge. There must be at least one other cut edge 
+on this face. If the face is triangular, it looks first at the next edge counterclockwise (in the outwards 
+normal direction), then (if necessary) the next one clockwise. On a square face it looks first at the opposite 
+edge, then at the next one clockwise, then counterclockwise. When it has selected an edge, it 
+goes to the other face incident upon that edge and repeats the process. If at some point no unused edge 
+can be found, then that means a closed polygon has been found. The next unused edge with the lowest 
+number is chosen (if there is one) and the process repeats. In the latter case, there is more than one 
+disjoint polygonal intersection with the cell, and the number ne * (no. of disjoint polygons so far) is 
+added to the edge permutations. 
+
+<P>
+Thus, for each cut cell in the mesh, <code>_poly_permutations</code> tells the order that the cutting points 
+must be connected, and how many polygonal intersections there are with the cell. In the function <code>slice3</code>, 
+the following instructions compute subscripts into the array of points in the correct order for drawing: 
+
+<P>
+<PRE>
+pattern = take (ravel (transpose (_poly_permutations [i])), 
+_no_edges [i] * (pattern-1) + edges) \ 
++ 4 * _no_edges [i] * cells 
+order = argsort (pattern)
+</PRE>
+
+<P>
+The order array is now used as a set of subscripts so that we can extract the coordinates of the cutting 
+points in the proper order. Once this has been done, the array whose entries give the number of 
+vertices in each polygon is calculated. 
+
+<P>
+There remains only the question of splitting the points in a single cell into multiple disjoint polygons. 
+To do this, recall that when computing <code>_poly_permutations</code>, we had added ne (the number 
+of edges on this type of cell) to any second disjoint polygon's edge list, 2 * ne to any third one, 
+etc. The following will now give an array whose entries corresponding to the edge orderings for each 
+cell will be 0 for the first disjoint polygon, 1 for the second, 2 for the third, and 3 for the fourth (if there 
+are that many). 
+
+<P>
+<PRE>
+pattern = pattern / _no_edges [i]
+</PRE>
+
+<P>
+Now pattern jumps by 4 between cells, smaller jumps within cells get the list of places where a new 
+value begins, and form a new pattern with values that increment by 1 between each plateau. Then the 
+following relatively straightforward computation computes the nverts array. In order to fully appreciate 
+how the algorithm works, we have indicated the results supposing that we began with the pattern 
+<code>[0,0,0,1,1,1,1,2,2,2,4,4,4,4,4,5,5,5,8,8,8]</code>. 
+
+<P>
+<PRE>
+pattern = dif_(pattern, 0) 
+#[ 0,0,1,0,0,0,1,0,0,1,0,0,0,0,1,0,0,1,0,0] 
+nz = nonzero (pattern) 
+#[ 2,6,9,14,17] 
+list = zeros (len (nz) + 1, Int) 
+#[ 0,0,0,0,0,0] 
+list [1:] = nz + 1 
+#[ 0,3,7,10,15,18] 
+newpat = zeros (len (pattern) + 1, Int) 
+#[ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+newpat [0] = 1 
+newpat [1:] = cumsum (not_equal (pattern, 0)) + 1 
+#[ 1,1,1,2,2,2,2,3,3,3,4,4,4,4,4,5,5,5,6,6,6] 
+pattern = newpat 
+nverts = histogram (pattern) [1:] 
+#[ 3,4,3,5,3,3]
+</PRE>
+<!-- MATH
+ $Id: node144.html 658 2007-09-09 11:13:55Z mbec $
+ -->
+14#14
+Changes to pygist/doc
+
+<P>
+V030418 Chase
+
+<P>
+1.  Add 2D figures. 
+
+<P>
+V030415 Chase
+
+<P>
+1.  lc_num.sty:  Reverse left and right side margins.
+
+<P>
+V030414 Chase
+
+<P>
+1.  makehtml, Makefile:  Add -local_icons in case local 
+            server does not have them.
+
+<P>
+V030410 Michiel de Hoon
+
+<P>
+1.  maintenance.tex, useful_functions.tex, plot3d.tex, 
+            pygist_graphics.tex:  Add missing underscores after some names
+            mostly in 3D sections.
+
+<P>
+V030409 Chase
+
+<P>
+1.  pygist.tex:  Make changes so that plot figures can be included.
+            Found out how to include figures so that it works for PS and PDF
+            files.  Encapsulated postscript files are used for figures in
+            LaTeX.  These files will need to be concerted for PDFLaTeX. 
+               epstopdf test.eps
+            creates test.pdf.  (available on Linux)
+            When the file is specified in the *.tex sources, leave off the
+            .eps and .pdf extensions.
+
+<P>
+V030407 Michiel de Hoon
+
+<P>
+1.  control_functions.tex:  Add description of how to change 
+            the window style interactively and functions:
+               style=get_style()
+               set_style ( style ) 
+
+<P>
+2.  plot2d.tex:  Update plh description with the changes to 
+            support labels for histograms.  Remove legend keyword.
+
+<P>
+V030325 Chase
+
+<P>
+1.  inquiry.tex, pygist_graphics.tex:  pldefault(cgmfilesize=20)
+            to reset CGM file size to 20 MB.
+
+<P>
+V030228 Chase
+
+<P>
+1.  Install Michiel de Hoon's changes to inquiry.tex, maintenance.tex,
+            and install.tex.  These were mostly typo fixes and installation
+            instruction update:  Due to distutils patches he submitted to 
+            the python website, Python 2.3a2 and up no longer requireds
+            the workarounds described in chapter 2.
+
+<P>
+V030213 Chase
+
+<P>
+1.  Add plremove description to inquiry.tex. (from David Grote)
+
+<P>
+V030203 Chase
+
+<P>
+1.  Add GISTPATH note (as recommended by Michiel).
+
+<P>
+V030116 Chase
+
+<P>
+1.  Changes from Michiel de Hoon.  Windows and Cygwin installation
+            instructions; spelling corrections from running ispell.
+
+<P>
+2.  env.tex renamed demo.tex.
+            Removed need to set PYTHONHOME and PYTHONPATH after checking
+            that Michiel's observation was correct for our machines.
+
+<P>
+V030114 Chase
+
+<P>
+1.  makepdf:  It used to be necessary to add =1 before
+            the first page, yet latex did not like this command.  Used
+            a sedscript to make this change.  This change is no longer 
+            required.
+
+<P>
+2.  Put the equivalent functionality of make* scripts in a Makefile.
+            Only thing missing is test on Linux.
+
+<P>
+V030106 Chase
+
+<P>
+1.  Original source for the PyGist documentation was lost
+            (according to Sharon Wilson).
+
+<P>
+This source was retrieved by running a tool on the PDF file
+            to extract any available text.
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2458"
+  HREF="node145.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2452"
+  HREF="node141.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2448"
+  HREF="node143.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2454"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2456"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2459"
+  HREF="node145.html">Index</A>
+<B> Up:</B> <A NAME="tex2html2453"
+  HREF="node141.html">More slice3 details</A>
+<B> Previous:</B> <A NAME="tex2html2449"
+  HREF="node143.html">Standard numbering of cells</A>
+ &nbsp; <B>  <A NAME="tex2html2455"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2457"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

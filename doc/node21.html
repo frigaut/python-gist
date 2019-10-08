@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>movie.py: PyGist 3D Animation</TITLE>
+<META NAME="description" CONTENT="movie.py: PyGist 3D Animation">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node23.html">
+<LINK REL="previous" HREF="node16.html">
+<LINK REL="up" HREF="node12.html">
+<LINK REL="next" HREF="node22.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html600"
+  HREF="node22.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html594"
+  HREF="node12.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html588"
+  HREF="node20.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html596"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html598"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html601"
+  HREF="node22.html">Examples</A>
+<B> Up:</B> <A NAME="tex2html595"
+  HREF="node12.html">Python Gist Graphics</A>
+<B> Previous:</B> <A NAME="tex2html589"
+  HREF="node20.html">Overview of module slice3</A>
+ &nbsp; <B>  <A NAME="tex2html597"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html599"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00530000000000000000"></A> 
+<A NAME="247"></A>
+<A NAME="248"></A>
+<BR>
+movie.py: PyGist 3D Animation
+</H1>
+
+<P>
+The module movie.py supports 3D real time animation. Function movie accepts as argument 
+the name of a drawing function which has as its single argument a frame number; movie then calls 
+this drawing function within a loop, halting when the function returns zero. The idea is that the drawing 
+function increments from the previous frame and draws the new frame, returning zero when some predefined 
+event takes place, e. g., some set number of frames has been drawn, or a certain amount of time 
+has elapsed. The function <code>spin3</code> in module <code>pl3d</code> calls <code>movie</code>; the drawing function <code>_spin3</code> draws 
+the successive frames of a rotating 3D plot. The demonstration module demo5.py contains an example 
+of a shaded surface with a moving light source; the drawing function, <code>demo5_light</code>, moves 
+the light and draws the next frame. 
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html602"
+  HREF="node22.html">Examples</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

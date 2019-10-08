@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Hard Copy and File Control</TITLE>
+<META NAME="description" CONTENT="Hard Copy and File Control">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="previous" HREF="node27.html">
+<LINK REL="up" HREF="node25.html">
+<LINK REL="next" HREF="node29.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html705"
+  HREF="node29.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html699"
+  HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html695"
+  HREF="node27.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html701"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html703"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html706"
+  HREF="node29.html">Other Controls</A>
+<B> Up:</B> <A NAME="tex2html700"
+  HREF="node25.html">Device Control</A>
+<B> Previous:</B> <A NAME="tex2html696"
+  HREF="node27.html">Changing the Window Style</A>
+ &nbsp; <B>  <A NAME="tex2html702"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html704"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00613000000000000000"></A>
+<A NAME="406"></A>
+<BR>
+Hard Copy and File Control
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Calling Sequences</STRONG></DT>
+<DD>...
+
+<P>
+<PRE> 
+eps (name) 
+hcp () 
+hcp_file ([filename] [, dump = 0/1]) 
+filename = hcp_finish ([n]) 
+hcp_out ([n] [, keep = 0/ 1]) 
+hcpon () 
+hcpoff ()
+</PRE> 
+
+<P>
+</DD>
+<DT><STRONG>Descriptions</STRONG></DT>
+<DD>... 
+
+<P>
+<DL>
+<DT><STRONG>eps(name)</STRONG></DT>
+<DD>Write the picture in the current graphics window to the Encapsulated PostScript file name + 
+<code>.epsi</code> (i. e., the suffix <code>.epsi</code> is added to name). The eps function requires the 
+ps2epsi utility which comes with the project GNU Ghostscript program. Any hardcopy file 
+associated with the current window is first closed, but the default hardcopy file is unaffected. 
+As a side effect, legends are turned off and color table dumping is turned on for the current 
+window. The environment variable <code>PS2EPSI_FORMAT</code> contains the format for the command 
+to start the ps2epsi program. 
+
+<P>
+</DD>
+<DT><STRONG>hcp()</STRONG></DT>
+<DD><A NAME="hcp"></A><A NAME="412"></A>
+<A NAME="413"></A>
+The hcp function sends the picture displayed in the current graphics window to the hardcopy 
+file. (The name of the default hardcopy file can be specified using <code>hcp_file</code>; each individual 
+graphics window may have its own hardcopy file as specified by the window function.) 
+
+<P>
+</DD>
+<DT><STRONG>hcp_file([filename] [,dump=0/1])</STRONG></DT>
+<DD><P>
+<A NAME="414"></A>
+<A NAME="415"></A>
+Sets the default hardcopy file to filename. If filename ends with <code>.ps</code>, the file will 
+be a PostScript file, otherwise it will be a binary CGM file. By default, the hardcopy file name 
+will be <code>Aa00.cgm</code>, or <code>Ab00.cgm</code> if that exists, or <code>Ac00.cgm</code> if both exist, and so 
+on. The default hardcopy file gets hardcopy from all graphics windows which do not have 
+their own specific hardcopy file (see the window function). If the dump keyword is present 
+and nonzero, then the current palette will be dumped at the beginning of each frame of the 
+default hardcopy file. This is what you want to do when you want color plots. With dump = 0, 
+the default behavior of converting all colors to a gray scale is restored. 
+
+<P>
+</DD>
+<DT><STRONG>filename=hcp_finish([n])</STRONG></DT>
+<DD>Close the current hardcopy file and return the filename. If n is specified, close the hcp file 
+associated with window n and return its name; use <code>hcp_finish(-1)</code> to close the default 
+hardcopy file. 
+
+<P>
+</DD>
+<DT><STRONG>hcp_out([n] [,keep=0/1])</STRONG></DT>
+<DD>**** NOT YET IMPLEMENTED **** 
+Finishes the current hardcopy file and sends it to the printer. If n is specified, prints the hcp 
+file associated with window n; use <code>hcp_out(-1)</code> to print the default hardcopy file. Unless 
+the keep keyword is supplied and nonzero, the file will be deleted after it is processed by 
+gist and sent to lpr. 
+
+<P>
+</DD>
+<DT><STRONG>hcpon()</STRONG></DT>
+<DD>The hcpon function causes every fma (frame advance) function call to do an implicit hcp, 
+so that every frame is sent to the hardcopy file. 
+
+<P>
+</DD>
+<DT><STRONG>hcpoff()</STRONG></DT>
+<DD>The hcpoff command reverts to the default ``demand only'' mode. 
+
+<P>
+</DD>
+</DL>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html705"
+  HREF="node29.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html699"
+  HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html695"
+  HREF="node27.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html701"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html703"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html706"
+  HREF="node29.html">Other Controls</A>
+<B> Up:</B> <A NAME="tex2html700"
+  HREF="node25.html">Device Control</A>
+<B> Previous:</B> <A NAME="tex2html696"
+  HREF="node27.html">Changing the Window Style</A>
+ &nbsp; <B>  <A NAME="tex2html702"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html704"
+  HREF="node145.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>

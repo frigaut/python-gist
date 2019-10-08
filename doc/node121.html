@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Maintenance: Things You Really Didn't Want to Know</TITLE>
+<META NAME="description" CONTENT="Maintenance: Things You Really Didn't Want to Know">
+<META NAME="keywords" CONTENT="pygist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="pygist.css">
+
+<LINK REL="next" HREF="node145.html">
+<LINK REL="previous" HREF="node104.html">
+<LINK REL="up" HREF="pygist.html">
+<LINK REL="next" HREF="node122.html">
+</HEAD>
+
+<BODY BGCOLOR="#FFFACD" >
+<!--Navigation Panel-->
+<A NAME="tex2html2102"
+  HREF="node122.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2096"
+  HREF="pygist.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2090"
+  HREF="node120.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2098"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2100"
+  HREF="node145.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2103"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<B> Up:</B> <A NAME="tex2html2097"
+  HREF="pygist.html">pygist</A>
+<B> Previous:</B> <A NAME="tex2html2091"
+  HREF="node120.html">Timing: timer_, timer_print</A>
+ &nbsp; <B>  <A NAME="tex2html2099"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2101"
+  HREF="node145.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001400000000000000000">
+Maintenance: Things You Really Didn't Want to Know</A>
+</H1>
+
+<P>
+In this chapter we discuss in even more gory detail how the PyGist graphics are put together. 
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2104"
+  HREF="node122.html">The Workhorse: gistCmodule</A>
+<UL>
+<LI><A NAME="tex2html2105"
+  HREF="node123.html">Memory Maintenance: PyObjects</A>
+<LI><A NAME="tex2html2106"
+  HREF="node124.html">Memory Management: ArrayObjects</A>
+<LI><A NAME="tex2html2107"
+  HREF="node125.html">Memory Management: naked memory</A>
+<LI><A NAME="tex2html2108"
+  HREF="node126.html">Computing contour curves: contour</A>
+<LI><A NAME="tex2html2109"
+  HREF="node127.html">Computing slices: slice2, slice2x, _slice2_part</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html2110"
+  HREF="node128.html">Some Yorick-like Functions: yorick.py</A>
+<LI><A NAME="tex2html2111"
+  HREF="node129.html">Additional Array Operations: arrayfnsmodule</A>
+<UL>
+<LI><A NAME="tex2html2112"
+  HREF="node130.html">Counting Occurrences of a Value: histogram</A>
+<LI><A NAME="tex2html2113"
+  HREF="node131.html">Assigning to an Arbitrary Subset of an Array: array_set</A>
+<LI><A NAME="tex2html2114"
+  HREF="node132.html">Sorting an array: index_sort</A>
+<LI><A NAME="tex2html2115"
+  HREF="node133.html">Interpolating Values: interp</A>
+<LI><A NAME="tex2html2116"
+  HREF="node134.html">Digitizing an array: digitize</A>
+<LI><A NAME="tex2html2117"
+  HREF="node135.html">Reversing a Two-Dimensional array: reverse</A>
+<LI><A NAME="tex2html2118"
+  HREF="node136.html">Obtaining an Equally-Spaced Array of Floats: span</A>
+<LI><A NAME="tex2html2119"
+  HREF="node137.html">Effective Length of an Array: nz</A>
+<LI><A NAME="tex2html2120"
+  HREF="node138.html">Finding Edges Cut by Isosurfaces: find_mask</A>
+<LI><A NAME="tex2html2121"
+  HREF="node139.html">Order Cut Edges of a cell: construct3</A>
+<LI><A NAME="tex2html2122"
+  HREF="node140.html">Expand cell-centered values to node-centered values: to_corners</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html2123"
+  HREF="node141.html">More slice3 details</A>
+<UL>
+<LI><A NAME="tex2html2124"
+  HREF="node142.html">Standard ordering for the four types of mesh cells</A>
+<LI><A NAME="tex2html2125"
+  HREF="node143.html">Standard numbering of cells in a regular rectangular mesh</A>
+<LI><A NAME="tex2html2126"
+  HREF="node144.html">How slice3 works</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+Michiel Jan Laurens de Hoon
+2003-04-19
+</ADDRESS>
+</BODY BGCOLOR="#FFFACD">
+</HTML>
